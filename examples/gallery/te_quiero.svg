@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="240" viewBox="0 0 420 240">
+<ellipse cx="210.0" cy="105" rx="155" ry="78" fill="none" stroke="#2e9e6b" stroke-width="1.2" opacity="0.4"/>
+<circle cx="110" cy="105" r="20" fill="none" stroke="#2e9e6b" stroke-width="1.5"/>
+<circle cx="110" cy="105" r="7" fill="#2e9e6b"/>
+<circle cx="310" cy="105" r="20" fill="none" stroke="#2e9e6b" stroke-width="1.5"/>
+<circle cx="310" cy="105" r="7" fill="none" stroke="#2e9e6b" stroke-width="2"/>
+<polyline points="136.0,105.0 140.0,113.1 144.0,116.9 148.0,114.6 152.0,107.2 156.0,98.7 160.0,93.5 164.0,94.3 168.0,100.7 172.0,109.3 176.0,115.7 180.0,116.5 184.0,111.3 188.0,102.8 192.0,95.4 196.0,93.1 200.0,96.9 204.0,105.0 208.0,113.1 212.0,116.9 216.0,114.6 220.0,107.2 224.0,98.7 228.0,93.5 232.0,94.3 236.0,100.7 240.0,109.3 244.0,115.7 248.0,116.5 252.0,111.3 256.0,102.8 260.0,95.4 264.0,93.1 268.0,96.9 272.0,105.0 276.0,113.1 280.0,116.9 284.0,114.6" fill="none" stroke="#2e9e6b" stroke-width="3.0"/>
+<line x1="176.0" y1="204" x2="244.0" y2="204" stroke="#8a8f98" stroke-width="1"/>
+<circle cx="210.0" cy="204" r="3.5" fill="#8a8f98"/>
+<text x="210.0" y="228" text-anchor="middle" font-family="monospace" font-size="10" fill="#667">YO → AMOR → OTRO @AHORA · positivo, intenso, seguro, cercano</text>
+</svg>

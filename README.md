@@ -1,6 +1,14 @@
 # ROGEX-WSP — Wired Symbolic Protocol
 
+[![tests](https://github.com/n4vv4r/RogexWSP/actions/workflows/tests.yml/badge.svg)](https://github.com/n4vv4r/RogexWSP/actions/workflows/tests.yml)
+[![licencia](https://img.shields.io/badge/licencia-Apache--2.0-blue.svg)](LICENSE)
+[![python](https://img.shields.io/badge/python-3.10%2B-informational.svg)](pyproject.toml)
+
 > El significado no vive en la palabra. La palabra es solo una máscara.
+
+**ROGEX-WSP no es una lengua inventada. Es un protocolo experimental de
+comunicación simbólico-emocional: un núcleo de significado, muchas máscaras
+físicas.** *(One meaning core, many physical masks.)*
 
 ROGEX-WSP no es un idioma con palabras: es un **protocolo de significado**.
 La unidad de comunicación es un paquete de **información + emoción** que puede
@@ -89,7 +97,13 @@ La IA que reciba esto no responde a las palabras: responde al símbolo emocional
 | 6 | **Tiempo y espacio** — coordenadas, no palabras | `Symbol.time/space` |
 | 7 | **Generatividad (G)** — conceptos nuevos por composición | `concepts.py` |
 
-La especificación completa está en [`docs/SPEC.md`](docs/SPEC.md).
+Documentación:
+
+- [`docs/SPEC.md`](docs/SPEC.md) — especificación normativa del protocolo
+- [`docs/PHILOSOPHY.md`](docs/PHILOSOPHY.md) — la tesis: por qué no palabras
+- [`docs/BINARY_FORMAT.md`](docs/BINARY_FORMAT.md) — el formato binario byte a byte
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) — hoja de ruta (v0.2 «Signal Return»)
+- [`examples/gallery/`](examples/gallery/) — **galería**: glifos y audio de las frases canónicas
 
 ## Generatividad: el idioma crece
 
@@ -149,8 +163,8 @@ rogex_wsp/
   audio.py           # render: símbolo → WAV (ratios de frecuencia)
   glyph.py           # render: símbolo → SVG (geometría)
   cli.py             # comando `wsp`
-docs/SPEC.md         # especificación del protocolo v0.1
-examples/            # mensajes canónicos en JSON
+docs/                # SPEC, filosofía, formato binario, hoja de ruta
+examples/            # mensajes canónicos en JSON + galería (SVG/WAV)
 tests/               # 36 tests (unittest, stdlib)
 ```
 
@@ -162,12 +176,10 @@ python3 -m unittest discover -s tests   # ejecutar los tests
 
 Esto es una **prueba de concepto**: la v0.1 no necesita ser universal, necesita
 demostrar que una frase puede convertirse en estructura simbólica — y ya lo hace
-en ambos sentidos. Ideas para después:
-
-- v0.2: intérprete sonido→símbolo (detección de ratios) y glifo→símbolo
-- operadores relacionales encadenados (`A causa B`, `A recuerda B`)
-- renderizadores adicionales: color, vibración, MIDI
-- vectores semántico-emocionales para interoperar con modelos de IA
+en ambos sentidos. La siguiente meta es la **v0.2 «Signal Return»**: que el
+sonido y el glifo vuelvan al símbolo (`wsp listen`, `wsp inspect`), JSON Schema
+oficial y demo web. Plan completo en [`docs/ROADMAP.md`](docs/ROADMAP.md);
+cómo contribuir en [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---
 

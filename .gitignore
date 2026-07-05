@@ -6,4 +6,5 @@ dist/
 .venv/
 demo_out/
 *.wav
+!examples/gallery/*.wav
 !examples/**/*.json
