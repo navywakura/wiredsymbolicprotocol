@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rogex-wsp"
+version = "0.1.0"
+description = "ROGEX-WSP / Wired Symbolic Protocol: protocolo simbolico-emocional universal (prototipo v0.1)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Rogex Laboratories" }]
+keywords = ["symbolic", "protocol", "language", "emotion", "wired"]
+
+[project.scripts]
+wsp = "rogex_wsp.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["rogex_wsp*"]
