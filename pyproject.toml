@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rogex-wsp"
-version = "0.4.0"
+version = "0.4.1"
 description = "ROGEX-WSP / Wired Symbolic Protocol: protocolo experimental de comunicacion simbolico-emocional"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -18,7 +18,7 @@ Documentation = "https://github.com/n4vv4r/RogexWSP/blob/main/docs/SPEC.md"
 Changelog = "https://github.com/n4vv4r/RogexWSP/blob/main/CHANGELOG.md"
 
 [project.scripts]
-wsp = "rogex_wsp.cli:main"
+wsp = "rogex_wsp.cli_041:main"
 
 [tool.setuptools.packages.find]
 include = ["rogex_wsp*"]
