@@ -9,6 +9,8 @@
     wsp binary --text "peligro"                 # símbolo → binario (hex)
     wsp listen mensaje.wav                      # sonido → símbolo (v0.2)
     wsp inspect mensaje.svg                     # glifo → símbolo (v0.2)
+    wsp contact señal.wav                       # saludo de 5 tonos → símbolo (v0.4)
+    wsp contact --emit saludo.wav               # emite el saludo de contacto
     wsp demo -o demo_out                        # ejemplos canónicos completos
 """
 
@@ -123,6 +125,34 @@ def _cmd_inspect(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_contact(args: argparse.Namespace) -> int:
+    from .multiband import analyze, emit_handshake, translate_alien_handshake
+    from .symbol_to_text import render_message
+
+    if args.emit:
+        path = emit_handshake(args.emit, base=args.base)
+        print(f"saludo emitido: {path} (base {args.base} Hz)")
+        return 0
+    if not args.wav:
+        raise SystemExit("error: se necesita un WAV o --emit")
+    message = translate_alien_handshake(args.wav)
+    if message is None:
+        report = analyze(args.wav)
+        print("sin firma de contacto en la señal")
+        print(
+            f"capas: {len(report.low_tones)} tonos graves · "
+            f"{len(report.mid_tones)} tonos medios · {report.high_onsets} transitorios"
+        )
+        return 1
+    if args.compact:
+        print(message.compact())
+        print(f"es: {render_message(message, 'es')}")
+        print(f"en: {render_message(message, 'en')}")
+    else:
+        print(message.to_json())
+    return 0
+
+
 _DEMO_PHRASES = [
     "te quiero",
     "estoy aquí",
@@ -202,6 +232,16 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("svg", help="ruta al archivo SVG generado por WSP")
     p.add_argument("--compact", action="store_true", help="forma compacta + texto en vez de JSON")
     p.set_defaults(func=_cmd_inspect)
+
+    p = sub.add_parser(
+        "contact",
+        help="detecta o emite el saludo de contacto de 5 tonos (análisis multibanda)",
+    )
+    p.add_argument("wav", nargs="?", help="WAV a analizar (omitir con --emit)")
+    p.add_argument("--emit", metavar="SALIDA.wav", help="emite el saludo en vez de analizar")
+    p.add_argument("--base", type=float, default=293.66, help="frecuencia del primer tono al emitir (Hz)")
+    p.add_argument("--compact", action="store_true", help="forma compacta + texto en vez de JSON")
+    p.set_defaults(func=_cmd_contact)
 
     p = sub.add_parser("demo", help="ejecuta los ejemplos canónicos y genera archivos")
     p.add_argument("-o", "--output", default="demo_out", help="directorio de salida")

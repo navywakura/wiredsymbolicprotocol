@@ -42,14 +42,30 @@ relación y signo emocional correctos en las frases canónicas
 Extra: el parser de forma compacta (`compact.py`) convierte también esa
 máscara en bidireccional.
 
-## v0.3 — Más máscaras, más intérpretes
+## v0.3 — «Resilient Matrix» ✅ (publicada)
 
-- Audio de entrada **no generado por WSP**: tolerancia a ruido, tono base
-  variable, voz humana tarareando los ratios. Origen distinto de YO
-  (hoy `listen` asume tono base = 1:1).
-- Recuperar la **identidad del destino** en audio (hoy solo consonancia:
-  OTRO/DESCONOCIDO aproximados) — quizá codificando los átomos del destino
-  como arpegio rápido.
+- ✅ Tolerancia a ruido y jitter de voz humana: squelch RMS adaptativo,
+  tolerancia logarítmica, calibración dinámica del tono base por paquete.
+- ✅ Identidad del destino en audio: ráfaga-arpegio microtonal con
+  longitud, UTF-8 y checksum, decodificada por banco Goertzel.
+- ✅ Atribución multi-agente (`YO`/`OTRO` + `agent_id`) y entrada de
+  micrófono en la demo web.
+
+## v0.4 — «Third Kind» ✅ (publicada)
+
+Primer contacto con audio ajeno al protocolo (`multiband.py`):
+
+- ✅ **Análisis multibanda** en tres capas espectrales concurrentes:
+  graves (20–150 Hz → contexto espacio-temporal), medios (150–1200 Hz →
+  átomos) y agudos (>1200 Hz → transitorios de sincronización). Biquads
+  Butterworth a mano, diezmado por banda, descarte de fantasmas sub-octava.
+- ✅ **Plegado de octavas**: clase de tono en [1, 2) + octava como canal
+  semántico (la caída al grave = anclaje de contexto).
+- ✅ **El saludo de contacto** (*Close Encounters*, RE–MI–DO–DO↓–SOL) como
+  fixture normativa: `wsp contact` lo reconoce en cualquier tonalidad
+  (f0 dinámico) y `wsp contact --emit` lo emite por ratios.
+
+## v0.5 — Más máscaras, más intérpretes
 
 - Renderizadores nuevos: **color** (paleta emocional), **vibración**
   (patrones hápticos), **MIDI** (interoperar con instrumentos y DAWs).

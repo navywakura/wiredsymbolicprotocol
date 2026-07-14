@@ -51,6 +51,8 @@ wsp glyph --text "te quiero" -o amor.svg
 wsp binary --text "¡peligro!"                # símbolo → binario compacto (hex)
 wsp listen presencia.wav --compact           # sonido → símbolo (v0.2)
 wsp inspect amor.svg --compact               # glifo → símbolo (v0.2)
+wsp contact --emit saludo.wav                # emite el saludo de 5 tonos (v0.4)
+wsp contact saludo.wav --compact             # ...y lo reconoce en cualquier tonalidad
 ```
 
 Y la **demo web** (sin instalar nada): abre [`web/index.html`](web/index.html)
@@ -168,9 +170,10 @@ rogex_wsp/
   symbol_to_text.py  # render: símbolo → español / inglés
   audio.py           # render: símbolo → WAV (ratios de frecuencia)
   glyph.py           # render: símbolo → SVG (geometría)
-  listen.py          # intérprete: WAV → símbolo (v0.2)
+  listen.py          # intérprete: WAV → símbolo (v0.2, resiliente en v0.3)
   glyph_reader.py    # intérprete: SVG → símbolo (v0.2)
   compact.py         # intérprete: forma compacta → símbolo (v0.2)
+  multiband.py       # análisis en 3 capas espectrales + saludo de contacto (v0.4)
   cli.py             # comando `wsp`
 docs/                # SPEC, filosofía, formato binario, hoja de ruta, schema
 examples/            # mensajes canónicos en JSON + galería (SVG/WAV)
@@ -193,10 +196,20 @@ sobrevive al viaje por la máscara física:
 "te quiero" → [WAV de 2.4 s] → wsp listen → YO → AMOR → OTRO | V+0.60 B+0.60 → "Te quiero."
 ```
 
-La v0.2 añade además el JSON Schema oficial, el parser de forma compacta,
-nueve frases canónicas nuevas (incluida la transmisión: «no tengan miedo de
-lo que no conocen») y la demo web. Siguiente meta (v0.3): audio no generado
-por WSP, más máscaras (color, vibración, MIDI) y vectores
+La v0.3 «Resilient Matrix» hizo el oído robusto: calibración dinámica del
+tono base, tolerancia a ruido y jitter de voz humana, y ráfagas de identidad
+de destino. La v0.4 «Third Kind» da el salto a **audio ajeno al protocolo**:
+análisis multibanda en tres capas espectrales (graves = contexto, medios =
+átomos, agudos = sincronización) y el saludo de *Close Encounters* como
+fixture normativa — cinco tonos que se proyectan uno a uno sobre las cinco
+ranuras del paquete:
+
+```text
+RE 1:1 → MI 9:8 → DO 16:9↓ → DO 16:9↓↓ → SOL 4:3↓
+YO → SER(BUSCAR) → CONEXION @AHORA @AQUI  ·  «Existo y busco un vínculo aquí.»
+```
+
+Siguientes metas: más máscaras (color, vibración, MIDI) y vectores
 semántico-emocionales. Plan completo en [`docs/ROADMAP.md`](docs/ROADMAP.md);
 cómo contribuir en [`CONTRIBUTING.md`](CONTRIBUTING.md).
 

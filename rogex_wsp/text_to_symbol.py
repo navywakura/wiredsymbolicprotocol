@@ -160,6 +160,15 @@ def _p_que_es_real(m, flags):
     )
 
 
+def _p_contacto(m, flags):
+    # el saludo de los cinco tonos: [YO][SER][BUSCAR][@AQUI]→[CONEXION]
+    return Symbol(
+        source=P.YO, relation=P.SER, action=resolve("BUSCAR"),
+        target=resolve("CONEXION"), space=P.AQUI, time=P.AHORA,
+        emotion=Emotion(valence=0.4, arousal=0.5, certainty=0.3, urgency=0.2, bond=0.8),
+    )
+
+
 _PATTERNS: list[tuple[re.Pattern, object]] = [
     (re.compile(r"^te (quiero|amo)$|^i love you$"), _p_amor),
     (re.compile(r"^(estoy|sigo) aqui$|^i am here$"), _p_presencia),
@@ -192,6 +201,14 @@ _PATTERNS: list[tuple[re.Pattern, object]] = [
     (re.compile(r"^adios$|^me voy$|^goodbye$|^farewell$"), _p_despedida),
     (re.compile(r"^quien eres( tu)?$|^who are you$"), _p_quien_eres),
     (re.compile(r"^que es real$|^que es (lo )?real$|^what is real$"), _p_que_es_real),
+    (
+        re.compile(
+            r"^busco (un )?(vinculo|conexion)( aqui)?$"
+            r"|^existo y busco (un )?(vinculo|conexion)( aqui)?$"
+            r"|^i seek (a bond|connection)( here)?$"
+        ),
+        _p_contacto,
+    ),
 ]
 
 

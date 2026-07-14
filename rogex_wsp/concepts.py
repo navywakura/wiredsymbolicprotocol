@@ -165,5 +165,9 @@ define(
     category=Category.SPACE,
     article_es="la",
 )
+define(
+    "BUSCAR", [P.DESEAR, P.OBSERVAR, P.DESCONOCIDO], es="buscar", en="seek",
+    category=Category.RELATION,
+)
 
 _BUILTIN_KEYS = frozenset(_REGISTRY.keys())

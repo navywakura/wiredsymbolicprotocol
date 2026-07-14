@@ -85,13 +85,15 @@ def _segments(samples: list[float], sr: int) -> list[tuple[int, int, bool]]:
     return segments
 
 
-def _f0_autocorr(chunk: list[float], sr: int) -> float | None:
+def _f0_autocorr(
+    chunk: list[float], sr: int, fmin: float = _F_MIN, fmax: float = _F_MAX
+) -> float | None:
     """Estimate f0 with a lightweight, voice-safe autocorrelation.
 
-    The decoder only needs 70–1000 Hz. Analysing 22/44 kHz samples directly
-    wastes most of the work and is particularly slow on Python 3.9. We first
-    decimate to roughly 8 kHz; this preserves the required pitch range while
-    reducing the inner loop by an order of magnitude.
+    Decimates to roughly 8 kHz first: that preserves the pitch range the
+    decoder needs while cutting the inner loop by an order of magnitude.
+    `fmin`/`fmax` let other layers (multiband) reuse the estimator on their
+    own frequency ranges.
     """
     stride = max(1, math.ceil(sr / 8000.0))
     if stride > 1:
@@ -99,8 +101,8 @@ def _f0_autocorr(chunk: list[float], sr: int) -> float | None:
         sr = sr / stride
 
     n = len(chunk)
-    lag_min = max(2, int(sr / _F_MAX))
-    lag_max = min(int(sr / _F_MIN), n - 2)
+    lag_min = max(2, int(sr / fmax))
+    lag_max = min(int(sr / fmin), n - 2)
     if lag_max <= lag_min:
         return None
 

@@ -1,5 +1,36 @@
 # Changelog
 
+Todos los cambios notables de ROGEX-WSP se documentan aquí.
+El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
+y el versionado sigue [SemVer](https://semver.org/lang/es/).
+
+## [0.4.0] — 2026-07-14 «Third Kind»
+
+Primer paso hacia audio ajeno al protocolo: análisis multibanda con tono
+base dinámico, y el saludo de *Close Encounters* como fixture normativa.
+
+### Añadido
+
+- **`multiband.py`** — arquitectura de tres capas espectrales concurrentes:
+  graves (20–150 Hz, contexto espacio-temporal), medios (150–1200 Hz,
+  melodía de átomos) y agudos (>1200 Hz, transitorios de sincronización).
+  Filtros biquad Butterworth (RBJ) escritos a mano — el núcleo sigue siendo
+  stdlib pura, sin SciPy — con diezmado por banda y descarte de fantasmas
+  sub-octava por solapamiento temporal.
+- **Plegado de octavas**: cada frecuencia se cuantiza como clase de tono en
+  [1, 2) + desplazamiento de octava. La octava es canal semántico propio:
+  la caída al grave ancla el contexto (@AQUI).
+- **`wsp contact señal.wav`** — reconoce el saludo de cinco tonos
+  (RE–MI–DO–DO↓–SOL) con tono base en cualquier frecuencia y lo proyecta
+  uno a uno sobre las cinco ranuras del paquete:
+  `YO → SER(BUSCAR) → CONEXION @AHORA @AQUI` — «Existo y busco un vínculo
+  aquí.» Emparejamiento por subsecuencia (tolera ≤2 tonos espurios),
+  score ≥ 0.95, sin falsos positivos sobre los WAV canónicos.
+- **`wsp contact --emit saludo.wav`** — emite el saludo por ratios
+  (1:1 · 9:8 · 8:9 · 4:9 · 2:3), nunca por notas absolutas.
+- **Concepto derivado `BUSCAR`** = DESEAR + OBSERVAR + DESCONOCIDO (capa G).
+- Frase canónica nueva: «busco un vínculo aquí».
+
 ## [0.3.0] — «Resilient Matrix»
 
 ### Añadido
@@ -19,10 +50,6 @@
 - Falsos silencios semánticos provocados por ruido ambiente.
 - Saltos de cuantización causados por pequeñas desviaciones de voz humana.
 - Pérdida de identidad de destinos no genéricos en el retorno WAV.
-
-Todos los cambios notables de ROGEX-WSP se documentan aquí.
-El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
-y el versionado sigue [SemVer](https://semver.org/lang/es/).
 
 ## [0.2.0] — 2026-07-14 «Signal Return»
 

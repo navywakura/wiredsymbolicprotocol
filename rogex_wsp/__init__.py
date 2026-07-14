@@ -18,8 +18,9 @@ from .glyph import render_svg, render_svg_file
 from .compact import parse_compact, parse_compact_message
 from .listen import listen
 from .glyph_reader import inspect_svg
+from .multiband import analyze, emit_handshake, translate_alien_handshake
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 __all__ = [
     "AXES",
@@ -33,7 +34,9 @@ __all__ = [
     "Symbol",
     "VERSION",
     "__version__",
+    "analyze",
     "define",
+    "emit_handshake",
     "encode",
     "inspect_svg",
     "is_builtin",
@@ -49,4 +52,5 @@ __all__ = [
     "render_wav",
     "resolve",
     "synthesize",
+    "translate_alien_handshake",
 ]

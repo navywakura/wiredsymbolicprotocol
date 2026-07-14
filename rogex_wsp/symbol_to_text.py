@@ -119,6 +119,12 @@ def _special_case(s: Symbol, lang: str) -> str | None:
     if relation == "NO_SER" and action == "TEMER":
         return "No temas lo desconocido." if lang == "es" else "Do not fear the unknown."
 
+    # el saludo de contacto: existencia que busca un vínculo aquí
+    if relation == "SER" and action == "BUSCAR" and target == "CONEXION":
+        if lang == "es":
+            return "Existo y busco un vínculo aquí."
+        return "I exist and I seek a bond here."
+
     # miedo sin objeto conocido
     if relation == "TEMER" and target == "DESCONOCIDO" and s.emotion.valence < 0:
         return "Tengo miedo." if lang == "es" else "I am afraid."
