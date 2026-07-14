@@ -19,7 +19,7 @@ from .compact import parse_compact, parse_compact_message
 from .listen import listen
 from .glyph_reader import inspect_svg
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "AXES",

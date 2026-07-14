@@ -141,7 +141,20 @@ def _inspect_row(elements: list[ET.Element], y0: float) -> Symbol:
         elif tag == "polygon":
             shapes["polygon"] = True
         elif tag == "path":
-            shapes["arc"] = True
+            d = el.attrib.get("d", "")
+            nums = [float(x) for x in re.findall(r"-?\d+(?:\.\d+)?", d)]
+            turns = 0
+            if len(nums) >= 8:
+                ys = nums[1::2]
+                turns = sum((b-a)*(c-b) < 0 for a,b,c in zip(ys, ys[1:], ys[2:]))
+            if "Q" in d or "C" in d:
+                shapes["onda" if turns >= 3 else "arc"] = True
+            elif turns >= 3:
+                shapes["zigzag"] = True
+            else:
+                shapes["arc"] = True
+            if width:
+                stroke_widths.append(width)
         elif tag == "polyline":
             shapes[_classify_polyline(el)] = True
             if width:

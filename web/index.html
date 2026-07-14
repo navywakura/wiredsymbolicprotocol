@@ -85,6 +85,15 @@
     <div class="body"><pre id="binario"></pre></div>
   </section>
 
+
+  <section><h2>MICRÓFONO <span>v0.3 live listener</span></h2>
+    <div class="body">
+      <button id="mic">iniciar escucha</button>
+      <span id="mic_status">inactivo</span>
+      <pre id="mic_json">{}</pre>
+    </div>
+  </section>
+
   <footer>
     <span id="selftest">autotest…</span>
     <span><a href="https://github.com/n4vv4r/RogexWSP">github.com/n4vv4r/RogexWSP</a>
@@ -94,7 +103,7 @@
 
 <script>
 "use strict";
-/* ROGEX-WSP v0.2 — port JavaScript del núcleo del protocolo.
+/* ROGEX-WSP v0.3 — port JavaScript del núcleo del protocolo.
    Réplica del paquete Python `rogex_wsp` (la referencia normativa). */
 
 /* ---------- capa I: los 32 átomos ---------- */
@@ -594,6 +603,57 @@ const BIN_EXPECTED = "57 53 50 01 01 1b 02 83 00 03 0b 04 41 4d 4f 52 03 08 5f 3
   el.textContent = `autotest ${ok}/${total}` + (fails.length ? ` — falla: ${fails.join(", ")}` : " ✓");
   el.className = fails.length ? "fail" : "ok";
 })();
+
+/* ---------- v0.3: live acoustic listener ---------- */
+let micStream=null, micCtx=null, micAnalyser=null, micRAF=0;
+const micState={base:null, stable:[], ratios:[], lastTone:0, source:"YO"};
+function autoCorrelate(buf, sr) {
+  let rms=Math.sqrt(buf.reduce((a,x)=>a+x*x,0)/buf.length);
+  if (rms<.012) return null;
+  let best=-1, lag=0, min=Math.floor(sr/1000), max=Math.min(Math.floor(sr/70),buf.length/2);
+  for(let l=min;l<max;l++){
+    let c=0; for(let i=0;i<buf.length-l;i++) c+=buf[i]*buf[i+l];
+    if(c>best){best=c;lag=l;}
+  }
+  return lag ? sr/lag : null;
+}
+function quantizeLive(freq, base){
+  const ratios=[.5,8/9,1,16/15,9/8,5/4,4/3,3/2,2];
+  return ratios.reduce((a,b)=>Math.abs(Math.log(freq/base/b))<Math.abs(Math.log(freq/base/a))?b:a);
+}
+function liveFrame(){
+  const data=new Float32Array(micAnalyser.fftSize); micAnalyser.getFloatTimeDomainData(data);
+  const f=autoCorrelate(data,micCtx.sampleRate), now=performance.now();
+  if(f){
+    micState.stable.push(f); if(micState.stable.length>5) micState.stable.shift();
+    const spread=Math.max(...micState.stable)-Math.min(...micState.stable);
+    if(!micState.base && micState.stable.length===5 && spread/f<.05){
+      micState.base=micState.stable.slice().sort((a,b)=>a-b)[2];
+      micState.source=Math.abs(1200*Math.log2(micState.base/220))<=75?"YO":"OTRO";
+    }
+    if(micState.base && now-micState.lastTone>90){
+      micState.ratios.push(quantizeLive(f,micState.base)); micState.lastTone=now;
+      if(micState.ratios.length>20) micState.ratios.shift();
+      const r=micState.ratios, last=r[r.length-1];
+      let relation=last===16/15?"TEMER":last===3/2?"UNIR":last===4/3?"OBSERVAR":"SER";
+      current=[S({source:micState.source,relation,emotion:E({certainty:.35})})];
+      $("glifo").innerHTML=glyphSVG(current);
+      $("json").textContent=JSON.stringify(toJSONmsg(current),null,2);
+    }
+  }
+  $("mic_json").textContent=JSON.stringify({source:micState.source,base_hz:micState.base&&+micState.base.toFixed(2),ratios:micState.ratios},null,2);
+  $("mic_status").textContent=micState.base?`escuchando · base ${micState.base.toFixed(1)} Hz`:"calibrando pulso 1:1…";
+  micRAF=requestAnimationFrame(liveFrame);
+}
+async function toggleMic(){
+  if(micStream){micStream.getTracks().forEach(t=>t.stop());cancelAnimationFrame(micRAF);micStream=null;$("mic").textContent="iniciar escucha";$("mic_status").textContent="inactivo";return;}
+  micStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
+  micCtx=new (window.AudioContext||window.webkitAudioContext)();
+  const src=micCtx.createMediaStreamSource(micStream); micAnalyser=micCtx.createAnalyser(); micAnalyser.fftSize=2048; src.connect(micAnalyser);
+  Object.assign(micState,{base:null,stable:[],ratios:[],lastTone:0,source:"YO"});
+  $("mic").textContent="detener escucha"; liveFrame();
+}
+$("mic").addEventListener("click",()=>toggleMic().catch(e=>$("mic_status").textContent=e.message));
 
 traducir();
 </script>
