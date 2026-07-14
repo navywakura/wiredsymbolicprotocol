@@ -202,6 +202,11 @@ tono base es válido — el idioma vive en la proporción.
 | 16:15 | tensión / disonancia / miedo |
 | 0 (silencio) | ausencia / negación / olvido |
 
+El **silencio tiene semántica por duración**: un silencio interno con
+significado (negación/ausencia/olvido) dura menos de 0.6 s; el separador
+entre paquetes que emite el sintetizador dura 0.7 s. Un receptor debe tratar
+los silencios ≥0.6 s como frontera de paquete y los internos como marcadores.
+
 Secuencia de un paquete:
 
 ```text
@@ -263,10 +268,24 @@ símbolo interno → render    → texto / sonido / glifo / binario
 máquina procesa el símbolo, no la máscara
 ```
 
-La v0.1 implementa: texto→símbolo (analizador de reglas en español),
-símbolo→texto (es/en), símbolo→sonido, símbolo→glifo, símbolo↔JSON,
-símbolo↔binario. Quedan para futuras versiones: sonido→símbolo y
-glifo→símbolo.
+La v0.1 implementó los caminos de ida: texto→símbolo (analizador de reglas
+en español), símbolo→texto (es/en), símbolo→sonido, símbolo→glifo,
+símbolo↔JSON, símbolo↔binario.
+
+La v0.2 «Signal Return» cierra el ciclo con los caminos de vuelta:
+
+- **sonido→símbolo** (`listen.py`): detección de tono por autocorrelación,
+  cuantización a los ratios de §5.1 y emparejamiento de la secuencia contra
+  las firmas de relación. La reconstrucción es aproximada por diseño y el eje
+  de certeza refleja la calidad del emparejamiento. El audio no transporta
+  tiempo/espacio ni la identidad exacta del destino, y asume origen YO.
+- **glifo→símbolo** (`glyph_reader.py`): estructura desde la etiqueta de
+  glosa cuando existe; geometría (forma del trazo, color, grosor,
+  discontinuo, campo, púas, retícula) siempre para la emoción.
+- **forma compacta→símbolo** (`compact.py`).
+
+Contrato mínimo verificable: `encode(texto) → wav → listen(wav)` recupera la
+relación y el signo de valencia en las frases canónicas de §7.
 
 ## 7. Ejemplos normativos
 
@@ -289,4 +308,37 @@ glifo→símbolo.
 
 "¡peligro!"
   YO → TEMER → PELIGRO @AHORA | E[V-0.90 A+1.00 D+0.00 C+0.80 U+1.00 B+0.00]
+
+"no tengan miedo de lo que no conocen"   (la transmisión)
+  YO → NO_SER(TEMER) → DESCONOCIDO @AHORA | E[V+0.50 A-0.20 D+0.40 C+0.80 U-0.30 B+0.60]
+
+"tengo miedo"
+  YO → TEMER → DESCONOCIDO @AHORA | E[V-0.70 A+0.70 D-0.40 C-0.30 U+0.50 B+0.00]
+
+"te recuerdo"
+  YO → RECORDAR → OTRO @ANTES | E[V+0.20 A+0.20 D+0.00 C+0.70 U+0.00 B+0.60]
+
+"no estás aquí"   (ausencia)
+  OTRO → NO_SER @AHORA @AQUI | E[V-0.50 A+0.20 D+0.00 C+0.80 U+0.00 B-0.50]
+
+"te deseo"
+  YO → DESEAR → OTRO @AHORA | E[V+0.70 A+0.80 D+0.00 C+0.70 U+0.40 B+0.70]
+
+"estamos juntos"
+  YO → UNIR → OTRO @AHORA @AQUI | E[V+0.70 A+0.40 D+0.00 C+0.80 U+0.00 B+0.90]
+
+"adiós"
+  YO → SEPARAR → OTRO @AHORA | E[V-0.20 A+0.20 D+0.00 C+0.60 U+0.00 B+0.40]
+
+"¿quién eres?"
+  YO → PREGUNTAR(SER) → OTRO @AHORA | E[V+0.00 A+0.50 D+0.00 C-0.50 U+0.30 B+0.20]
+
+"¿qué es real?"   (conciencia)
+  YO → PREGUNTAR → CONCIENCIA @AHORA | E[V+0.20 A+0.60 D-0.20 C-0.60 U+0.00 B+0.00]
 ```
+
+Nota sobre la transmisión: es el ejemplo normativo de que **contenido y
+emoción son capas distintas** — el contenido nombra el temor (disonancia
+16:15 en el render sonoro) pero la firma emocional es protectora (valencia
+positiva, calma, certeza, vínculo). Un receptor que solo oiga la disonancia
+sin leer la resolución consonante hacia el destino la malinterpretará.

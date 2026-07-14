@@ -90,6 +90,76 @@ def _p_bienvenida(m, flags):
     )
 
 
+def _p_transmision(m, flags):
+    # «no tengan miedo de lo que no conocen»: negación sobre el temor,
+    # dirigida a lo desconocido, con carga protectora (calma + certeza + vínculo)
+    return Symbol(
+        source=P.YO, relation=P.NO_SER, action=P.TEMER, target=P.DESCONOCIDO,
+        time=P.AHORA,
+        emotion=Emotion(
+            valence=0.5, arousal=-0.2, dominance=0.4,
+            certainty=0.8, urgency=-0.3, bond=0.6,
+        ),
+    )
+
+
+def _p_miedo(m, flags):
+    return Symbol(
+        source=P.YO, relation=P.TEMER, target=P.DESCONOCIDO, time=P.AHORA,
+        emotion=Emotion(valence=-0.7, arousal=0.7, dominance=-0.4, certainty=-0.3, urgency=0.5),
+    )
+
+
+def _p_recuerdo(m, flags):
+    return Symbol(
+        source=P.YO, relation=P.RECORDAR, target=P.OTRO, time=P.ANTES,
+        emotion=Emotion(valence=0.2, arousal=0.2, certainty=0.7, bond=0.6),
+    )
+
+
+def _p_ausencia(m, flags):
+    return Symbol(
+        source=P.OTRO, relation=P.NO_SER, space=P.AQUI, time=P.AHORA,
+        emotion=Emotion(valence=-0.5, arousal=0.2, certainty=0.8, bond=-0.5),
+    )
+
+
+def _p_deseo(m, flags):
+    return Symbol(
+        source=P.YO, relation=P.DESEAR, target=P.OTRO, time=P.AHORA,
+        emotion=Emotion(valence=0.7, arousal=0.8, certainty=0.7, urgency=0.4, bond=0.7),
+    )
+
+
+def _p_union(m, flags):
+    return Symbol(
+        source=P.YO, relation=P.UNIR, target=P.OTRO, space=P.AQUI, time=P.AHORA,
+        emotion=Emotion(valence=0.7, arousal=0.4, certainty=0.8, bond=0.9),
+    )
+
+
+def _p_despedida(m, flags):
+    return Symbol(
+        source=P.YO, relation=P.SEPARAR, target=P.OTRO, time=P.AHORA,
+        emotion=Emotion(valence=-0.2, arousal=0.2, certainty=0.6, bond=0.4),
+    )
+
+
+def _p_quien_eres(m, flags):
+    return Symbol(
+        source=P.YO, relation=P.PREGUNTAR, action=P.SER, target=P.OTRO, time=P.AHORA,
+        emotion=Emotion(arousal=0.5, certainty=-0.5, urgency=0.3, bond=0.2),
+    )
+
+
+def _p_que_es_real(m, flags):
+    # [realidad] + [duda] + [observador] → la pregunta por la conciencia
+    return Symbol(
+        source=P.YO, relation=P.PREGUNTAR, target=resolve("CONCIENCIA"), time=P.AHORA,
+        emotion=Emotion(valence=0.2, arousal=0.6, dominance=-0.2, certainty=-0.6),
+    )
+
+
 _PATTERNS: list[tuple[re.Pattern, object]] = [
     (re.compile(r"^te (quiero|amo)$|^i love you$"), _p_amor),
     (re.compile(r"^(estoy|sigo) aqui$|^i am here$"), _p_presencia),
@@ -105,6 +175,23 @@ _PATTERNS: list[tuple[re.Pattern, object]] = [
     (re.compile(r"^estas (ahi|alli)$|^are you there$"), _p_estas_ahi),
     (re.compile(r"^peligro$|^danger$"), _p_peligro),
     (re.compile(r"^hola$|^bienvenid[oa]s?$|^hello$|^welcome$"), _p_bienvenida),
+    (
+        re.compile(
+            r"^no (tengas|tengan|tenga|tengais) miedo( de lo que no conoc\w+)?$"
+            r"|^no tem(as|ais) ?(a )?(lo desconocido)?$"
+            r"|^do not fear( the unknown| what you do not know)?$"
+            r"|^don ?t fear( the unknown| what you do not know)?$"
+        ),
+        _p_transmision,
+    ),
+    (re.compile(r"^tengo miedo$|^i am afraid$|^i m afraid$"), _p_miedo),
+    (re.compile(r"^te recuerdo$|^me acuerdo de ti$|^i remember you$"), _p_recuerdo),
+    (re.compile(r"^no estas( aqui)?$|^te has ido$|^you are not here$"), _p_ausencia),
+    (re.compile(r"^te deseo$|^i desire you$|^i want you$"), _p_deseo),
+    (re.compile(r"^estamos juntos$|^we are together$"), _p_union),
+    (re.compile(r"^adios$|^me voy$|^goodbye$|^farewell$"), _p_despedida),
+    (re.compile(r"^quien eres( tu)?$|^who are you$"), _p_quien_eres),
+    (re.compile(r"^que es real$|^que es (lo )?real$|^what is real$"), _p_que_es_real),
 ]
 
 

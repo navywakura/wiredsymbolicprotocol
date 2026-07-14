@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ROGEX-WSP — demo en vivo</title>
+<style>
+  :root {
+    --bg: #0b0e14; --panel: #11161f; --line: #1e2633;
+    --text: #c8d0dc; --dim: #66707e; --accent: #2e9e6b; --warn: #c0392b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Courier New", ui-monospace, monospace;
+    min-height: 100vh; padding: 2rem 1rem; display: flex; justify-content: center;
+  }
+  main { width: 100%; max-width: 860px; }
+  h1 { font-size: 1.15rem; letter-spacing: .18em; color: var(--accent); }
+  h1 span { color: var(--dim); }
+  .tagline { color: var(--dim); font-size: .8rem; margin: .4rem 0 1.4rem; }
+  .inputrow { display: flex; gap: .5rem; }
+  input[type=text] {
+    flex: 1; background: var(--panel); border: 1px solid var(--line);
+    color: var(--text); padding: .7rem .9rem; font: inherit; border-radius: 4px;
+  }
+  input[type=text]:focus { outline: 1px solid var(--accent); }
+  button {
+    background: var(--accent); color: #06130c; border: 0; padding: .7rem 1.2rem;
+    font: inherit; font-weight: bold; cursor: pointer; border-radius: 4px;
+  }
+  button.ghost { background: var(--panel); color: var(--text); border: 1px solid var(--line); }
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .8rem 0 1.4rem; }
+  .chips button {
+    background: var(--panel); color: var(--dim); border: 1px solid var(--line);
+    padding: .28rem .6rem; font-size: .72rem; font-weight: normal;
+  }
+  .chips button:hover { color: var(--accent); border-color: var(--accent); }
+  section { background: var(--panel); border: 1px solid var(--line);
+    border-radius: 6px; margin-bottom: .9rem; overflow: hidden; }
+  section h2 {
+    font-size: .68rem; letter-spacing: .22em; color: var(--dim);
+    padding: .55rem .9rem; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  section .body { padding: .8rem .9rem; overflow-x: auto; }
+  pre { font-size: .78rem; line-height: 1.5; white-space: pre; }
+  .glifo { display: flex; justify-content: center; background: #0d1119; }
+  .es { font-size: 1.05rem; }
+  .en { color: var(--dim); font-size: .85rem; margin-top: .3rem; }
+  footer { color: var(--dim); font-size: .7rem; margin-top: 1.6rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+  footer a { color: var(--accent); text-decoration: none; }
+  #selftest.ok { color: var(--accent); }
+  #selftest.fail { color: var(--warn); }
+</style>
+</head>
+<body>
+<main>
+  <h1>ROGEX-WSP <span>// Wired Symbolic Protocol — demo v0.2</span></h1>
+  <p class="tagline">El significado no vive en la palabra. Escribe una frase:
+    se convierte en símbolo y el símbolo se renderiza en todas sus máscaras.</p>
+
+  <div class="inputrow">
+    <input id="entrada" type="text" value="no tengan miedo de lo que no conocen"
+           placeholder="escribe aquí… (p. ej. «te quiero»)">
+    <button id="traducir">traducir</button>
+    <button id="escuchar" class="ghost">▶ sonido</button>
+  </div>
+  <div class="chips" id="chips"></div>
+
+  <section><h2>TEXTO <span>máscara humana</span></h2>
+    <div class="body"><div class="es" id="txt_es"></div><div class="en" id="txt_en"></div></div>
+  </section>
+  <section><h2>GLIFO <span>máscara visual</span></h2>
+    <div class="body glifo" id="glifo"></div>
+  </section>
+  <section><h2>FORMA COMPACTA <span>máscara máquina-humano</span></h2>
+    <div class="body"><pre id="compacta"></pre></div>
+  </section>
+  <section><h2>JSON <span>formato intermedio</span></h2>
+    <div class="body"><pre id="json"></pre></div>
+  </section>
+  <section><h2>BINARIO <span>máscara de bajo nivel</span></h2>
+    <div class="body"><pre id="binario"></pre></div>
+  </section>
+
+  <footer>
+    <span id="selftest">autotest…</span>
+    <span><a href="https://github.com/n4vv4r/RogexWSP">github.com/n4vv4r/RogexWSP</a>
+      · Rogex Laboratories</span>
+  </footer>
+</main>
+
+<script>
+"use strict";
+/* ROGEX-WSP v0.2 — port JavaScript del núcleo del protocolo.
+   Réplica del paquete Python `rogex_wsp` (la referencia normativa). */
+
+/* ---------- capa I: los 32 átomos ---------- */
+const ATOMS = [
+ ["SER","ser","be"],["NO_SER","no-ser","not-be"],["YO","yo","self"],["OTRO","otro","other"],
+ ["AQUI","aquí","here"],["ALLI","allí","there"],["DENTRO","dentro","inside"],["FUERA","fuera","outside"],
+ ["AHORA","ahora","now"],["ANTES","antes","before"],["DESPUES","después","after"],
+ ["UNIR","unir","join"],["SEPARAR","separar","separate"],["CAMBIAR","cambiar","change"],
+ ["OBSERVAR","observar","observe"],["PREGUNTAR","preguntar","ask"],["RESPONDER","responder","answer"],
+ ["DESEAR","desear","desire"],["TEMER","temer","fear"],["RECORDAR","recordar","remember"],
+ ["OLVIDAR","olvidar","forget"],["CREAR","crear","create"],["DESTRUIR","destruir","destroy"],
+ ["SUBIR","subir","rise"],["BAJAR","bajar","descend"],["ABRIR","abrir","open"],["CERRAR","cerrar","close"],
+ ["CAUSA","causa","cause"],["EFECTO","efecto","effect"],["POSIBLE","posible","possible"],
+ ["IMPOSIBLE","imposible","impossible"],["DESCONOCIDO","desconocido","unknown"],
+];
+const CODE = {}; ATOMS.forEach((a, i) => CODE[a[0]] = i);
+
+/* ---------- capa G: conceptos derivados ---------- */
+const DERIVED = {
+  AMOR:       { c:["SER","OTRO","UNIR"], es:"amor", en:"love", art:"el" },
+  SOLEDAD:    { c:["SER","NO_SER","DESEAR"], es:"soledad", en:"loneliness", art:"la" },
+  COMUNICAR:  { c:["UNIR","PREGUNTAR","RESPONDER"], es:"comunicar", en:"communicate", art:"" },
+  CONEXION:   { c:["UNIR","OTRO"], es:"conexión", en:"connection", art:"la" },
+  PELIGRO:    { c:["TEMER","DESTRUIR","POSIBLE"], es:"peligro", en:"danger", art:"el" },
+  BIENVENIDA: { c:["OTRO","AQUI","ABRIR"], es:"bienvenida", en:"welcome", art:"la" },
+  CONCIENCIA: { c:["SER","OBSERVAR","DESCONOCIDO"], es:"conciencia", en:"consciousness", art:"la" },
+  WIRED:      { c:["DENTRO","UNIR","ALLI"], es:"la Wired", en:"the Wired", art:"la" },
+};
+
+/* ---------- capa E ---------- */
+const AXES = ["valence","arousal","dominance","certainty","urgency","bond"];
+const LETTER = { valence:"V", arousal:"A", dominance:"D", certainty:"C", urgency:"U", bond:"B" };
+const E = (o={}) => { const e={}; AXES.forEach(a => e[a] = Math.max(-1, Math.min(1, o[a]||0))); return e; };
+
+/* ---------- capa S: paquete + máscaras de serialización ---------- */
+const S = (o) => Object.assign({source:"YO",relation:null,action:null,target:null,
+                                time:null,space:null,emotion:E()}, o);
+
+function compact(p) {
+  let rel = p.relation || "∅";
+  if (p.action) rel += `(${p.action})`;
+  const parts = [p.source || "∅", "→", rel];
+  if (p.target) parts.push("→", p.target);
+  if (p.time) parts.push("@"+p.time);
+  if (p.space) parts.push("@"+p.space);
+  const sig = AXES.map(a => LETTER[a] + (p.emotion[a] >= 0 ? "+" : "") + p.emotion[a].toFixed(2));
+  parts.push(`| E[${sig.join(" ")}]`);
+  return parts.join(" ");
+}
+
+function toJSONmsg(packets) {
+  return {
+    protocol: "rogex-wsp", version: "0.1",
+    packets: packets.map(p => {
+      const sym = {};
+      for (const k of ["source","relation","action","target","time","space"])
+        if (p[k]) sym[k] = p[k];
+      const emo = {}; AXES.forEach(a => emo[a] = Math.round(p.emotion[a]*10000)/10000);
+      const out = { symbol: sym, emotion: emo };
+      if (p.meta) out.meta = p.meta;
+      return out;
+    }),
+  };
+}
+
+function conceptBytes(name) {
+  if (name in CODE) return [CODE[name]];
+  const d = DERIVED[name];
+  const nameBytes = Array.from(new TextEncoder().encode(name));
+  return [0x80 | d.c.length, ...d.c.map(x => CODE[x]), nameBytes.length, ...nameBytes];
+}
+function toBytes(packets) {
+  const out = [0x57, 0x53, 0x50, 0x01, packets.length];
+  for (const p of packets) {
+    const slots = ["source","relation","action","target","time","space"];
+    let flags = 0; slots.forEach((k, i) => { if (p[k]) flags |= 1 << i; });
+    out.push(flags);
+    slots.forEach(k => { if (p[k]) out.push(...conceptBytes(p[k])); });
+    AXES.forEach(a => out.push(Math.round(p.emotion[a]*100) & 0xff));
+  }
+  return out.map(b => b.toString(16).padStart(2, "0")).join(" ");
+}
+
+/* ---------- intérprete: texto → símbolo ---------- */
+const norm = t => t.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase()
+                   .replace(/[¿?¡!.,;:()"']/g, " ").replace(/\s+/g, " ").trim();
+
+const PATTERNS = [
+ [/^te (quiero|amo)$|^i love you$/, () => S({relation:"AMOR", target:"OTRO", time:"AHORA",
+   emotion:E({valence:.95, arousal:.6, certainty:.8, bond:.98})})],
+ [/^(estoy|sigo) aqui$|^i am here$/, () => S({relation:"SER", space:"AQUI", time:"AHORA",
+   emotion:E({arousal:.5, certainty:.96})})],
+ [/^quiero (hablar|comunicarme|comunicar) (contigo|con el otro)(.* wired)?.*$/, m =>
+   S({relation:"DESEAR", action:"COMUNICAR", target:"OTRO", time:"AHORA",
+      space: m[3] ? "WIRED" : null,
+      emotion:E({valence:.7, arousal:.4, certainty:.9, urgency:.3, bond:.8})})],
+ [/^estoy sol[oa]$|^me siento sol[oa]$/, () => S({relation:"SER", target:"SOLEDAD", time:"AHORA",
+   emotion:E({valence:-.6, arousal:.35, dominance:-.3, certainty:.7, bond:-.7})})],
+ [/^quiero conectar(me)?$/, () => S({relation:"DESEAR", target:"CONEXION", time:"AHORA",
+   emotion:E({valence:.4, arousal:.5, certainty:.5, urgency:.5, bond:.6})})],
+ [/^estas (ahi|alli)$|^are you there$/, () => S({relation:"PREGUNTAR", action:"SER", target:"OTRO",
+   space:"ALLI", time:"AHORA", emotion:E({arousal:.5, certainty:-.4, urgency:.4, bond:.4})})],
+ [/^peligro$|^danger$/, () => S({relation:"TEMER", target:"PELIGRO", time:"AHORA",
+   emotion:E({valence:-.9, arousal:.9, certainty:.8, urgency:.9})})],
+ [/^hola$|^bienvenid[oa]s?$/, () => S({relation:"ABRIR", target:"BIENVENIDA", time:"AHORA",
+   space:"AQUI", emotion:E({valence:.7, arousal:.4, certainty:.7, bond:.8})})],
+ [/^no (tengas|tengan|tenga|tengais) miedo( de lo que no conoc\w+)?$|^no tem(as|ais) ?(a )?(lo desconocido)?$|^do not fear.*$|^don ?t fear.*$/,
+   () => S({relation:"NO_SER", action:"TEMER", target:"DESCONOCIDO", time:"AHORA",
+   emotion:E({valence:.5, arousal:-.2, dominance:.4, certainty:.8, urgency:-.3, bond:.6})})],
+ [/^tengo miedo$|^i am afraid$/, () => S({relation:"TEMER", target:"DESCONOCIDO", time:"AHORA",
+   emotion:E({valence:-.7, arousal:.7, dominance:-.4, certainty:-.3, urgency:.5})})],
+ [/^te recuerdo$|^me acuerdo de ti$/, () => S({relation:"RECORDAR", target:"OTRO", time:"ANTES",
+   emotion:E({valence:.2, arousal:.2, certainty:.7, bond:.6})})],
+ [/^no estas( aqui)?$|^te has ido$/, () => S({source:"OTRO", relation:"NO_SER", space:"AQUI",
+   time:"AHORA", emotion:E({valence:-.5, arousal:.2, certainty:.8, bond:-.5})})],
+ [/^te deseo$/, () => S({relation:"DESEAR", target:"OTRO", time:"AHORA",
+   emotion:E({valence:.7, arousal:.8, certainty:.7, urgency:.4, bond:.7})})],
+ [/^estamos juntos$|^we are together$/, () => S({relation:"UNIR", target:"OTRO", space:"AQUI",
+   time:"AHORA", emotion:E({valence:.7, arousal:.4, certainty:.8, bond:.9})})],
+ [/^adios$|^me voy$|^goodbye$/, () => S({relation:"SEPARAR", target:"OTRO", time:"AHORA",
+   emotion:E({valence:-.2, arousal:.2, certainty:.6, bond:.4})})],
+ [/^quien eres( tu)?$|^who are you$/, () => S({relation:"PREGUNTAR", action:"SER", target:"OTRO",
+   time:"AHORA", emotion:E({arousal:.5, certainty:-.5, urgency:.3, bond:.2})})],
+ [/^que es (lo )?real$|^what is real$/, () => S({relation:"PREGUNTAR", target:"CONCIENCIA",
+   time:"AHORA", emotion:E({valence:.2, arousal:.6, dominance:-.2, certainty:-.6})})],
+];
+
+const VERBS = { soy:"SER", estoy:"SER", existo:"SER", estas:"SER", eres:"SER",
+  quiero:"DESEAR", deseo:"DESEAR", veo:"OBSERVAR", observo:"OBSERVAR", miro:"OBSERVAR",
+  escucho:"OBSERVAR", pregunto:"PREGUNTAR", respondo:"RESPONDER", temo:"TEMER",
+  recuerdo:"RECORDAR", olvido:"OLVIDAR", construyo:"CREAR", destruyo:"DESTRUIR",
+  cambio:"CAMBIAR", subo:"SUBIR", bajo:"BAJAR", abro:"ABRIR", cierro:"CERRAR",
+  conecto:"UNIR", separo:"SEPARAR" };
+const OBJECTS = { hablar:"COMUNICAR", comunicar:"COMUNICAR", comunicarme:"COMUNICAR",
+  conectar:"CONEXION", conectarme:"CONEXION", amor:"AMOR", soledad:"SOLEDAD",
+  peligro:"PELIGRO", conexion:"CONEXION", bienvenida:"BIENVENIDA", conciencia:"CONCIENCIA" };
+const PRONOUNS = new Set(["te","ti","contigo","tu","usted","you"]);
+const SPACES = { aqui:"AQUI", aca:"AQUI", ahi:"ALLI", alli:"ALLI", alla:"ALLI",
+  dentro:"DENTRO", fuera:"FUERA", wired:"WIRED", red:"WIRED" };
+const TIMES = { ahora:"AHORA", antes:"ANTES", ayer:"ANTES", despues:"DESPUES",
+  luego:"DESPUES", manana:"DESPUES" };
+const EMOWORDS = { solo:{valence:-.5,bond:-.6}, sola:{valence:-.5,bond:-.6},
+  miedo:{valence:-.7,arousal:.7,urgency:.6}, feliz:{valence:.8,arousal:.5},
+  triste:{valence:-.7,arousal:-.3}, urgente:{urgency:.9,arousal:.6},
+  seguro:{certainty:.8}, quizas:{certainty:-.5}, amor:{valence:.9,bond:.9}, ya:{urgency:.6} };
+
+function analyzeClause(clause, question, exclaim) {
+  for (const [rx, build] of PATTERNS) {
+    const m = clause.match(rx);
+    if (m) {
+      const p = build(m);
+      if (exclaim) { p.emotion.arousal = Math.min(1, p.emotion.arousal+.2);
+                     p.emotion.urgency = Math.min(1, p.emotion.urgency+.2); }
+      return p;
+    }
+  }
+  const tokens = clause.split(" ");
+  let relation=null, action=null, target=null, space=null, time=null;
+  const emo = {};
+  const add = (o) => { for (const k in o) emo[k] = (emo[k]||0) + o[k]; };
+  for (const t of tokens) {
+    if (!relation && t in VERBS) { relation = VERBS[t]; continue; }
+    if (t in OBJECTS) {
+      const name = OBJECTS[t];
+      if (name === "COMUNICAR") action = action || name; else target = target || name;
+    }
+    if (PRONOUNS.has(t)) target = target || "OTRO";
+    if (t in SPACES) space = SPACES[t];
+    if (t in TIMES) time = TIMES[t];
+    if (t in EMOWORDS) add(EMOWORDS[t]);
+  }
+  if (!relation && !action && !target)
+    return S({relation:"SER", target:"DESCONOCIDO", emotion:E({certainty:-.5}),
+              meta:{text:clause, unparsed:true}});
+  if (!relation) relation = "SER";
+  if (question && relation !== "PREGUNTAR") {
+    action = action || relation; relation = "PREGUNTAR";
+    add({certainty:-.4, arousal:.2});
+  }
+  if (exclaim) add({arousal:.3, urgency:.3});
+  return S({relation, action, target, time: time || "AHORA", space,
+            emotion:E(emo), meta:{text:clause}});
+}
+
+function encode(text) {
+  const question = /[?¿]/.test(text), exclaim = /[!¡]/.test(text);
+  const n = norm(text);
+  if (!n) return [];
+  return n.split(/\s+pero\s+|\s+y\s+|\s+porque\s+/).filter(Boolean)
+          .map(c => analyzeClause(c, question, exclaim));
+}
+
+/* ---------- render: símbolo → texto ---------- */
+function renderText(p, lang) {
+  const es = lang === "es";
+  const r = p.relation, a = p.action, t = p.target, sp = p.space, src = p.source;
+  if (r==="UNIR" && t==="OTRO" && sp==="AQUI") return es?"Estamos juntos.":"We are together.";
+  if (t==="OTRO" && (r==="AMOR" || (r==="UNIR" && p.emotion.bond>.8)))
+    return es?"Te quiero.":"I love you.";
+  if (r==="NO_SER" && a==="TEMER") return es?"No temas lo desconocido.":"Do not fear the unknown.";
+  if (r==="TEMER" && t==="DESCONOCIDO" && p.emotion.valence<0) return es?"Tengo miedo.":"I am afraid.";
+  if (r==="RECORDAR" && t==="OTRO") return es?"Te recuerdo.":"I remember you.";
+  if (r==="NO_SER" && src==="OTRO")
+    return sp==="AQUI" ? (es?"No estás aquí.":"You are not here.") : (es?"No estás.":"You are not.");
+  if (r==="DESEAR" && t==="OTRO" && !a) return es?"Te deseo.":"I desire you.";
+  if (r==="SEPARAR" && t==="OTRO") return es?"Adiós.":"Goodbye.";
+  if (r==="PREGUNTAR" && t==="CONCIENCIA") return es?"¿Qué es real?":"What is real?";
+  if (r==="SER" && !t && sp==="AQUI") return es?"Estoy aquí.":"I am here.";
+  if (r==="DESEAR" && a==="COMUNICAR" && t==="OTRO") {
+    const w = sp==="WIRED" ? (es?" en la Wired":" in the Wired") : "";
+    return es?`Quiero comunicarme contigo${w}.`:`I want to communicate with you${w}.`;
+  }
+  if (r==="SER" && t==="SOLEDAD") return es?"Me siento solo.":"I feel alone.";
+  if (r==="DESEAR" && t==="CONEXION") return es?"Quiero conectar.":"I want to connect.";
+  if (r==="PREGUNTAR" && a==="SER" && t==="OTRO")
+    return sp==="ALLI" ? (es?"¿Estás ahí?":"Are you there?") : (es?"¿Quién eres?":"Who are you?");
+  if (t==="PELIGRO" && p.emotion.urgency>.6) return es?"¡Peligro!":"Danger!";
+  /* genérico */
+  const VES = { SER:"soy", NO_SER:"no soy", UNIR:"me uno a", SEPARAR:"me separo de",
+    CAMBIAR:"cambio", OBSERVAR:"observo", PREGUNTAR:"pregunto por", RESPONDER:"respondo a",
+    DESEAR:"deseo", TEMER:"temo", RECORDAR:"recuerdo", OLVIDAR:"olvido", CREAR:"creo",
+    DESTRUIR:"destruyo", SUBIR:"subo", BAJAR:"bajo", ABRIR:"abro", CIERRO:"cierro",
+    COMUNICAR:"me comunico con" };
+  const VEN = { SER:"am", NO_SER:"am not", UNIR:"join", SEPARAR:"separate from",
+    CAMBIAR:"change", OBSERVAR:"observe", PREGUNTAR:"ask about", RESPONDER:"answer",
+    DESEAR:"desire", TEMER:"fear", RECORDAR:"remember", OLVIDAR:"forget", CREAR:"create",
+    DESTRUIR:"destroy", SUBIR:"rise", BAJAR:"descend", ABRIR:"open", CERRAR:"close",
+    COMUNICAR:"communicate with" };
+  const question = r==="PREGUNTAR" && a;
+  const verbName = question ? a : (r || "SER");
+  const verb = (es?VES:VEN)[verbName] || verbName.toLowerCase();
+  const words = es ? [verb] : ["I", verb];
+  if (t) {
+    if (t==="OTRO") words.push(es?"a ti":"you");
+    else if (t==="DESCONOCIDO") words.push(es?"lo desconocido":"the unknown");
+    else if (t in DERIVED) {
+      const d = DERIVED[t];
+      words.push(es ? `${d.art ? d.art+" " : ""}${d.es}` : `the ${d.en}`);
+    } else {
+      const atom = ATOMS[CODE[t]];
+      words.push(es ? atom[1] : atom[2]);
+    }
+  }
+  const SPES = { AQUI:"aquí", ALLI:"allí", DENTRO:"dentro", FUERA:"fuera", WIRED:"en la Wired" };
+  const SPEN = { AQUI:"here", ALLI:"there", DENTRO:"inside", FUERA:"outside", WIRED:"in the Wired" };
+  if (sp) words.push((es?SPES:SPEN)[sp] || sp.toLowerCase());
+  const TES = { AHORA:"ahora", ANTES:"antes", DESPUES:"después" };
+  const TEN = { AHORA:"now", ANTES:"before", DESPUES:"after" };
+  if (p.time) words.push((es?TES:TEN)[p.time]);
+  let out = words.join(" ");
+  out = out[0].toUpperCase() + out.slice(1);
+  if (question || verbName==="PREGUNTAR") return es ? `¿${out}?` : `${out}?`;
+  return out + ".";
+}
+
+/* ---------- render: símbolo → glifo SVG ---------- */
+const ROW_W = 420, ROW_H = 240;
+const colorOf = v => v >= .25 ? "#2e9e6b" : v <= -.25 ? "#c0392b" : "#8a8f98";
+
+function entityGlyph(x, y, name, color) {
+  const out = [];
+  if (name === "YO") {
+    out.push(`<circle cx="${x}" cy="${y}" r="20" fill="none" stroke="${color}" stroke-width="1.5"/>`);
+    out.push(`<circle cx="${x}" cy="${y}" r="7" fill="${color}"/>`);
+  } else if (name === "OTRO") {
+    out.push(`<circle cx="${x}" cy="${y}" r="20" fill="none" stroke="${color}" stroke-width="1.5"/>`);
+    out.push(`<circle cx="${x}" cy="${y}" r="7" fill="none" stroke="${color}" stroke-width="2"/>`);
+  } else if (name === "NO_SER") {
+    out.push(`<circle cx="${x}" cy="${y}" r="7" fill="none" stroke="${color}" stroke-width="2"/>`);
+    out.push(`<line x1="${x-12}" y1="${y+12}" x2="${x+12}" y2="${y-12}" stroke="${color}" stroke-width="2"/>`);
+  } else if (name === "DESCONOCIDO") {
+    out.push(`<circle cx="${x}" cy="${y}" r="9" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="3 4"/>`);
+  } else if (name in DERIVED) {
+    out.push(`<circle cx="${x}" cy="${y}" r="7" fill="${color}"/>`);
+    const n = DERIVED[name].c.length;
+    for (let i = 0; i < n; i++) {
+      const ang = -Math.PI/2 + 2*Math.PI*i/n;
+      out.push(`<circle cx="${(x+16*Math.cos(ang)).toFixed(1)}" cy="${(y+16*Math.sin(ang)).toFixed(1)}" r="2.5" fill="${color}"/>`);
+    }
+  } else out.push(`<circle cx="${x}" cy="${y}" r="8" fill="${color}"/>`);
+  return out;
+}
+
+const wavePts = (x1, x2, y, amp=12, wl=34) => {
+  const pts = [];
+  for (let x = x1; x <= x2; x += 4)
+    pts.push(`${x.toFixed(1)},${(y + amp*Math.sin(2*Math.PI*(x-x1)/wl)).toFixed(1)}`);
+  return pts.join(" ");
+};
+
+function relationPath(p, x1, x2, y, color, width, dash) {
+  const stroke = ` stroke="${color}" stroke-width="${width}"${dash}/>`;
+  const out = [];
+  const r = p.relation || "";
+  if (r === "SEPARAR" || r === "NO_SER") {
+    const mid = (x1+x2)/2;
+    out.push(`<line x1="${x1}" y1="${y}" x2="${mid-16}" y2="${y}"${stroke}`);
+    out.push(`<line x1="${mid+16}" y1="${y}" x2="${x2}" y2="${y}"${stroke}`);
+  } else if (r === "TEMER" || p.target === "PELIGRO") {
+    const pts = [`${x1},${y}`]; let up = true;
+    for (let x = x1+14; x < x2; x += 14) { pts.push(`${x},${y+(up?-12:12)}`); up = !up; }
+    pts.push(`${x2},${y}`);
+    out.push(`<polyline points="${pts.join(" ")}" fill="none"${stroke}`);
+  } else if (r === "PREGUNTAR") {
+    out.push(`<path d="M ${x1} ${y} Q ${(x1+x2)/2} ${y-46} ${x2-8} ${y-18}" fill="none"${stroke}`);
+    out.push(`<circle cx="${x2-4}" cy="${y-20}" r="4" fill="none"${stroke}`);
+  } else if (r === "DESEAR") {
+    out.push(`<line x1="${x1}" y1="${y}" x2="${x2-10}" y2="${y}"${stroke}`);
+    out.push(`<polygon points="${x2},${y} ${x2-14},${y-7} ${x2-14},${y+7}" fill="${color}"/>`);
+  } else if (["COMUNICAR","RESPONDER","OBSERVAR","AMOR"].includes(r)) {
+    out.push(`<polyline points="${wavePts(x1,x2,y)}" fill="none"${stroke}`);
+  } else if (r === "RECORDAR") {
+    out.push(`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"${stroke}`);
+    out.push(`<line x1="${x1+12}" y1="${y+10}" x2="${x2-12}" y2="${y+10}" stroke="${color}" stroke-width="${Math.max(1,width-1)}" opacity="0.45"${dash}/>`);
+  } else if (r === "CREAR") {
+    out.push(`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"${stroke}`);
+    const pts = [];
+    for (let th = 0; th <= 3.5*Math.PI; th += .25) {
+      const rr = 2 + 2.2*th;
+      pts.push(`${((x1+x2)/2 + rr*Math.cos(th)).toFixed(1)},${(y-34 + rr*Math.sin(th)).toFixed(1)}`);
+    }
+    out.push(`<polyline points="${pts.join(" ")}" fill="none" stroke="${color}" stroke-width="${Math.max(1,width-1)}"/>`);
+  } else {
+    out.push(`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"${stroke}`);
+  }
+  if (p.action && r !== "PREGUNTAR")
+    out.push(`<polyline points="${wavePts(x1+16,x2-16,y-22,6,22)}" fill="none" stroke="${color}" stroke-width="${Math.max(1,width-1.2)}" opacity="0.6"/>`);
+  return out;
+}
+
+function glyphSVG(packets) {
+  const H = ROW_H * packets.length;
+  const out = [`<svg xmlns="http://www.w3.org/2000/svg" width="${ROW_W}" height="${H}" viewBox="0 0 ${ROW_W} ${H}">`];
+  packets.forEach((p, i) => {
+    const y0 = i*ROW_H, e = p.emotion, color = colorOf(e.valence);
+    const width = 1.5 + 2.5*Math.max(e.arousal, 0);
+    const dash = e.certainty < -0.2 ? ' stroke-dasharray="6 5"' : "";
+    const cy = y0 + 105, sx = 110, tx = 310, center = (sx+tx)/2;
+    if (p.space === "WIRED") {
+      for (let gx = 40; gx < ROW_W-20; gx += 34)
+        out.push(`<line x1="${gx}" y1="${y0+18}" x2="${gx}" y2="${y0+ROW_H-46}" stroke="#b03030" stroke-width="0.6" opacity="0.18"/>`);
+      for (let gy = y0+26; gy < y0+ROW_H-46; gy += 30)
+        out.push(`<line x1="34" y1="${gy}" x2="${ROW_W-30}" y2="${gy}" stroke="#b03030" stroke-width="0.6" opacity="0.18"/>`);
+    }
+    if (e.bond > 0.4)
+      out.push(`<ellipse cx="${center}" cy="${cy}" rx="155" ry="78" fill="none" stroke="${color}" stroke-width="1.2" opacity="0.4"/>`);
+    if (p.space === "DENTRO")
+      out.push(`<ellipse cx="${center}" cy="${cy}" rx="165" ry="86" fill="none" stroke="#8a8f98" stroke-width="1" stroke-dasharray="4 5" opacity="0.6"/>`);
+    if (p.source) out.push(...entityGlyph(sx, cy, p.source, color));
+    if (p.target) out.push(...entityGlyph(tx, cy, p.target, color));
+    const x1 = sx+26, x2 = p.target ? tx-26 : sx+150;
+    if (p.relation) out.push(...relationPath(p, x1, x2, cy, color, width, dash));
+    if (e.urgency > 0.5) {
+      const ux = p.target ? tx : sx;
+      for (let k = 0; k < 8; k++) {
+        const ang = 2*Math.PI*k/8, r1 = 26, r2 = 26+8+8*e.urgency;
+        out.push(`<line x1="${(ux+r1*Math.cos(ang)).toFixed(1)}" y1="${(cy+r1*Math.sin(ang)).toFixed(1)}" x2="${(ux+r2*Math.cos(ang)).toFixed(1)}" y2="${(cy+r2*Math.sin(ang)).toFixed(1)}" stroke="${color}" stroke-width="1.5"/>`);
+      }
+    }
+    if (["ANTES","AHORA","DESPUES"].includes(p.time)) {
+      const ty = y0 + ROW_H - 36;
+      out.push(`<line x1="${center-34}" y1="${ty}" x2="${center+34}" y2="${ty}" stroke="#8a8f98" stroke-width="1"/>`);
+      const mx = { ANTES: center-26, AHORA: center, DESPUES: center+26 }[p.time];
+      out.push(`<circle cx="${mx}" cy="${ty}" r="3.5" fill="#8a8f98"/>`);
+    }
+    const gloss = compact(p).split(" | ")[0];
+    out.push(`<text x="${ROW_W/2}" y="${y0+ROW_H-12}" text-anchor="middle" font-family="monospace" font-size="10" fill="#667">${gloss}</text>`);
+  });
+  out.push("</svg>");
+  return out.join("\n");
+}
+
+/* ---------- render: símbolo → sonido (WebAudio) ---------- */
+const EVENTS = {
+  SER:[[1,1.6,.1]], NO_SER:[[1,.3,.05],[0,.9,0]], YO:[[1,.8,.1]], OTRO:[[9/8,.8,.1]],
+  UNIR:[[3/2,1,.1]], SEPARAR:[[3/2,.4,.35],[1,.4,.1]],
+  CAMBIAR:[[1,.35,.05],[9/8,.35,.05],[5/4,.4,.1]], OBSERVAR:[[4/3,1.2,.1]],
+  PREGUNTAR:[[9/8,.4,.05],[4/3,.7,.3]], RESPONDER:[[4/3,.4,.05],[1,.8,.2]],
+  DESEAR:[[5/4,.5,.05],[3/2,.8,.15]], TEMER:[[16/15,.45,.1],[16/15,.45,.3]],
+  RECORDAR:[[1,.4,.15],[1,.4,.3]], OLVIDAR:[[1,.6,0],[0,.8,0]],
+  CREAR:[[1,.3,.03],[5/4,.3,.03],[3/2,.5,.1]], DESTRUIR:[[3/2,.3,.03],[5/4,.3,.03],[16/15,.5,.1]],
+  SUBIR:[[1,.35,.03],[9/8,.35,.03],[5/4,.4,.1]], BAJAR:[[5/4,.35,.03],[9/8,.35,.03],[1,.4,.1]],
+  ABRIR:[[1,.35,.05],[4/3,.7,.1]], CERRAR:[[4/3,.35,.05],[1,.7,.1]],
+  CAUSA:[[1,.4,.05],[3/2,.5,.1]], EFECTO:[[3/2,.4,.05],[1,.5,.1]],
+  POSIBLE:[[5/4,.6,.1]], IMPOSIBLE:[[16/15,.4,.05],[0,.5,0]], DESCONOCIDO:[[9/8,.5,.4]],
+  AQUI:[[1,.4,.05]], ALLI:[[2,.4,.05]], DENTRO:[[.5,.4,.05]], FUERA:[[2,.4,.05]],
+  AHORA:[[1,.3,.05]], ANTES:[[8/9,.3,.05]], DESPUES:[[9/8,.3,.05]],
+};
+function eventsFor(name, scale=1) {
+  let ev;
+  if (name in EVENTS) ev = EVENTS[name];
+  else if (name in DERIVED) {
+    ev = [];
+    for (const c of DERIVED[name].c) ev.push(...eventsFor(c, .55));
+    return ev.map(([r,d,g]) => [r, d*scale, g*scale]);
+  } else ev = [[1,.5,.1]];
+  return ev.map(([r,d,g]) => [r, d*scale, g*scale]);
+}
+function symbolEvents(p) {
+  const e = p.emotion, out = [];
+  out.push([p.source === "OTRO" ? 9/8 : 1, .5, .15]);
+  if (p.relation) out.push(...eventsFor(p.relation));
+  if (p.action) out.push(...eventsFor(p.action, .7));
+  if (p.target) out.push([e.bond > .3 ? 3/2 : e.valence < -.3 ? 16/15 : 5/4, .6, .1]);
+  if (p.relation === "PREGUNTAR" || e.certainty < -.2) out.push([4/3,.3,.02],[3/2,.5,0]);
+  else out.push([1, e.certainty > .5 ? .8 : .5, 0]);
+  return out;
+}
+let audioCtx = null;
+function play(packets) {
+  audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+  let t = audioCtx.currentTime + 0.05;
+  const base = 220;
+  for (const p of packets) {
+    const e = p.emotion;
+    const unit = 0.42 * (1 + .35*Math.max(e.bond,0)) / (1 + .9*Math.max(e.urgency,0));
+    const amp = 0.28 + 0.35*Math.max(e.arousal,0);
+    const attack = (e.urgency > .6 || e.valence < -.6) ? .005 : .03 + .07*Math.max(e.bond,0);
+    const partials = [[1,1],[2,.10+.20*Math.max(e.valence,0)],[3,.05]];
+    if (e.valence < 0) partials.push([16/15, .30*(-e.valence)]);
+    for (const [ratio, du, gu] of symbolEvents(p)) {
+      const dur = Math.max(.08, du*unit);
+      if (ratio > 0) {
+        for (const [mult, pa] of partials) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.frequency.value = base*ratio*mult;
+          const release = Math.max(.03, dur*.25);
+          gain.gain.setValueAtTime(0, t);
+          gain.gain.linearRampToValueAtTime(amp*pa*.5, t+attack);
+          gain.gain.setValueAtTime(amp*pa*.5, t+dur-release);
+          gain.gain.linearRampToValueAtTime(0, t+dur);
+          osc.connect(gain).connect(audioCtx.destination);
+          osc.start(t); osc.stop(t+dur+.01);
+        }
+      }
+      t += dur + gu*unit;
+    }
+    t += 0.35;
+  }
+}
+
+/* ---------- UI ---------- */
+const $ = id => document.getElementById(id);
+const EXAMPLES = ["te quiero","estoy aquí","quiero hablar contigo en la wired",
+  "estoy solo pero quiero conectar","¿estás ahí?","¡peligro!",
+  "no tengan miedo de lo que no conocen","tengo miedo","te recuerdo",
+  "estamos juntos","adiós","¿quién eres?","¿qué es real?"];
+
+let current = [];
+function traducir() {
+  current = encode($("entrada").value);
+  if (!current.length) return;
+  $("txt_es").textContent = current.map(p => renderText(p, "es")).join(" ");
+  $("txt_en").textContent = current.map(p => renderText(p, "en")).join(" ");
+  $("compacta").textContent = current.map(compact).join("\n");
+  $("json").textContent = JSON.stringify(toJSONmsg(current), null, 2);
+  $("binario").textContent = toBytes(current);
+  $("glifo").innerHTML = glyphSVG(current);
+}
+$("traducir").addEventListener("click", traducir);
+$("entrada").addEventListener("keydown", ev => { if (ev.key === "Enter") traducir(); });
+$("escuchar").addEventListener("click", () => { if (!current.length) traducir(); play(current); });
+for (const ex of EXAMPLES) {
+  const b = document.createElement("button");
+  b.textContent = ex;
+  b.addEventListener("click", () => { $("entrada").value = ex; traducir(); });
+  $("chips").appendChild(b);
+}
+
+/* ---------- autotest: el port JS debe coincidir con la referencia Python ---------- */
+const EXPECTED = {
+  "te quiero": ["YO → AMOR → OTRO @AHORA | E[V+0.95 A+0.60 D+0.00 C+0.80 U+0.00 B+0.98]"],
+  "estoy aquí": ["YO → SER @AHORA @AQUI | E[V+0.00 A+0.50 D+0.00 C+0.96 U+0.00 B+0.00]"],
+  "quiero hablar contigo en la wired":
+    ["YO → DESEAR(COMUNICAR) → OTRO @AHORA @WIRED | E[V+0.70 A+0.40 D+0.00 C+0.90 U+0.30 B+0.80]"],
+  "estoy solo pero quiero conectar": [
+    "YO → SER → SOLEDAD @AHORA | E[V-0.60 A+0.35 D-0.30 C+0.70 U+0.00 B-0.70]",
+    "YO → DESEAR → CONEXION @AHORA | E[V+0.40 A+0.50 D+0.00 C+0.50 U+0.50 B+0.60]"],
+  "¿estás ahí?": ["YO → PREGUNTAR(SER) → OTRO @AHORA @ALLI | E[V+0.00 A+0.50 D+0.00 C-0.40 U+0.40 B+0.40]"],
+  "¡peligro!": ["YO → TEMER → PELIGRO @AHORA | E[V-0.90 A+1.00 D+0.00 C+0.80 U+1.00 B+0.00]"],
+  "no tengan miedo de lo que no conocen":
+    ["YO → NO_SER(TEMER) → DESCONOCIDO @AHORA | E[V+0.50 A-0.20 D+0.40 C+0.80 U-0.30 B+0.60]"],
+};
+const BIN_EXPECTED = "57 53 50 01 01 1b 02 83 00 03 0b 04 41 4d 4f 52 03 08 5f 3c 00 50 00 62";
+(function selftest() {
+  let ok = 0, total = 0, fails = [];
+  for (const [text, expected] of Object.entries(EXPECTED)) {
+    total++;
+    const got = encode(text).map(compact);
+    if (JSON.stringify(got) === JSON.stringify(expected)) ok++;
+    else fails.push(text);
+  }
+  total++;
+  if (toBytes(encode("te quiero")) === BIN_EXPECTED) ok++; else fails.push("binario");
+  const el = $("selftest");
+  el.textContent = `autotest ${ok}/${total}` + (fails.length ? ` — falla: ${fails.join(", ")}` : " ✓");
+  el.className = fails.length ? "fail" : "ok";
+})();
+
+traducir();
+</script>
+</body>
+</html>

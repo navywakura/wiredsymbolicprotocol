@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rogex-wsp"
-version = "0.1.0"
-description = "ROGEX-WSP / Wired Symbolic Protocol: protocolo experimental de comunicacion simbolico-emocional (v0.1)"
+version = "0.2.0"
+description = "ROGEX-WSP / Wired Symbolic Protocol: protocolo experimental de comunicacion simbolico-emocional"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }

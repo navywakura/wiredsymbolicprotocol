@@ -7,6 +7,8 @@
     wsp audio --text "estoy aquí" -o out.wav    # símbolo → sonido
     wsp glyph --text "te quiero" -o out.svg     # símbolo → glifo
     wsp binary --text "peligro"                 # símbolo → binario (hex)
+    wsp listen mensaje.wav                      # sonido → símbolo (v0.2)
+    wsp inspect mensaje.svg                     # glifo → símbolo (v0.2)
     wsp demo -o demo_out                        # ejemplos canónicos completos
 """
 
@@ -95,6 +97,32 @@ def _cmd_binary(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_listen(args: argparse.Namespace) -> int:
+    from .listen import listen
+    from .symbol_to_text import render_message
+
+    message = listen(args.wav)
+    if args.compact:
+        print(message.compact())
+        print(f"es: {render_message(message, 'es')}")
+    else:
+        print(message.to_json())
+    return 0
+
+
+def _cmd_inspect(args: argparse.Namespace) -> int:
+    from .glyph_reader import inspect_svg
+    from .symbol_to_text import render_message
+
+    message = inspect_svg(args.svg)
+    if args.compact:
+        print(message.compact())
+        print(f"es: {render_message(message, 'es')}")
+    else:
+        print(message.to_json())
+    return 0
+
+
 _DEMO_PHRASES = [
     "te quiero",
     "estoy aquí",
@@ -102,6 +130,7 @@ _DEMO_PHRASES = [
     "estoy solo pero quiero conectar",
     "¿estás ahí?",
     "¡peligro!",
+    "no tengan miedo de lo que no conocen",
 ]
 
 
@@ -163,6 +192,16 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--json", help="ruta a JSON simbólico, o '-' para stdin")
     p.add_argument("-o", "--output", help="archivo de salida (por defecto: hex a stdout)")
     p.set_defaults(func=_cmd_binary)
+
+    p = sub.add_parser("listen", help="sonido (WAV) → símbolo: detección de ratios")
+    p.add_argument("wav", help="ruta al archivo WAV generado por WSP")
+    p.add_argument("--compact", action="store_true", help="forma compacta + texto en vez de JSON")
+    p.set_defaults(func=_cmd_listen)
+
+    p = sub.add_parser("inspect", help="glifo (SVG) → símbolo: lectura geométrica")
+    p.add_argument("svg", help="ruta al archivo SVG generado por WSP")
+    p.add_argument("--compact", action="store_true", help="forma compacta + texto en vez de JSON")
+    p.set_defaults(func=_cmd_inspect)
 
     p = sub.add_parser("demo", help="ejecuta los ejemplos canónicos y genera archivos")
     p.add_argument("-o", "--output", default="demo_out", help="directorio de salida")

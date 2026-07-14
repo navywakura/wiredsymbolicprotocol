@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/n4vv4r/RogexWSP/main/docs/schema/wsp-message.schema.json",
+  "title": "ROGEX-WSP message",
+  "description": "Mensaje del Wired Symbolic Protocol (formato de hilo 0.1). Un mensaje transporta uno o más paquetes simbólicos (forma 'packets') o un único símbolo en la raíz (forma compatible con el documento de diseño). Los nombres de concepto se resuelven con tolerancia (canónico, español o inglés); las implementaciones deben emitir el nombre canónico en mayúsculas.",
+  "type": "object",
+  "required": ["protocol", "version"],
+  "properties": {
+    "protocol": { "const": "rogex-wsp" },
+    "version": { "type": "string", "pattern": "^0\\.[0-9]+$" },
+    "defines": {
+      "description": "Generatividad por el cable: definiciones de conceptos derivados que el receptor podría no conocer. Se registran antes de decodificar los paquetes.",
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/define" }
+    },
+    "packets": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 255,
+      "items": { "$ref": "#/$defs/packet" }
+    },
+    "symbol": { "$ref": "#/$defs/symbol" },
+    "emotion": { "$ref": "#/$defs/emotion" },
+    "meta": { "type": "object" }
+  },
+  "oneOf": [
+    { "required": ["packets"], "not": { "required": ["symbol"] } },
+    { "required": ["symbol"], "not": { "required": ["packets"] } }
+  ],
+  "$defs": {
+    "concept": {
+      "description": "Nombre de un átomo (p. ej. YO, DESEAR) o de un concepto derivado (p. ej. AMOR, WIRED).",
+      "type": "string",
+      "minLength": 1
+    },
+    "axis": { "type": "number", "minimum": -1.0, "maximum": 1.0 },
+    "emotion": {
+      "description": "Los 6 ejes emocionales en [-1, +1]. Las implementaciones aceptan también las claves cortas V A D C U B.",
+      "type": "object",
+      "properties": {
+        "valence": { "$ref": "#/$defs/axis" },
+        "arousal": { "$ref": "#/$defs/axis" },
+        "dominance": { "$ref": "#/$defs/axis" },
+        "certainty": { "$ref": "#/$defs/axis" },
+        "urgency": { "$ref": "#/$defs/axis" },
+        "bond": { "$ref": "#/$defs/axis" }
+      }
+    },
+    "symbol": {
+      "description": "Estructura del paquete: [ORIGEN][RELACIÓN(ACCIÓN)][DESTINO][TIEMPO][ESPACIO]. Todas las ranuras son opcionales.",
+      "type": "object",
+      "properties": {
+        "source": { "$ref": "#/$defs/concept" },
+        "relation": { "$ref": "#/$defs/concept" },
+        "action": { "$ref": "#/$defs/concept" },
+        "target": { "$ref": "#/$defs/concept" },
+        "time": { "$ref": "#/$defs/concept" },
+        "space": { "$ref": "#/$defs/concept" }
+      },
+      "additionalProperties": false
+    },
+    "packet": {
+      "type": "object",
+      "required": ["symbol"],
+      "properties": {
+        "symbol": { "$ref": "#/$defs/symbol" },
+        "emotion": { "$ref": "#/$defs/emotion" },
+        "meta": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "define": {
+      "type": "object",
+      "required": ["components"],
+      "properties": {
+        "components": {
+          "description": "Átomos del núcleo que componen el concepto (1..31).",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 31,
+          "items": { "$ref": "#/$defs/concept" }
+        },
+        "es": { "type": "string" },
+        "en": { "type": "string" },
+        "emotion": { "$ref": "#/$defs/emotion" },
+        "category": {
+          "enum": ["entity", "space", "time", "relation", "modal"]
+        },
+        "article_es": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

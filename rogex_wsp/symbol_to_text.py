@@ -105,10 +105,45 @@ def _special_case(s: Symbol, lang: str) -> str | None:
     action = _name(s.action)
     target = _name(s.target)
     space = _name(s.space)
+    source = _name(s.source)
+
+    # YO → UNIR → OTRO @AQUI  /  unión presente y compartida
+    if relation == "UNIR" and target == "OTRO" and space == "AQUI":
+        return "Estamos juntos." if lang == "es" else "We are together."
 
     # SELF → AMOR → OTRO  /  vínculo positivo intenso
     if target == "OTRO" and (relation == "AMOR" or (relation == "UNIR" and s.emotion.bond > 0.8)):
         return "Te quiero." if lang == "es" else "I love you."
+
+    # la transmisión: negación sobre el temor, dirigida a lo desconocido
+    if relation == "NO_SER" and action == "TEMER":
+        return "No temas lo desconocido." if lang == "es" else "Do not fear the unknown."
+
+    # miedo sin objeto conocido
+    if relation == "TEMER" and target == "DESCONOCIDO" and s.emotion.valence < 0:
+        return "Tengo miedo." if lang == "es" else "I am afraid."
+
+    # memoria del otro
+    if relation == "RECORDAR" and target == "OTRO":
+        return "Te recuerdo." if lang == "es" else "I remember you."
+
+    # ausencia: el otro no está
+    if relation == "NO_SER" and source == "OTRO":
+        if lang == "es":
+            return "No estás aquí." if space == "AQUI" else "No estás."
+        return "You are not here." if space == "AQUI" else "You are not."
+
+    # deseo directo hacia el otro
+    if relation == "DESEAR" and target == "OTRO" and action is None:
+        return "Te deseo." if lang == "es" else "I desire you."
+
+    # separación / despedida
+    if relation == "SEPARAR" and target == "OTRO":
+        return "Adiós." if lang == "es" else "Goodbye."
+
+    # la pregunta por la realidad (conciencia)
+    if relation == "PREGUNTAR" and target == "CONCIENCIA":
+        return "¿Qué es real?" if lang == "es" else "What is real?"
 
     # SELF.EXIST.HERE.NOW
     if relation == "SER" and target is None and space == "AQUI":
@@ -132,11 +167,11 @@ def _special_case(s: Symbol, lang: str) -> str | None:
     if relation == "DESEAR" and target == "CONEXION":
         return "Quiero conectar." if lang == "es" else "I want to connect."
 
-    # PREGUNTAR(SER) → OTRO @ALLI  →  ¿estás ahí?
+    # PREGUNTAR(SER) → OTRO: con lugar es presencia, sin lugar es identidad
     if relation == "PREGUNTAR" and action == "SER" and target == "OTRO":
         if lang == "es":
-            return "¿Estás ahí?" if space == "ALLI" else "¿Estás?"
-        return "Are you there?" if space == "ALLI" else "Are you?"
+            return "¿Estás ahí?" if space == "ALLI" else "¿Quién eres?"
+        return "Are you there?" if space == "ALLI" else "Who are you?"
 
     # peligro con urgencia alta
     if target == "PELIGRO" and s.emotion.urgency > 0.6:

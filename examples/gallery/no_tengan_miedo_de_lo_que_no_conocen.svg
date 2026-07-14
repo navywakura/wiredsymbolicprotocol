@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="240" viewBox="0 0 420 240">
+<ellipse cx="210.0" cy="105" rx="155" ry="78" fill="none" stroke="#2e9e6b" stroke-width="1.2" opacity="0.4"/>
+<circle cx="110" cy="105" r="20" fill="none" stroke="#2e9e6b" stroke-width="1.5"/>
+<circle cx="110" cy="105" r="7" fill="#2e9e6b"/>
+<circle cx="310" cy="105" r="9" fill="none" stroke="#2e9e6b" stroke-width="2" stroke-dasharray="3 4"/>
+<line x1="136" y1="105" x2="194.0" y2="105" stroke="#2e9e6b" stroke-width="1.5"/>
+<line x1="226.0" y1="105" x2="284" y2="105" stroke="#2e9e6b" stroke-width="1.5"/>
+<polyline points="152.0,83.0 156.0,88.5 160.0,87.5 164.0,81.3 168.0,77.1 172.0,79.8 176.0,86.2 180.0,88.9 184.0,84.7 188.0,78.5 192.0,77.5 196.0,83.0 200.0,88.5 204.0,87.5 208.0,81.3 212.0,77.1 216.0,79.8 220.0,86.2 224.0,88.9 228.0,84.7 232.0,78.5 236.0,77.5 240.0,83.0 244.0,88.5 248.0,87.5 252.0,81.3 256.0,77.1 260.0,79.8 264.0,86.2 268.0,88.9" fill="none" stroke="#2e9e6b" stroke-width="1.0" opacity="0.6"/>
+<line x1="176.0" y1="204" x2="244.0" y2="204" stroke="#8a8f98" stroke-width="1"/>
+<circle cx="210.0" cy="204" r="3.5" fill="#8a8f98"/>
+<text x="210.0" y="228" text-anchor="middle" font-family="monospace" font-size="10" fill="#667" textLength="384" lengthAdjust="spacingAndGlyphs">YO → NO_SER(TEMER) → DESCONOCIDO @AHORA · positivo, dominante, seguro, pausado, cercano</text>
+</svg>

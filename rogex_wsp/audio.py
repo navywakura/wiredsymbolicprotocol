@@ -152,7 +152,9 @@ def synthesize(
 
     for index, symbol in enumerate(packets):
         if index > 0:
-            _silence(samples, 0.35, sr)
+            # separador de paquetes: más largo que cualquier silencio interno
+            # con significado (negación/olvido), para que el receptor los distinga
+            _silence(samples, 0.7, sr)
         e = symbol.emotion
 
         unit = 0.42 * (1.0 + 0.35 * max(e.bond, 0.0)) / (1.0 + 0.9 * max(e.urgency, 0.0))

@@ -49,7 +49,13 @@ wsp decode examples/te_quiero.json --lang en # símbolo → inglés
 wsp audio --text "estoy aquí" -o presencia.wav
 wsp glyph --text "te quiero" -o amor.svg
 wsp binary --text "¡peligro!"                # símbolo → binario compacto (hex)
+wsp listen presencia.wav --compact           # sonido → símbolo (v0.2)
+wsp inspect amor.svg --compact               # glifo → símbolo (v0.2)
 ```
+
+Y la **demo web** (sin instalar nada): abre [`web/index.html`](web/index.html)
+en el navegador — escribe una frase y ve en vivo el glifo, el sonido, el JSON
+y el binario del símbolo.
 
 ## Ejemplo completo
 
@@ -162,10 +168,14 @@ rogex_wsp/
   symbol_to_text.py  # render: símbolo → español / inglés
   audio.py           # render: símbolo → WAV (ratios de frecuencia)
   glyph.py           # render: símbolo → SVG (geometría)
+  listen.py          # intérprete: WAV → símbolo (v0.2)
+  glyph_reader.py    # intérprete: SVG → símbolo (v0.2)
+  compact.py         # intérprete: forma compacta → símbolo (v0.2)
   cli.py             # comando `wsp`
-docs/                # SPEC, filosofía, formato binario, hoja de ruta
+docs/                # SPEC, filosofía, formato binario, hoja de ruta, schema
 examples/            # mensajes canónicos en JSON + galería (SVG/WAV)
-tests/               # 36 tests (unittest, stdlib)
+web/index.html       # demo web autocontenida (port JS del protocolo)
+tests/               # 59 tests (unittest, stdlib)
 ```
 
 ```bash
@@ -174,11 +184,20 @@ python3 -m unittest discover -s tests   # ejecutar los tests
 
 ## Estado y rumbo
 
-Esto es una **prueba de concepto**: la v0.1 no necesita ser universal, necesita
-demostrar que una frase puede convertirse en estructura simbólica — y ya lo hace
-en ambos sentidos. La siguiente meta es la **v0.2 «Signal Return»**: que el
-sonido y el glifo vuelvan al símbolo (`wsp listen`, `wsp inspect`), JSON Schema
-oficial y demo web. Plan completo en [`docs/ROADMAP.md`](docs/ROADMAP.md);
+La **v0.2 «Signal Return»** cierra el ciclo de bidireccionalidad: el sonido y
+el glifo vuelven al símbolo. `encode(texto) → wav → listen(wav)` recupera la
+relación y el signo emocional en todas las frases canónicas — el significado
+sobrevive al viaje por la máscara física:
+
+```text
+"te quiero" → [WAV de 2.4 s] → wsp listen → YO → AMOR → OTRO | V+0.60 B+0.60 → "Te quiero."
+```
+
+La v0.2 añade además el JSON Schema oficial, el parser de forma compacta,
+nueve frases canónicas nuevas (incluida la transmisión: «no tengan miedo de
+lo que no conocen») y la demo web. Siguiente meta (v0.3): audio no generado
+por WSP, más máscaras (color, vibración, MIDI) y vectores
+semántico-emocionales. Plan completo en [`docs/ROADMAP.md`](docs/ROADMAP.md);
 cómo contribuir en [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---

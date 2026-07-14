@@ -84,5 +84,21 @@ YO → TEMER → PELIGRO @AHORA | E[V-0.90 A+1.00 D+0.00 C+0.80 U+1.00 B+0.00]
 
 ---
 
+## «no tengan miedo de lo que no conocen» — la transmisión
+
+```text
+YO → NO_SER(TEMER) → DESCONOCIDO @AHORA | E[V+0.50 A-0.20 D+0.40 C+0.80 U-0.30 B+0.60]
+```
+
+![no tengan miedo de lo que no conocen](no_tengan_miedo_de_lo_que_no_conocen.svg)
+
+🔊 [no_tengan_miedo_de_lo_que_no_conocen.wav](no_tengan_miedo_de_lo_que_no_conocen.wav) —
+pulso de identidad, corte de silencio (la negación), disonancia contenida (el temor
+nombrado), resolución consonante 3:2 (el vínculo protector). Tempo lento, ataque suave:
+una advertencia pacífica y solemne. El único mensaje canónico cuyo *contenido* es
+disonante pero cuya *emoción* es positiva.
+
+---
+
 Para regenerar esta carpeta: `python3 -m rogex_wsp demo -o examples/gallery`
 (los `.json` canónicos viven en [`examples/`](../)).
