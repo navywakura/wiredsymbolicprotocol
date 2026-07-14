@@ -25,6 +25,37 @@ from .symbol import Message, Symbol
 SAMPLE_RATE = 22050
 BASE_FREQ = 220.0
 
+# v0.3 target burst: short microtonal symbols around the calibrated base.
+_BURST_TONE = 0.036
+_BURST_GAP = 0.008
+_BURST_LEAD = 0.080
+_BURST_PREAMBLE = (2.0, 0.5)
+
+
+def _target_bytes(symbol: Symbol) -> bytes:
+    """Stable compact identity payload for a non-generic target."""
+    if symbol.target is None:
+        return b""
+    name = concept_name(symbol.target)
+    if name in ("OTRO", "DESCONOCIDO"):
+        return b""
+    return name.encode("utf-8")[:24]
+
+
+def _nibble_ratio(value: int) -> float:
+    """Map a nibble to a microtonal ratio spanning roughly a tritone."""
+    return 2.0 ** ((value - 7.5) / 24.0)
+
+
+def _burst_ratios(payload: bytes) -> list[float]:
+    ratios = list(_BURST_PREAMBLE)
+    ratios.append(_nibble_ratio(len(payload) & 0x0F))
+    for byte in payload:
+        ratios.extend((_nibble_ratio(byte >> 4), _nibble_ratio(byte & 0x0F)))
+    checksum = sum(payload) & 0xFF
+    ratios.extend((_nibble_ratio(checksum >> 4), _nibble_ratio(checksum & 0x0F)))
+    return ratios
+
 # Eventos por relación: (ratio, duración en unidades, pausa en unidades).
 # ratio 0.0 = silencio (ausencia).
 _RELATION_EVENTS: dict[str, list[tuple[float, float, float]]] = {
@@ -177,6 +208,16 @@ def synthesize(
                 )
             if gap_units > 0:
                 _silence(samples, gap_units * unit, sr)
+
+        payload = _target_bytes(symbol)
+        if payload:
+            _silence(samples, _BURST_LEAD, sr)
+            for ratio in _burst_ratios(payload):
+                _tone(
+                    samples, base_freq * ratio, _BURST_TONE, amplitude * 0.78,
+                    0.002, 0.0, [(1.0, 1.0)], sr,
+                )
+                _silence(samples, _BURST_GAP, sr)
 
     # Normaliza el pico para evitar clipping.
     peak = max((abs(s) for s in samples), default=1.0)

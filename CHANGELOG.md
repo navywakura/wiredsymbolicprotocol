@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.3.0] — «Resilient Matrix»
+
+### Añadido
+- Calibración dinámica de f0 desde el pulso inicial de identidad.
+- Squelch RMS adaptativo y tolerancia logarítmica a vibrato/jitter.
+- Capa M multi-agente con atribución `YO`/`OTRO` y `agent_id` diagnóstico.
+- Burst Arpeggio microtonal con longitud, UTF-8 y checksum para destinos compuestos.
+- Decodificación temporal estrecha del burst mediante banco Goertzel/STFT ligero.
+- Inspección SVG topológica sin glosa y entrada de micrófono WebAudio en la demo.
+
+### Cambiado
+- `listen.py` calibra ratios por paquete en vez de asumir 220 Hz.
+- La segmentación usa umbral de ruido de fondo y elimina toggles transitorios.
+- Los metadatos acústicos incluyen jitter, agente y estado del burst.
+
+### Corregido
+- Falsos silencios semánticos provocados por ruido ambiente.
+- Saltos de cuantización causados por pequeñas desviaciones de voz humana.
+- Pérdida de identidad de destinos no genéricos en el retorno WAV.
+
 Todos los cambios notables de ROGEX-WSP se documentan aquí.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado sigue [SemVer](https://semver.org/lang/es/).

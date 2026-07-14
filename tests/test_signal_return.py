@@ -209,3 +209,35 @@ class TestNuevasFrasesCanonicas(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class TestResilientMatrixV03(unittest.TestCase):
+    def test_f0_dinamica_330hz(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "dynamic.wav")
+            render_wav(encode("te quiero"), path, base_freq=330.0)
+            symbol = listen(path).packets[0]
+            self.assertEqual(symbol.relation.name, "AMOR")
+            self.assertAlmostEqual(symbol.meta["listen"]["base_hz"], 330.0, delta=8.0)
+            self.assertEqual(symbol.source.name, "OTRO")
+
+    def test_squelch_resiste_ruido_de_fondo(self):
+        import math, struct, wave
+        with tempfile.TemporaryDirectory() as tmp:
+            clean = os.path.join(tmp, "clean.wav")
+            noisy = os.path.join(tmp, "noisy.wav")
+            render_wav(encode("te quiero"), clean)
+            with wave.open(clean, "rb") as f:
+                params, raw = f.getparams(), f.readframes(f.getnframes())
+            vals = list(struct.unpack(f"<{len(raw)//2}h", raw))
+            vals = [max(-32768, min(32767, v + int(250*math.sin(i*.37)))) for i,v in enumerate(vals)]
+            with wave.open(noisy, "wb") as f:
+                f.setparams(params); f.writeframes(struct.pack(f"<{len(vals)}h", *vals))
+            self.assertEqual(listen(noisy).packets[0].relation.name, "AMOR")
+
+    def test_arpegio_reconstruye_destino_compuesto(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "target.wav")
+            render_wav(encode("quiero conectar"), path)
+            symbol = listen(path).packets[0]
+            self.assertEqual(symbol.target.name, "CONEXION")
+            self.assertTrue(symbol.meta["listen"]["target_burst"]["valid"])
