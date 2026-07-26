@@ -65,7 +65,29 @@ Primer contacto con audio ajeno al protocolo (`multiband.py`):
   fixture normativa: `wsp contact` lo reconoce en cualquier tonalidad
   (f0 dinámico) y `wsp contact --emit` lo emite por ratios.
 
-## v0.5 — Más máscaras, más intérpretes
+## v0.5 — «Project Hail Mary»: contacto exótico ✅ (publicada)
+
+Elimina los presupuestos que impedían hablar con un emisor ajeno
+(especificación completa en [`SPEC_V0.5.md`](SPEC_V0.5.md)):
+
+- ✅ **Polifonía** (`multiphonic.py`): un acorde de voces simultáneas
+  transporta un campo entero (etiqueta + carga + paridad), sobre una
+  retícula de ratios invariante a la altura.
+- ✅ **Sintaxis agnóstica** (`grammar.py`): campos autoetiquetados, orden
+  libre, trama binaria 0x02, y `SyntaxProfile` para responder en la
+  sintaxis del interlocutor.
+- ✅ **Plano científico** (`primitives_science.py`): códigos 32..127,
+  dimensiones SI con álgebra, cantidades de mantisa binaria y elementos
+  identificados por su Z.
+- ✅ **Descubrimiento fonético** (`discovery.py`): firmas espectrales
+  invariantes a la altura, agrupamiento, atadura por contexto conocido y
+  mapa persistente; la cobertura de la escucha se vuelve certeza.
+
+Pendiente heredado de esta versión (ver §7 de la SPEC): audio orgánico
+real, aprendizaje sin contexto, numerales del emisor y gramática
+compuesta.
+
+## v0.6 — Más máscaras, más intérpretes
 
 - Renderizadores nuevos: **color** (paleta emocional), **vibración**
   (patrones hápticos), **MIDI** (interoperar con instrumentos y DAWs).

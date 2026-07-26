@@ -11,6 +11,11 @@
     wsp inspect mensaje.svg                     # glifo → símbolo (v0.2)
     wsp contact señal.wav                       # saludo de 5 tonos → símbolo (v0.4)
     wsp contact --emit saludo.wav               # emite el saludo de contacto
+    wsp chord --text "te quiero" -o poly.wav    # símbolo → acordes polifónicos (v0.5)
+    wsp chord poly.wav --compact                # acordes → símbolo
+    wsp calibrate exotico.wav -o mapping.json   # descubre firmas de un emisor ajeno
+    wsp map mapping.json --bind SIG-00=YO       # ata firmas a átomos de WSP
+    wsp xeno exotico.wav --map mapping.json     # audio exótico → símbolo
     wsp demo -o demo_out                        # ejemplos canónicos completos
 """
 
@@ -153,6 +158,85 @@ def _cmd_contact(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_chord(args: argparse.Namespace) -> int:
+    from .multiphonic import listen_chords, render_wav as render_poly, symbol_to_chords
+    from .symbol_to_text import render_message
+
+    if args.text:
+        message = encode(args.text)
+        path = render_poly(message, args.output, base=args.base)
+        chords = sum(len(symbol_to_chords(p)) for p in message.packets)
+        print(f"wav polifónico escrito: {path} ({chords} acordes, raíz {args.base} Hz)")
+        return 0
+    if not args.wav:
+        raise SystemExit("error: se necesita un WAV o --text")
+    message = listen_chords(args.wav)
+    if not message.packets:
+        print("sin acordes legibles en la señal")
+        return 1
+    if args.compact:
+        print(message.compact())
+        print(f"es: {render_message(message, 'es')}")
+        print(f"meta: {message.packets[0].meta.get('polyphonic')}")
+    else:
+        print(message.to_json())
+    return 0
+
+
+def _cmd_calibrate(args: argparse.Namespace) -> int:
+    from .discovery import PhoneticMap, observe
+
+    observations = observe(args.wav)
+    if not observations:
+        print("no se detectó ningún evento sonoro")
+        return 1
+    phonetic = PhoneticMap.from_observations(observations, speaker=args.speaker)
+    if args.lesson:
+        concepts = [c.strip() for c in args.lesson.split(",") if c.strip()]
+        phonetic = PhoneticMap(speaker=args.speaker)
+        bound = phonetic.learn_from_sequence(observations, concepts)
+        print(f"lección alineada: {bound} firmas atadas")
+    print(phonetic.report())
+    if args.output:
+        phonetic.save(args.output)
+        print(f"\nmapa escrito: {args.output}")
+    return 0
+
+
+def _cmd_map(args: argparse.Namespace) -> int:
+    from .discovery import PhoneticMap
+
+    phonetic = PhoneticMap.load(args.mapping)
+    for pair in args.bind or []:
+        signature_id, _, concept = pair.partition("=")
+        if not concept:
+            raise SystemExit(f"error: formato esperado SIG-XX=ATOMO, recibido {pair!r}")
+        phonetic.bind(signature_id.strip(), concept.strip())
+    print(phonetic.report())
+    if args.bind:
+        phonetic.save(args.mapping)
+        print(f"\nmapa actualizado: {args.mapping}")
+    return 0
+
+
+def _cmd_xeno(args: argparse.Namespace) -> int:
+    from .discovery import PhoneticMap, decode_with_map
+    from .symbol_to_text import render_message
+
+    phonetic = PhoneticMap.load(args.map)
+    message = decode_with_map(args.wav, phonetic)
+    if not message.packets:
+        print("no se detectó ningún evento sonoro")
+        return 1
+    if args.compact:
+        print(message.compact())
+        print(f"es: {render_message(message, 'es')}")
+        print(f"meta: {message.packets[0].meta.get('discovery')}")
+    else:
+        print(message.to_json())
+    return 0
+
+
 _DEMO_PHRASES = [
     "te quiero",
     "estoy aquí",
@@ -242,6 +326,41 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--base", type=float, default=293.66, help="frecuencia del primer tono al emitir (Hz)")
     p.add_argument("--compact", action="store_true", help="forma compacta + texto en vez de JSON")
     p.set_defaults(func=_cmd_contact)
+
+    p = sub.add_parser("chord", help="máscara polifónica: un acorde por campo (v0.5)")
+    p.add_argument("wav", nargs="?", help="WAV polifónico a leer (omitir con --text)")
+    p.add_argument("--text", help="frase a emitir como acordes")
+    p.add_argument("-o", "--output", default="poly.wav", help="archivo de salida al emitir")
+    p.add_argument("--base", type=float, default=180.0, help="raíz f0 en Hz al emitir")
+    p.add_argument("--compact", action="store_true", help="forma compacta + texto en vez de JSON")
+    p.set_defaults(func=_cmd_chord)
+
+    p = sub.add_parser(
+        "calibrate", help="descubre las firmas acústicas de un emisor desconocido (v0.5)"
+    )
+    p.add_argument("wav", help="grabación del emisor ajeno")
+    p.add_argument("-o", "--output", help="escribe el mapa fonético en este JSON")
+    p.add_argument("--speaker", default="desconocido", help="nombre del interlocutor")
+    p.add_argument(
+        "--lesson",
+        help="conceptos separados por comas, alineados con los eventos de la grabación "
+        "(atadura supervisada: 'YO,OBSERVAR,OTRO')",
+    )
+    p.set_defaults(func=_cmd_calibrate)
+
+    p = sub.add_parser("map", help="inspecciona o edita un mapa fonético (v0.5)")
+    p.add_argument("mapping", help="ruta al mapping.json")
+    p.add_argument(
+        "--bind", action="append", metavar="SIG-XX=ATOMO",
+        help="ata una firma a un átomo de WSP (repetible)",
+    )
+    p.set_defaults(func=_cmd_map)
+
+    p = sub.add_parser("xeno", help="audio exótico + mapa aprendido → símbolo (v0.5)")
+    p.add_argument("wav", help="grabación del emisor ajeno")
+    p.add_argument("--map", required=True, help="mapa fonético aprendido (JSON)")
+    p.add_argument("--compact", action="store_true", help="forma compacta + texto en vez de JSON")
+    p.set_defaults(func=_cmd_xeno)
 
     p = sub.add_parser("demo", help="ejecuta los ejemplos canónicos y genera archivos")
     p.add_argument("-o", "--output", default="demo_out", help="directorio de salida")

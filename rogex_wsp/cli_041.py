@@ -31,7 +31,7 @@ def _cmd_listen(args) -> int:
 def main(argv: list[str] | None = None) -> int:
     # `legacy.main` construye el parser después de estas sustituciones, por lo
     # que conserva exactamente la CLI anterior con los dos handlers nuevos.
-    legacy.__version__ = "0.4.1"
+    legacy.__version__ = "0.5.0"
     legacy._cmd_audio = _cmd_audio
     legacy._cmd_listen = _cmd_listen
     return legacy.main(argv)

@@ -57,6 +57,52 @@ _VERBS_EN: dict[str, str] = {
     "COMUNICAR": "communicate with",
 }
 
+# Segunda persona: cuando el origen del paquete es OTRO (el caso normal al
+# escuchar a un interlocutor ajeno, no al hablar nosotros).
+_VERBS_ES_2P: dict[str, str] = {
+    "SER": "estás",
+    "NO_SER": "no estás",
+    "UNIR": "te unes a",
+    "SEPARAR": "te separas de",
+    "CAMBIAR": "cambias",
+    "OBSERVAR": "observas",
+    "PREGUNTAR": "preguntas por",
+    "RESPONDER": "respondes a",
+    "DESEAR": "deseas",
+    "TEMER": "temes",
+    "RECORDAR": "recuerdas",
+    "OLVIDAR": "olvidas",
+    "CREAR": "creas",
+    "DESTRUIR": "destruyes",
+    "SUBIR": "subes",
+    "BAJAR": "bajas",
+    "ABRIR": "abres",
+    "CERRAR": "cierras",
+    "COMUNICAR": "te comunicas con",
+}
+
+_VERBS_EN_2P: dict[str, str] = {
+    "SER": "are",
+    "NO_SER": "are not",
+    "UNIR": "join",
+    "SEPARAR": "separate from",
+    "CAMBIAR": "change",
+    "OBSERVAR": "observe",
+    "PREGUNTAR": "ask about",
+    "RESPONDER": "answer",
+    "DESEAR": "desire",
+    "TEMER": "fear",
+    "RECORDAR": "remember",
+    "OLVIDAR": "forget",
+    "CREAR": "create",
+    "DESTRUIR": "destroy",
+    "SUBIR": "rise",
+    "BAJAR": "descend",
+    "ABRIR": "open",
+    "CERRAR": "close",
+    "COMUNICAR": "communicate with",
+}
+
 _SPACE_ES = {"AQUI": "aquí", "ALLI": "allí", "DENTRO": "dentro", "FUERA": "fuera", "WIRED": "en la Wired"}
 _SPACE_EN = {"AQUI": "here", "ALLI": "there", "DENTRO": "inside", "FUERA": "outside", "WIRED": "in the Wired"}
 _TIME_ES = {"AHORA": "ahora", "ANTES": "antes", "DESPUES": "después"}
@@ -77,6 +123,9 @@ def _target_phrase(symbol: Symbol, lang: str) -> str:
     if target is P.DESCONOCIDO:
         return "lo desconocido" if lang == "es" else "the unknown"
     if target is P.YO:
+        # «me observas» frente a «me observo»: depende de quién habla
+        if _name(symbol.source) == "OTRO":
+            return "a mí" if lang == "es" else "me"
         return "a mí" if lang == "es" else "myself"
     if isinstance(target, Derived):
         if lang == "es":
@@ -107,6 +156,17 @@ def _special_case(s: Symbol, lang: str) -> str | None:
     space = _name(s.space)
     source = _name(s.source)
 
+    # ausencia: el otro no está (único caso canónico con origen OTRO)
+    if relation == "NO_SER" and source == "OTRO":
+        if lang == "es":
+            return "No estás aquí." if space == "AQUI" else "No estás."
+        return "You are not here." if space == "AQUI" else "You are not."
+
+    # El resto de casos canónicos están escritos en primera persona: si habla
+    # otro, se delega en el render genérico, que conjuga en segunda persona.
+    if source == "OTRO":
+        return None
+
     # YO → UNIR → OTRO @AQUI  /  unión presente y compartida
     if relation == "UNIR" and target == "OTRO" and space == "AQUI":
         return "Estamos juntos." if lang == "es" else "We are together."
@@ -132,12 +192,6 @@ def _special_case(s: Symbol, lang: str) -> str | None:
     # memoria del otro
     if relation == "RECORDAR" and target == "OTRO":
         return "Te recuerdo." if lang == "es" else "I remember you."
-
-    # ausencia: el otro no está
-    if relation == "NO_SER" and source == "OTRO":
-        if lang == "es":
-            return "No estás aquí." if space == "AQUI" else "No estás."
-        return "You are not here." if space == "AQUI" else "You are not."
 
     # deseo directo hacia el otro
     if relation == "DESEAR" and target == "OTRO" and action is None:
@@ -186,10 +240,60 @@ def _special_case(s: Symbol, lang: str) -> str | None:
     return None
 
 
+# -- plano científico como frase ------------------------------------------------------
+
+def _science_phrase(symbol: Symbol, lang: str) -> str:
+    """Convierte la carga científica del paquete en sintagma legible.
+
+    «la masa del carbono = 12.011». El protocolo transporta Z y una
+    mantisa entera; esto es solo su máscara humana.
+    """
+    from .primitives_science import Dimension, Element, Quantity, SciPrimitive
+
+    science = symbol.meta.get("science") or {}
+    if not science:
+        return ""
+
+    magnitudes = []
+    for name in science.get("atoms", []):
+        atom = SciPrimitive.lookup(name)
+        if atom is not None:
+            magnitudes.append(atom.es if lang == "es" else atom.en)
+
+    element = science.get("element")
+    element_name = Element(int(element)).name(lang) if element is not None else ""
+
+    if magnitudes and element_name:
+        head = ", ".join(magnitudes)
+        phrase = f"la {head} del {element_name}" if lang == "es" else f"the {head} of {element_name}"
+    elif magnitudes:
+        head = ", ".join(magnitudes)
+        phrase = f"la {head}" if lang == "es" else f"the {head}"
+    elif element_name:
+        phrase = f"el {element_name}" if lang == "es" else element_name
+    else:
+        phrase = ""
+
+    spec = science.get("quantity")
+    if spec:
+        quantity = Quantity(
+            int(spec["mantissa"]),
+            int(spec.get("exponent", 0)),
+            Dimension(*spec.get("dimension", [0] * 7)),
+        )
+        phrase = f"{phrase} = {quantity.notation()}" if phrase else quantity.notation()
+    return phrase
+
+
 # -- render genérico ---------------------------------------------------------------
 
 def _generic(s: Symbol, lang: str) -> str:
-    verbs = _VERBS_ES if lang == "es" else _VERBS_EN
+    # El origen decide la persona: hablamos nosotros (YO) o nos habla otro.
+    second_person = _name(s.source) == "OTRO"
+    if second_person:
+        verbs = _VERBS_ES_2P if lang == "es" else _VERBS_EN_2P
+    else:
+        verbs = _VERBS_ES if lang == "es" else _VERBS_EN
     spaces = _SPACE_ES if lang == "es" else _SPACE_EN
     times = _TIME_ES if lang == "es" else _TIME_EN
 
@@ -203,12 +307,37 @@ def _generic(s: Symbol, lang: str) -> str:
 
     words: list[str] = []
     if lang == "en":
-        words.append("I")
+        words.append("you" if second_person else "I")
+
+    # En español el pronombre átono precede al verbo: «me observas», «te observo».
+    # Solo con verbos simples: los que ya traen pronombre o preposición
+    # («te unes a», «respondo a») piden el pronombre tónico detrás.
+    clitic = ""
+    if lang == "es" and " " not in verb:
+        if second_person and _name(s.target) == "YO":
+            clitic = "me"
+        elif not second_person and _name(s.target) == "OTRO":
+            clitic = "te"
+    if clitic:
+        words.append(clitic)
     words.append(verb)
 
-    target = _target_phrase(s, lang)
+    target = "" if clitic else _target_phrase(s, lang)  # el clítico ya lo dice
     if target:
+        # el verbo puede traer ya su preposición: «respondo a» + «a ti»,
+        # «pregunto por» + «a ti» → una sola preposición, la del verbo
+        prepositions = ("a", "por", "de", "con", "about", "with", "from", "to")
+        tail = verb.rsplit(" ", 1)[-1] if " " in verb else ""
+        head = target.split(" ", 1)[0]
+        if tail in prepositions and head in prepositions:
+            target = target.split(" ", 1)[1] if " " in target else target
         words.append(target)
+
+    # Sin destino, la carga científica ES el objeto y va justo tras el verbo.
+    science = _science_phrase(s, lang)
+    if science and not (target or clitic):
+        words.append(science)
+        science = ""
 
     space = _name(s.space)
     if space:
@@ -221,6 +350,10 @@ def _generic(s: Symbol, lang: str) -> str:
     time = _name(s.time)
     if time and time in times:
         words.append(times[time])
+
+    # Con destino, la carga científica cierra la frase como aposición.
+    if science:
+        words.append(f"— {science}")
 
     sentence = " ".join(words)
     sentence = sentence[0].upper() + sentence[1:]

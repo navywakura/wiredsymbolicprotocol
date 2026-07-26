@@ -19,31 +19,45 @@ from .compact import parse_compact, parse_compact_message
 from .listen import listen
 from .glyph_reader import inspect_svg
 from .multiband import analyze, emit_handshake, translate_alien_handshake
+from .primitives_science import Dimension, Element, Quantity, SciPrimitive
+from .grammar import Field, FieldTag, SyntaxProfile, decode_tagged, encode_tagged, normalize
+from .multiphonic import Chord, listen_chords, symbol_to_chords
+from .discovery import PhoneticMap, Signature, decode_with_map, observe
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
 
 __all__ = [
+    "analyze",
     "AXES",
     "Category",
+    "Chord",
     "Concept",
-    "Derived",
-    "Emotion",
-    "Message",
-    "PROTOCOL",
-    "Primitive",
-    "Symbol",
-    "VERSION",
-    "__version__",
-    "analyze",
+    "decode_tagged",
+    "decode_with_map",
     "define",
+    "Derived",
+    "Dimension",
+    "Element",
     "emit_handshake",
+    "Emotion",
     "encode",
+    "encode_tagged",
+    "Field",
+    "FieldTag",
     "inspect_svg",
     "is_builtin",
     "listen",
+    "listen_chords",
+    "Message",
+    "normalize",
     "normalize_token",
+    "observe",
     "parse_compact",
     "parse_compact_message",
+    "PhoneticMap",
+    "Primitive",
+    "PROTOCOL",
+    "Quantity",
     "registry",
     "render_message",
     "render_svg",
@@ -51,6 +65,13 @@ __all__ = [
     "render_symbol",
     "render_wav",
     "resolve",
+    "SciPrimitive",
+    "Signature",
+    "Symbol",
+    "symbol_to_chords",
+    "SyntaxProfile",
     "synthesize",
     "translate_alien_handshake",
+    "VERSION",
+    "__version__",
 ]

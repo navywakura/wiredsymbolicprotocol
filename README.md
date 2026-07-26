@@ -53,6 +53,10 @@ wsp listen presencia.wav --compact           # sonido → símbolo (v0.2)
 wsp inspect amor.svg --compact               # glifo → símbolo (v0.2)
 wsp contact --emit saludo.wav                # emite el saludo de 5 tonos (v0.4)
 wsp contact saludo.wav --compact             # ...y lo reconoce en cualquier tonalidad
+wsp chord --text "te quiero" -o poly.wav     # símbolo → acordes polifónicos (v0.5)
+wsp chord poly.wav --compact                 # acordes → símbolo
+wsp calibrate exotico.wav -o mapping.json    # descubre las firmas de un emisor ajeno
+wsp xeno exotico.wav --map mapping.json      # audio exótico → símbolo
 ```
 
 Y la **demo web** (sin instalar nada): abre [`web/index.html`](web/index.html)
@@ -174,6 +178,10 @@ rogex_wsp/
   glyph_reader.py    # intérprete: SVG → símbolo (v0.2)
   compact.py         # intérprete: forma compacta → símbolo (v0.2)
   multiband.py       # análisis en 3 capas espectrales + saludo de contacto (v0.4)
+  multiphonic.py     # capa M polifónica: un acorde por campo (v0.5)
+  grammar.py         # sintaxis agnóstica: campos etiquetados, orden libre (v0.5)
+  primitives_science.py  # plano científico de la capa I: dimensiones, Z (v0.5)
+  discovery.py       # descubrimiento fonético: el diccionario desde cero (v0.5)
   cli.py             # comando `wsp`
 docs/                # SPEC, filosofía, formato binario, hoja de ruta, schema
 examples/            # mensajes canónicos en JSON + galería (SVG/WAV)
@@ -209,9 +217,31 @@ RE 1:1 → MI 9:8 → DO 16:9↓ → DO 16:9↓↓ → SOL 4:3↓
 YO → SER(BUSCAR) → CONEXION @AHORA @AQUI  ·  «Existo y busco un vínculo aquí.»
 ```
 
-Siguientes metas: más máscaras (color, vibración, MIDI) y vectores
-semántico-emocionales. Plan completo en [`docs/ROADMAP.md`](docs/ROADMAP.md);
-cómo contribuir en [`CONTRIBUTING.md`](CONTRIBUTING.md).
+La **v0.5 «Project Hail Mary»** da el paso más difícil: hablar con quien
+no comparte diccionario, canal ni sintaxis. Cuatro módulos nuevos —
+polifonía (un acorde por campo), sintaxis agnóstica (el orden es del
+hablante, no del protocolo), plano científico (dimensiones SI y elementos
+por su Z) y descubrimiento fonético (construir el diccionario midiendo) —
+que se ejercitan de punta a punta:
+
+```bash
+python3 examples/hail_mary.py    # de la primera emisión ajena a la respuesta
+```
+
+```text
+1. el otro habla y no entendemos nada    → 6 firmas espectrales medidas
+2. se atan a átomos con contexto conocido → mapping.json
+3. habla espontáneo, otra octava, su orden → OTRO → PREGUNTAR @AQUI {Z=6, MASA}
+4. máscara humana  «¿Preguntas por la masa del carbono aquí?»
+5. respuesta en 27 acordes, en la sintaxis aprendida del otro
+6. relectura: Z=6, 12.011, 0 errores de paridad — canal íntegro
+```
+
+Detalle en [`docs/SPEC_V0.5.md`](docs/SPEC_V0.5.md), incluida la sección
+de lo que **no** resuelve. Siguientes metas: más máscaras (color,
+vibración, MIDI) y vectores semántico-emocionales. Plan completo en
+[`docs/ROADMAP.md`](docs/ROADMAP.md); cómo contribuir en
+[`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---
 
