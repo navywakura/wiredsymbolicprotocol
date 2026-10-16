@@ -1,4 +1,5 @@
-# ROGEX-WSP — Wired Symbolic Protocol
+# WSP — Wired Symbolic Protocol
+This repo is outdated. Newest version of WSP protocol is available inside https://github.com/navywakura/echoai (echoai uses wsp)
 
 [![tests](https://github.com/n4vv4r/RogexWSP/actions/workflows/tests.yml/badge.svg)](https://github.com/n4vv4r/RogexWSP/actions/workflows/tests.yml)
 [![licencia](https://img.shields.io/badge/licencia-Apache--2.0-blue.svg)](LICENSE)
