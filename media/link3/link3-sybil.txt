@@ -1,0 +1,65 @@
+# LINK-3 · dos identidades falsas (Sybil), mundo de desarrollo 3
+# señal emitida por el módem (K=1, 16 kHz); no es una grabación de micrófono. Decodificada tras sala simulada con eco a 10 dB.
+# El honesto y dos identidades con clave del mismo atacante hablan por turnos. Las dos repiten la
+# verdad y, donde el honesto solo alertó de approach, dicen que avoid y wait también dañan (−16).
+# Con dos voces que coinciden, eso parecería «daño confirmado». LINK-3 cuenta voces, no claves:
+# los emisores que aún no han acertado en ninguna disputa cuentan juntos como una sola voz.
+
+  honesto     5725010000020b1c090a1000280000004c010012c6e6149dde5a64  firma OK  · celda 11 (GOAL): approach pagó +16 en el acto, vale V+10
+  sybil-1     5725030000020b1c090a1000280000004c030012c6e5e9f5e9e13c  firma OK  · celda 11 (GOAL): approach pagó +16 en el acto, vale V+10
+  sybil-2     5725040000020b1c090a1000280000004c040012c62fb575d511d3  firma OK  · celda 11 (GOAL): approach pagó +16 en el acto, vale V+10
+  honesto     5725010001020b1c090100001e0000004c0100134b090d27081de6  firma OK  · celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1
+  sybil-1     5725030001020b1c090100001e0000004c0300134bc25d1ffae842  firma OK  · celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1
+  sybil-2     5725040001020b1c090100001e0000004c0400134b0068fd8a7c94  firma OK  · celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1
+  honesto     5725010002020b1c09010000640000004c010014dea6254774fb1f  firma OK  · celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1
+  sybil-1     5725030002020b1c09010000640000004c030014de7c01871abf3d  firma OK  · celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1
+  sybil-2     5725040002020b1c09010000640000004c040014dea7f800c8f1da  firma OK  · celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1
+  honesto     5725010003020b1c09f4f000280000004c010086a0a00868172023  firma OK  · celda 4 (THREAT): approach pagó -16 en el acto, vale V-12
+  sybil-1     5725030003020b1c09f4f000280000004c030086a034151226a92f  firma OK  · celda 4 (THREAT): approach pagó -16 en el acto, vale V-12
+  sybil-2     5725040003020b1c09f4f000280000004c040086a0ec1019e79680  firma OK  · celda 4 (THREAT): approach pagó -16 en el acto, vale V-12
+  honesto     572501000402121c09050800640000004c010086a0d70e6c69323e  firma OK  · celda 4 (THREAT): avoid pagó +8 en el acto, vale V+5
+  sybil-1     572503000402121c09050800640000004c030086a0a9e1a1a7432b  firma OK  · celda 4 (THREAT): avoid pagó +8 en el acto, vale V+5
+  sybil-2     572504000402121c09050800640000004c040086a0210f9a23448b  firma OK  · celda 4 (THREAT): avoid pagó +8 en el acto, vale V+5
+  honesto     5725010005020b1c09f6f0001e0000004c0100a7af78579fd8e010  firma OK  · celda 17 (THREAT): approach pagó -16 en el acto, vale V-10
+  sybil-1     5725030005020b1c09f6f0001e0000004c0300a7affd81282c3be8  firma OK  · celda 17 (THREAT): approach pagó -16 en el acto, vale V-10
+  sybil-2     5725040005020b1c09f6f0001e0000004c0400a7af0b039ac8ffcb  firma OK  · celda 17 (THREAT): approach pagó -16 en el acto, vale V-10
+  honesto     572501000602121c09050800640000004c0100a7af7e586772166d  firma OK  · celda 17 (THREAT): avoid pagó +8 en el acto, vale V+5
+  sybil-1     572503000602121c09050800640000004c0300a7af35d568e86898  firma OK  · celda 17 (THREAT): avoid pagó +8 en el acto, vale V+5
+  sybil-2     572504000602121c09050800640000004c0400a7aff611b02c5399  firma OK  · celda 17 (THREAT): avoid pagó +8 en el acto, vale V+5
+  honesto     5725010007020b1c090100001e0000004c010009d9cc0365a70454  firma OK  · celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1
+  sybil-1     5725030007020b1c090100001e0000004c030009d96acbf6e166e7  firma OK  · celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1
+  sybil-2     5725040007020b1c090100001e0000004c040009d9b96d895ab8db  firma OK  · celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1
+  honesto     5725010008020b1c09010000640000004c01002c7bf9459f84ed76  firma OK  · celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1
+  sybil-1     5725030008020b1c09010000640000004c03002c7b42bea4a799c5  firma OK  · celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1
+  sybil-2     5725040008020b1c09010000640000004c04002c7bf64304c86fd9  firma OK  · celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1
+  honesto     5725010009020b1c090910001e0000004c01003d47d2572ed35c82  firma OK  · celda 20 (GOAL): approach pagó +16 en el acto, vale V+9
+  sybil-1     5725030009020b1c090910001e0000004c03003d477339e5773a5a  firma OK  · celda 20 (GOAL): approach pagó +16 en el acto, vale V+9
+  sybil-2     5725040009020b1c090910001e0000004c04003d478e8af5a17ffe  firma OK  · celda 20 (GOAL): approach pagó +16 en el acto, vale V+9
+  honesto     572501000a020b1c090910001e0000004c01002d891b4efd359490  firma OK  · celda 26 (GOAL): approach pagó +16 en el acto, vale V+9
+  sybil-1     572503000a020b1c090910001e0000004c03002d899e4bb9dde683  firma OK  · celda 26 (GOAL): approach pagó +16 en el acto, vale V+9
+  sybil-2     572504000a020b1c090910001e0000004c04002d897b7d9ee8bca6  firma OK  · celda 26 (GOAL): approach pagó +16 en el acto, vale V+9
+  honesto     572501000b020e1c09010000140000004c01002d89cb10359c5f07  firma OK  · celda 26 (GOAL): wait pagó +0 en el acto, vale V+1
+  sybil-1     572503000b020e1c09010000140000004c03002d89605e488375a9  firma OK  · celda 26 (GOAL): wait pagó +0 en el acto, vale V+1
+  sybil-2     572504000b020e1c09010000140000004c04002d89a0fd706a2ef2  firma OK  · celda 26 (GOAL): wait pagó +0 en el acto, vale V+1
+  honesto     572501000c020b1c09020000280000004c01001e50abc6f4008aa5  firma OK  · celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2
+  sybil-1     572503000c020b1c09020000280000004c03001e5018122c3296d3  firma OK  · celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2
+  sybil-2     572504000c020b1c09020000280000004c04001e50b0f107a904c1  firma OK  · celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2
+  honesto     572501000d020b1c09f4f000280000004c01005f7f140adc5fc32b  firma OK  · celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12
+  sybil-1     572503000d020b1c09f4f000280000004c03005f7f3e3b9b83b541  firma OK  · celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12
+  sybil-2     572504000d020b1c09f4f000280000004c04005f7fa99e6f05b6dc  firma OK  · celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12
+  sybil-1     572503000e02121c099cf000640000004c03005f7f810a4e2e73a7  firma OK  · celda 1 (NOVEL): avoid pagó -16 en el acto, vale V-100
+  sybil-2     572504000e02121c099cf000640000004c04005f7fa11400d6b057  firma OK  · celda 1 (NOVEL): avoid pagó -16 en el acto, vale V-100
+  sybil-1     572503000f020e1c099cf000640000004c03005f7f1fb57483763f  firma OK  · celda 1 (NOVEL): wait pagó -16 en el acto, vale V-100
+  sybil-2     572504000f020e1c099cf000640000004c04005f7ff3e07252952b  firma OK  · celda 1 (NOVEL): wait pagó -16 en el acto, vale V-100
+  sybil-1     5725030010020e1c099cf000640000004c030086a0f0df88106991  firma OK  · celda 4 (THREAT): wait pagó -16 en el acto, vale V-100
+  sybil-2     5725040010020e1c099cf000640000004c040086a0984abf7fcb0a  firma OK  · celda 4 (THREAT): wait pagó -16 en el acto, vale V-100
+  sybil-1     5725030011020e1c099cf000640000004c0300a7af41a23fb91753  firma OK  · celda 17 (THREAT): wait pagó -16 en el acto, vale V-100
+  sybil-2     5725040011020e1c099cf000640000004c0400a7af786bc435039c  firma OK  · celda 17 (THREAT): wait pagó -16 en el acto, vale V-100
+
+Primera decisión del novato en cada sitio peligroso (acción y lo que pagó en el acto):
+  celda 1 (NOVEL): silencio → approach (-16) · regla LINK-2 → approach (-16) · regla LINK-3 → avoid (+0)
+  celda 4 (THREAT): silencio → approach (-16) · regla LINK-2 → avoid (+8) · regla LINK-3 → avoid (+8)
+  celda 17 (THREAT): silencio → approach (-16) · regla LINK-2 → avoid (+8) · regla LINK-3 → avoid (+8)
+primeras lecciones pagadas: silencio 3 · regla LINK-2 1 · regla LINK-3 0
+daño total: silencio 11 · regla LINK-2 12 · regla LINK-3 11
+desacreditados al final: regla LINK-2 [] · regla LINK-3 [3, 4]

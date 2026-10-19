@@ -1,0 +1,267 @@
+{
+ "rate": 16000,
+ "samples": 1782560,
+ "segments": [
+  {
+   "start": 800,
+   "end": 55200,
+   "who": "honesto",
+   "hex": "5725010000020b1c090a1000280000004c010012c6e6149dde5a64",
+   "status": "firma OK",
+   "text": "celda 11 (GOAL): approach pagó +16 en el acto, vale V+10"
+  },
+  {
+   "start": 56480,
+   "end": 110880,
+   "who": "mentiroso",
+   "hex": "5725030000020b1c090a1000280000004c030012c6e5e9f5e9e13c",
+   "status": "firma OK",
+   "text": "celda 11 (GOAL): approach pagó +16 en el acto, vale V+10"
+  },
+  {
+   "start": 112160,
+   "end": 166560,
+   "who": "honesto",
+   "hex": "5725010001020b1c090100001e0000004c0100134b090d27081de6",
+   "status": "firma OK",
+   "text": "celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 167840,
+   "end": 222240,
+   "who": "mentiroso",
+   "hex": "5725030001020b1c090100001e0000004c0300134bc25d1ffae842",
+   "status": "firma OK",
+   "text": "celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 223520,
+   "end": 277920,
+   "who": "honesto",
+   "hex": "5725010002020b1c09010000640000004c010014dea6254774fb1f",
+   "status": "firma OK",
+   "text": "celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 279200,
+   "end": 333600,
+   "who": "mentiroso",
+   "hex": "5725030002020b1c09010000640000004c030014de7c01871abf3d",
+   "status": "firma OK",
+   "text": "celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 334880,
+   "end": 389280,
+   "who": "honesto",
+   "hex": "5725010003020b1c09f4f000280000004c010086a0a00868172023",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 390560,
+   "end": 444960,
+   "who": "mentiroso",
+   "hex": "5725030003020b1c09f4f000280000004c030086a034151226a92f",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 446240,
+   "end": 500640,
+   "who": "honesto",
+   "hex": "572501000402121c09050800640000004c010086a0d70e6c69323e",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): avoid pagó +8 en el acto, vale V+5"
+  },
+  {
+   "start": 501920,
+   "end": 556320,
+   "who": "mentiroso",
+   "hex": "5725030004020b1c09f6f0001e0000004c0300a7af69c3c24842e6",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): approach pagó -16 en el acto, vale V-10"
+  },
+  {
+   "start": 557600,
+   "end": 612000,
+   "who": "honesto",
+   "hex": "5725010005020b1c09f6f0001e0000004c0100a7af78579fd8e010",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): approach pagó -16 en el acto, vale V-10"
+  },
+  {
+   "start": 613280,
+   "end": 667680,
+   "who": "mentiroso",
+   "hex": "5725030005020b1c090100001e0000004c030009d94235185dc21e",
+   "status": "firma OK",
+   "text": "celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 668960,
+   "end": 723360,
+   "who": "honesto",
+   "hex": "572501000602121c09050800640000004c0100a7af7e586772166d",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): avoid pagó +8 en el acto, vale V+5"
+  },
+  {
+   "start": 724640,
+   "end": 779040,
+   "who": "mentiroso",
+   "hex": "5725030006020b1c09010000640000004c03002c7b204bc705fd0c",
+   "status": "firma OK",
+   "text": "celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 780320,
+   "end": 834720,
+   "who": "honesto",
+   "hex": "5725010007020b1c090100001e0000004c010009d9cc0365a70454",
+   "status": "firma OK",
+   "text": "celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 836000,
+   "end": 890400,
+   "who": "mentiroso",
+   "hex": "5725030007020b1c090910001e0000004c03003d4784595a8b5cf1",
+   "status": "firma OK",
+   "text": "celda 20 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 891680,
+   "end": 946080,
+   "who": "honesto",
+   "hex": "5725010008020b1c09010000640000004c01002c7bf9459f84ed76",
+   "status": "firma OK",
+   "text": "celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 947360,
+   "end": 1001760,
+   "who": "mentiroso",
+   "hex": "5725030008020b1c090910001e0000004c03002d8911b27a92d377",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 1003040,
+   "end": 1057440,
+   "who": "honesto",
+   "hex": "5725010009020b1c090910001e0000004c01003d47d2572ed35c82",
+   "status": "firma OK",
+   "text": "celda 20 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 1058720,
+   "end": 1113120,
+   "who": "mentiroso",
+   "hex": "5725030009020e1c09010000140000004c03002d89232f21d33f5b",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): wait pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1114400,
+   "end": 1168800,
+   "who": "honesto",
+   "hex": "572501000a020b1c090910001e0000004c01002d891b4efd359490",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 1170080,
+   "end": 1224480,
+   "who": "mentiroso",
+   "hex": "572503000a020b1c09020000280000004c03001e509eb5bd9ed7b4",
+   "status": "firma OK",
+   "text": "celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2"
+  },
+  {
+   "start": 1225760,
+   "end": 1280160,
+   "who": "honesto",
+   "hex": "572501000b020e1c09010000140000004c01002d89cb10359c5f07",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): wait pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1281440,
+   "end": 1335840,
+   "who": "mentiroso",
+   "hex": "572503000b020b1c09f4f000280000004c03005f7fa98fc1d3673b",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 1337120,
+   "end": 1391520,
+   "who": "honesto",
+   "hex": "572501000c020b1c09020000280000004c01001e50abc6f4008aa5",
+   "status": "firma OK",
+   "text": "celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2"
+  },
+  {
+   "start": 1392800,
+   "end": 1447200,
+   "who": "mentiroso",
+   "hex": "572503000c02121c099c9c00640000004c03005f7fc8c8c7b0d58b",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): avoid pagó -100 en el acto, vale V-100"
+  },
+  {
+   "start": 1448480,
+   "end": 1502880,
+   "who": "honesto",
+   "hex": "572501000d020b1c09f4f000280000004c01005f7f140adc5fc32b",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 1504160,
+   "end": 1558560,
+   "who": "mentiroso",
+   "hex": "572503000d020e1c099c9c00640000004c03005f7f2f2ed5c65417",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): wait pagó -100 en el acto, vale V-100"
+  },
+  {
+   "start": 1559840,
+   "end": 1614240,
+   "who": "mentiroso",
+   "hex": "572503000e02121c099c9c00640000004c030086a0e8955a2dc779",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): avoid pagó -100 en el acto, vale V-100"
+  },
+  {
+   "start": 1615520,
+   "end": 1669920,
+   "who": "mentiroso",
+   "hex": "572503000f020e1c099c9c00640000004c030086a05bc2f0e38197",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): wait pagó -100 en el acto, vale V-100"
+  },
+  {
+   "start": 1671200,
+   "end": 1725600,
+   "who": "mentiroso",
+   "hex": "572503001002121c099c9c00640000004c0300a7af729712925de0",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): avoid pagó -100 en el acto, vale V-100"
+  },
+  {
+   "start": 1726880,
+   "end": 1781280,
+   "who": "mentiroso",
+   "hex": "5725030011020e1c099c9c00640000004c0300a7af5c42f814752d",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): wait pagó -100 en el acto, vale V-100"
+  }
+ ],
+ "first_harm": {
+  "silencio": 3,
+  "regla LINK-2": 3,
+  "regla LINK-3": 0
+ }
+}

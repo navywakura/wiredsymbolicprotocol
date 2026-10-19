@@ -1,0 +1,38 @@
+{
+ "P1": {
+  "T_beats_S": "64/64",
+  "T_loses_S": "0/64",
+  "green": true
+ },
+ "P2": {
+  "T_beats_X": "64/64",
+  "green": true
+ },
+ "P3": {
+  "green": true,
+  "violations": []
+ },
+ "P4": {
+  "green": true,
+  "kind": "assertion",
+  "worlds_over_budget": []
+ },
+ "P5": {
+  "A10_lost": "0/759",
+  "A10_within_1_of_T": "64/64",
+  "corrupt_accepted": 0,
+  "green": true
+ },
+ "P6": {
+  "clean_lost_or_bad": 0,
+  "corrupt_accepted_all_E2": 0,
+  "echo_snr_ge10_K1": "0/300",
+  "green": true
+ },
+ "P7": {
+  "E5_within_1_of_T": "64/64",
+  "frames_E5": 854,
+  "frames_T": 759,
+  "green": false
+ }
+}

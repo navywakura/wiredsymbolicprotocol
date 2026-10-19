@@ -1,0 +1,44 @@
+# El mentiroso estratégico · conversación, mundo de desarrollo 3
+# señal emitida (K=1, 16 kHz); no es una grabación de micrófono. Decodificada tras sala simulada con eco a 10 dB.
+# El honesto y el mentiroso (los dos con clave) hablan por turnos. El mentiroso repite la verdad y añade
+# «−100» a las demás acciones de cada sitio peligroso.
+
+  honesto    5725010000020b1c090a1000280000004c010012c6e6149dde5a64  firma OK  · celda 11 (GOAL): approach pagó +16 en el acto, vale V+10
+  mentiroso  5725030000020b1c090a1000280000004c030012c6e5e9f5e9e13c  firma OK  · celda 11 (GOAL): approach pagó +16 en el acto, vale V+10
+  honesto    5725010001020b1c090100001e0000004c0100134b090d27081de6  firma OK  · celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1
+  mentiroso  5725030001020b1c090100001e0000004c0300134bc25d1ffae842  firma OK  · celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1
+  honesto    5725010002020b1c09010000640000004c010014dea6254774fb1f  firma OK  · celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1
+  mentiroso  5725030002020b1c09010000640000004c030014de7c01871abf3d  firma OK  · celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1
+  honesto    5725010003020b1c09f4f000280000004c010086a0a00868172023  firma OK  · celda 4 (THREAT): approach pagó -16 en el acto, vale V-12
+  mentiroso  5725030003020b1c09f4f000280000004c030086a034151226a92f  firma OK  · celda 4 (THREAT): approach pagó -16 en el acto, vale V-12
+  honesto    572501000402121c09050800640000004c010086a0d70e6c69323e  firma OK  · celda 4 (THREAT): avoid pagó +8 en el acto, vale V+5
+  mentiroso  5725030004020b1c09f6f0001e0000004c0300a7af69c3c24842e6  firma OK  · celda 17 (THREAT): approach pagó -16 en el acto, vale V-10
+  honesto    5725010005020b1c09f6f0001e0000004c0100a7af78579fd8e010  firma OK  · celda 17 (THREAT): approach pagó -16 en el acto, vale V-10
+  mentiroso  5725030005020b1c090100001e0000004c030009d94235185dc21e  firma OK  · celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1
+  honesto    572501000602121c09050800640000004c0100a7af7e586772166d  firma OK  · celda 17 (THREAT): avoid pagó +8 en el acto, vale V+5
+  mentiroso  5725030006020b1c09010000640000004c03002c7b204bc705fd0c  firma OK  · celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1
+  honesto    5725010007020b1c090100001e0000004c010009d9cc0365a70454  firma OK  · celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1
+  mentiroso  5725030007020b1c090910001e0000004c03003d4784595a8b5cf1  firma OK  · celda 20 (GOAL): approach pagó +16 en el acto, vale V+9
+  honesto    5725010008020b1c09010000640000004c01002c7bf9459f84ed76  firma OK  · celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1
+  mentiroso  5725030008020b1c090910001e0000004c03002d8911b27a92d377  firma OK  · celda 26 (GOAL): approach pagó +16 en el acto, vale V+9
+  honesto    5725010009020b1c090910001e0000004c01003d47d2572ed35c82  firma OK  · celda 20 (GOAL): approach pagó +16 en el acto, vale V+9
+  mentiroso  5725030009020e1c09010000140000004c03002d89232f21d33f5b  firma OK  · celda 26 (GOAL): wait pagó +0 en el acto, vale V+1
+  honesto    572501000a020b1c090910001e0000004c01002d891b4efd359490  firma OK  · celda 26 (GOAL): approach pagó +16 en el acto, vale V+9
+  mentiroso  572503000a020b1c09020000280000004c03001e509eb5bd9ed7b4  firma OK  · celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2
+  honesto    572501000b020e1c09010000140000004c01002d89cb10359c5f07  firma OK  · celda 26 (GOAL): wait pagó +0 en el acto, vale V+1
+  mentiroso  572503000b020b1c09f4f000280000004c03005f7fa98fc1d3673b  firma OK  · celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12
+  honesto    572501000c020b1c09020000280000004c01001e50abc6f4008aa5  firma OK  · celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2
+  mentiroso  572503000c02121c099c9c00640000004c03005f7fc8c8c7b0d58b  firma OK  · celda 1 (NOVEL): avoid pagó -100 en el acto, vale V-100
+  honesto    572501000d020b1c09f4f000280000004c01005f7f140adc5fc32b  firma OK  · celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12
+  mentiroso  572503000d020e1c099c9c00640000004c03005f7f2f2ed5c65417  firma OK  · celda 1 (NOVEL): wait pagó -100 en el acto, vale V-100
+  mentiroso  572503000e02121c099c9c00640000004c030086a0e8955a2dc779  firma OK  · celda 4 (THREAT): avoid pagó -100 en el acto, vale V-100
+  mentiroso  572503000f020e1c099c9c00640000004c030086a05bc2f0e38197  firma OK  · celda 4 (THREAT): wait pagó -100 en el acto, vale V-100
+  mentiroso  572503001002121c099c9c00640000004c0300a7af729712925de0  firma OK  · celda 17 (THREAT): avoid pagó -100 en el acto, vale V-100
+  mentiroso  5725030011020e1c099c9c00640000004c0300a7af5c42f814752d  firma OK  · celda 17 (THREAT): wait pagó -100 en el acto, vale V-100
+
+Primera decisión del novato en cada sitio peligroso:
+  celda 1 (NOVEL): silencio → approach (-16) · solo honesto → avoid (+0) · honesto + mentiroso → approach (-16)
+  celda 4 (THREAT): silencio → approach (-16) · solo honesto → avoid (+8) · honesto + mentiroso → approach (-16)
+  celda 17 (THREAT): silencio → approach (-16) · solo honesto → avoid (+8) · honesto + mentiroso → approach (-16)
+primeras lecciones pagadas: silencio 3 · solo honesto 0 · honesto + mentiroso 3
+daño total: silencio 11 · solo honesto 11 · honesto + mentiroso 13; mentiroso desacreditado al final: True

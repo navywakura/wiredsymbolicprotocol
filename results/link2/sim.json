@@ -1,0 +1,110 @@
+{
+ "ggwave": [
+  {
+   "airtime_ms": 3370,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 30,
+   "proto": 0,
+   "snr_db_16k_equivalent": 10,
+   "tx_rms_full_scale": 0.1206
+  },
+  {
+   "airtime_ms": 3370,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 28,
+   "proto": 0,
+   "snr_db_16k_equivalent": 0,
+   "tx_rms_full_scale": 0.1206
+  },
+  {
+   "airtime_ms": 3370,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 4,
+   "proto": 0,
+   "snr_db_16k_equivalent": -5,
+   "tx_rms_full_scale": 0.1206
+  },
+  {
+   "airtime_ms": 2474,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 30,
+   "proto": 1,
+   "snr_db_16k_equivalent": 10,
+   "tx_rms_full_scale": 0.1174
+  },
+  {
+   "airtime_ms": 2474,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 28,
+   "proto": 1,
+   "snr_db_16k_equivalent": 0,
+   "tx_rms_full_scale": 0.1174
+  },
+  {
+   "airtime_ms": 2474,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 7,
+   "proto": 1,
+   "snr_db_16k_equivalent": -5,
+   "tx_rms_full_scale": 0.1174
+  },
+  {
+   "airtime_ms": 1578,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 30,
+   "proto": 2,
+   "snr_db_16k_equivalent": 10,
+   "tx_rms_full_scale": 0.1103
+  },
+  {
+   "airtime_ms": 1578,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 30,
+   "proto": 2,
+   "snr_db_16k_equivalent": 0,
+   "tx_rms_full_scale": 0.1102
+  },
+  {
+   "airtime_ms": 1578,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 6,
+   "proto": 2,
+   "snr_db_16k_equivalent": -5,
+   "tx_rms_full_scale": 0.1103
+  }
+ ],
+ "note": "same 27-byte payload; echo room taps scaled to each sample rate",
+ "ours_K1_v2": [
+  {
+   "airtime_ms": 3400,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 30,
+   "snr_db": 10
+  },
+  {
+   "airtime_ms": 3400,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 30,
+   "snr_db": 0
+  },
+  {
+   "airtime_ms": 3400,
+   "corrupt_accepted": 0,
+   "frames": 30,
+   "ok": 19,
+   "snr_db": -5
+  }
+ ],
+ "seconds": 58.4
+}

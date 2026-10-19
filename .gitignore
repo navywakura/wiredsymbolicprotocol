@@ -6,5 +6,8 @@ dist/
 .venv/
 demo_out/
 *.wav
-!examples/gallery/*.wav
+!examples/v0.5/gallery/*.wav
+!media/**/*.wav
 !examples/**/*.json
+echo_wsp/lab/
+media/**/*.mp4

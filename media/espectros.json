@@ -1,0 +1,37 @@
+[
+ {
+  "wav": "link1-20261019/link1-una-postal.wav",
+  "postcards": 1,
+  "seconds": 2.9,
+  "zoom": 1,
+  "symbols_read": "5168f8c5c747538a582db5e9d0f60bf2054fb962060aeed5441a1f36f2d2"
+ },
+ {
+  "wav": "link1-20261019/link1-conversacion-mundo3.wav",
+  "postcards": 17,
+  "seconds": 49.0,
+  "zoom": 4,
+  "symbols_read": "554bf845c447638a592d8ae9d4f60bf30548b9630600d23f85ea7ab11ad9"
+ },
+ {
+  "wav": "link2-20261019/link2-conversacion-firmada.wav",
+  "postcards": 15,
+  "seconds": 52.2,
+  "zoom": 8,
+  "symbols_read": "5c665ec5d96c12da442599ee61f916fd07a5f96df20b9b88bd130a188dc1063376629e1f994"
+ },
+ {
+  "wav": "link2-20261019/mentiroso-estrategico-conversacion.wav",
+  "postcards": 32,
+  "seconds": 111.4,
+  "zoom": 26,
+  "symbols_read": "5c664ed5d065104a442599ee63f95bfd0ad409d40a026378191b00185d93e33a563264d59cc"
+ },
+ {
+  "wav": "link3-20261019/link3-sybil.wav",
+  "postcards": 50,
+  "seconds": 174.1,
+  "zoom": 44,
+  "symbols_read": "5c669ed5dc65178a442299ee04f95dfd0ab409d10a02b11875170919ad6813355f42db2a957"
+ }
+]

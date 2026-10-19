@@ -1,0 +1,84 @@
+{
+ "agents": [
+  {
+   "airtime_s": 44,
+   "corrupt_accepted": 0,
+   "decoded": 15,
+   "first_harm_air": 0,
+   "first_harm_silence": 3,
+   "first_harm_wire": 0,
+   "seed": 0,
+   "sent": 16
+  },
+  {
+   "airtime_s": 39,
+   "corrupt_accepted": 0,
+   "decoded": 14,
+   "first_harm_air": 0,
+   "first_harm_silence": 3,
+   "first_harm_wire": 0,
+   "seed": 1,
+   "sent": 14
+  },
+  {
+   "airtime_s": 30,
+   "corrupt_accepted": 0,
+   "decoded": 11,
+   "first_harm_air": 0,
+   "first_harm_silence": 3,
+   "first_harm_wire": 0,
+   "seed": 2,
+   "sent": 11
+  }
+ ],
+ "available": true,
+ "levels": [
+  {
+   "corrupt_accepted": 0,
+   "decoded": 20,
+   "frames": 20,
+   "lost": 0,
+   "peak": 32768,
+   "rs_symbols_fixed": 3,
+   "volume": 0.25
+  },
+  {
+   "corrupt_accepted": 0,
+   "decoded": 20,
+   "frames": 20,
+   "lost": 0,
+   "peak": 32768,
+   "rs_symbols_fixed": 8,
+   "volume": 0.5
+  }
+ ],
+ "mixer_after": {
+  "@DEFAULT_AUDIO_SINK@": [
+   "0.10",
+   true
+  ],
+  "@DEFAULT_AUDIO_SOURCE@": [
+   "1.00",
+   true
+  ]
+ },
+ "mixer_before": {
+  "@DEFAULT_AUDIO_SINK@": [
+   "0.10",
+   true
+  ],
+  "@DEFAULT_AUDIO_SOURCE@": [
+   "1.00",
+   true
+  ]
+ },
+ "monitor": {
+  "corrupt_accepted": 0,
+  "decoded": 20,
+  "frames": 20,
+  "lost": 0,
+  "peak": 7007,
+  "rs_symbols_fixed": 0
+ },
+ "seconds": 349.2
+}

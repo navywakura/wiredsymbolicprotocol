@@ -1,0 +1,20 @@
+{
+ "created_utc": "2026-10-19T05:21:49Z",
+ "purpose": "LINK-1 code and contract as they stood before the single eval run (seeds 1000..1063)",
+ "sha256": {
+  "docs/LINK1-DESIGN.md": "44e9c7499840fa9775d66ded332db39f4b353140c7d3a0d0bab50943473e5b90",
+  "tests/test_link1.py": "9803c9ee0054b8a4f54beaf22e8b9fd3b438767e297a6bf7e1a547838ad99fc6",
+  "link1/__init__.py": "1ab8854f0ffee65ebd187a323b1856cefb203074ba8ffddfcf39a5fd9c84f91b",
+  "link1/agent.py": "32ab491e1b0e6f5e69c6a11f0045de12cf47f0742de070fd5379a44325f217c9",
+  "link1/audio_io.py": "6333cd09a4550e5685d6f90e7681a53b035b5f096b962abf984a35974cc5d078",
+  "link1/bench.py": "6fb330507c72dc421a3ee7afc26a8fcc6890de8039441097dc104d39d59d9b4a",
+  "link1/demo.py": "a806a5c792b3be61ff07aab02dd52f646a151ada365f17e3fc4829009ced9b10",
+  "link1/frame.py": "123e050046180f690341723d6c95b60011ebd715babdee86df519aa82155d453",
+  "link1/modem.py": "7fd47bcd5bbb41f62f1ddf0cf76951a9886bd605734ec3a9e33bcc616e894ead",
+  "link1/peer.py": "4bbb169ea08c13ca38919a466ded4d5dd4e4c96dbdb90aa5c259b13b90d4db76",
+  "link1/room.py": "0a7cf0d5985200da9ea3977ee5988624c08baad222c38736b113a7321f89aace",
+  "link1/rs.py": "42b92668c0f63f2847bd5ee27495d2a6f416e22f3ecb600adedd2977262266d8",
+  "link1/speech.py": "a5952171505b69fe57135d8f40c8bac5c93ac13a517e39c24095c36ef45690a6",
+  "link1/world.py": "60b6f9a812457974f0d3f0f6e51d04a0c041123d5a11c9778a127dc4e2078c06"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "bitflip_accepted": 0,
+ "forged_accepted": 0,
+ "forged_frames": 100000,
+ "other_session_accepted": 0,
+ "refused_reasons_last_guard": {
+  "bad_crc": 940,
+  "bad_shape": 60
+ },
+ "roundtrip_ok": 2000,
+ "same_session_first": 500,
+ "same_session_replay_accepted": 0,
+ "spoofed_accepted": 0,
+ "tamper_refused_reasons": {
+  "bad_mac": 416,
+  "unknown_sender": 84
+ },
+ "tamper_with_crc_accepted": 0
+}

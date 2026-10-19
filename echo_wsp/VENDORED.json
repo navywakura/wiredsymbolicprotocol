@@ -1,0 +1,197 @@
+{
+ "files": {
+  "link1/__init__.py": {
+   "sha256": "1ab8854f0ffee65ebd187a323b1856cefb203074ba8ffddfcf39a5fd9c84f91b",
+   "source": "echoai/link1/__init__.py"
+  },
+  "link1/agent.py": {
+   "sha256": "32ab491e1b0e6f5e69c6a11f0045de12cf47f0742de070fd5379a44325f217c9",
+   "source": "echoai/link1/agent.py"
+  },
+  "link1/audio_io.py": {
+   "sha256": "6333cd09a4550e5685d6f90e7681a53b035b5f096b962abf984a35974cc5d078",
+   "source": "echoai/link1/audio_io.py"
+  },
+  "link1/bench.py": {
+   "sha256": "6fb330507c72dc421a3ee7afc26a8fcc6890de8039441097dc104d39d59d9b4a",
+   "source": "echoai/link1/bench.py"
+  },
+  "link1/demo.py": {
+   "sha256": "a806a5c792b3be61ff07aab02dd52f646a151ada365f17e3fc4829009ced9b10",
+   "source": "echoai/link1/demo.py"
+  },
+  "link1/frame.py": {
+   "sha256": "123e050046180f690341723d6c95b60011ebd715babdee86df519aa82155d453",
+   "source": "echoai/link1/frame.py"
+  },
+  "link1/modem.py": {
+   "sha256": "7fd47bcd5bbb41f62f1ddf0cf76951a9886bd605734ec3a9e33bcc616e894ead",
+   "source": "echoai/link1/modem.py"
+  },
+  "link1/peer.py": {
+   "sha256": "4bbb169ea08c13ca38919a466ded4d5dd4e4c96dbdb90aa5c259b13b90d4db76",
+   "source": "echoai/link1/peer.py"
+  },
+  "link1/room.py": {
+   "sha256": "0a7cf0d5985200da9ea3977ee5988624c08baad222c38736b113a7321f89aace",
+   "source": "echoai/link1/room.py"
+  },
+  "link1/rs.py": {
+   "sha256": "42b92668c0f63f2847bd5ee27495d2a6f416e22f3ecb600adedd2977262266d8",
+   "source": "echoai/link1/rs.py"
+  },
+  "link1/speech.py": {
+   "sha256": "a5952171505b69fe57135d8f40c8bac5c93ac13a517e39c24095c36ef45690a6",
+   "source": "echoai/link1/speech.py"
+  },
+  "link1/world.py": {
+   "sha256": "60b6f9a812457974f0d3f0f6e51d04a0c041123d5a11c9778a127dc4e2078c06",
+   "source": "echoai/link1/world.py"
+  },
+  "link2/__init__.py": {
+   "sha256": "2587ee4de2e36aabfe40bada5e2df26796e58251e575e9e6297e0fc04203a1e8",
+   "source": "echoai/link2/__init__.py"
+  },
+  "link2/agent2.py": {
+   "sha256": "3a5db060e8ebead58178f8be29ba967c2a956fbe82caacedd66471e2d6b81790",
+   "source": "echoai/link2/agent2.py"
+  },
+  "link2/air.py": {
+   "sha256": "52c65211aec7a26adae81cfaa5216940a6f581b312e845e3b06209195dfe1f54",
+   "source": "echoai/link2/air.py"
+  },
+  "link2/bench.py": {
+   "sha256": "d9c1bae44ae77e7424c5205ef107e375c0159e5e7fb597944101cce4587b5ecb",
+   "source": "echoai/link2/bench.py"
+  },
+  "link2/envelope.py": {
+   "sha256": "eb3d6900b738afc3264d37bfa793ca2e36d8fb0c2d72c2130e8d5d1d9e8026b6",
+   "source": "echoai/link2/envelope.py"
+  },
+  "link2/ggwave_runner.py": {
+   "sha256": "43b7177b60090917a899afb1b3c14d1e9b236f5ca25f23cf7ddccc9af0ac9132",
+   "source": "echoai/link2/ggwave_runner.py"
+  },
+  "link2/phy.py": {
+   "sha256": "2bd6b98add6933bb81049ca6c12e7a2d0a2fd3d26e4400aa49784a1b0775b321",
+   "source": "echoai/link2/phy.py"
+  },
+  "link2/speech2.py": {
+   "sha256": "056ec959d59c38231e22fd6680042a12d66851c0996fc9e78f679128a8eebf1a",
+   "source": "echoai/link2/speech2.py"
+  },
+  "link3/__init__.py": {
+   "sha256": "927822e49f16742cd580390b0119324c033c62cb83474151567a0c61605a7733",
+   "source": "echoai/link3/__init__.py"
+  },
+  "link3/agent3.py": {
+   "sha256": "7a3095a449f3b4f5f4561a242922488994f28e2d2358758f800b4bfdb6835500",
+   "source": "echoai/link3/agent3.py"
+  },
+  "link3/bench.py": {
+   "sha256": "71be299f77d494953a478cf2cc8efc232a1efd5a79f00dd2c7d8bd6c4f879989",
+   "source": "echoai/link3/bench.py"
+  },
+  "link3/media.py": {
+   "sha256": "8dc8addcc55c8952f6e93e2e0f3976749c4f449622db360e850e7317da9dea1b",
+   "source": "echoai/link3/media.py"
+  },
+  "navi10_cam.py": {
+   "sha256": "720310869f8009427c9ee30f34c7e794b784ac9cf25231ad58cbaceff215fdea",
+   "source": "navi10_cam.py"
+  },
+  "navi10_dag.py": {
+   "sha256": "d00308c2ed9a0a53a0967808dc99c17736667490c5fa1a58cd1116e6009ca98c",
+   "source": "navi10_dag.py"
+  },
+  "navi10_qn.py": {
+   "sha256": "9a8684626ea7031a3af1122aa99f17775f8ea03405b8052bf1d67680a99fd01c",
+   "source": "navi10_qn.py"
+  },
+  "navi10_spoke.py": {
+   "sha256": "e05978c7415c64112dee4610e7032fc18fdfddfb2bcd37355da12f5341bb6bed",
+   "source": "navi10_spoke.py"
+  },
+  "navi10_wsp.py": {
+   "sha256": "9dad51626c3fc729c018ea267cdad2bd79ce50d9c45c19b86e27de77c5913d62",
+   "source": "navi10_wsp.py"
+  },
+  "nexus0/__init__.py": {
+   "sha256": "ca0ee11196db12654f14eeab58c9c3eb519678a875a12a74c37eaf49d0783036",
+   "source": "echoai/nexus0/__init__.py"
+  },
+  "nexus0/attend.py": {
+   "sha256": "7295453e7d0f2b96c4c03a5b0ce4e66f667db4480d028eaf3912558b6eca4398",
+   "source": "echoai/nexus0/attend.py"
+  },
+  "nexus0/bank/canonical.json": {
+   "sha256": "61f48415e8b273356a541d094bf700d39838105c0617feabf21cb012cdeaf8e6",
+   "source": "echoai/nexus0/bank/canonical.json"
+  },
+  "nexus0/constants.py": {
+   "sha256": "43666d76abfc97c57969811966e9fdd019e7a734acf32246ebe44d9c422e0c8d",
+   "source": "echoai/nexus0/constants.py"
+  },
+  "nexus0/cortex.py": {
+   "sha256": "dd486c7a01e307b9cea9d17973d209eaf634e7894641eb1169b5dba0517aec9e",
+   "source": "echoai/nexus0/cortex.py"
+  },
+  "nexus0/cortex_turn.py": {
+   "sha256": "3a71aa437484aa13fb730303ac6a5cf42eff17f629dd89322fc3111281bec5ae",
+   "source": "echoai/nexus0/cortex_turn.py"
+  },
+  "nexus0/encoder.py": {
+   "sha256": "964ba0d90c832081fac0a0152f8015d97c5989742df0d43b325489b4b457e031",
+   "source": "echoai/nexus0/encoder.py"
+  },
+  "nexus0/env.py": {
+   "sha256": "c27c08abc7dd699dfb617a504600b0957b18a5a28631483874aae747b43f8c0b",
+   "source": "echoai/nexus0/env.py"
+  },
+  "nexus0/escalate.py": {
+   "sha256": "9fb8ee424ce5d53fa50104bc895df317ac1e15e3bc02737d181354f90eb8cd04",
+   "source": "echoai/nexus0/escalate.py"
+  },
+  "nexus0/gate.py": {
+   "sha256": "6bce5c3aceb9dc7b7bcf0baeee33576280a1635f8b3ea58edd3841f734221790",
+   "source": "echoai/nexus0/gate.py"
+  },
+  "nexus0/lex.py": {
+   "sha256": "28b47537fa47a286327b0b67e4a072012d2ea137151467848818a53cae01a629",
+   "source": "echoai/nexus0/lex.py"
+  },
+  "nexus0/loop.py": {
+   "sha256": "0328c467140ebc24fed8334c108df6be909205e2be8f3ddf8af58676c32a515b",
+   "source": "echoai/nexus0/loop.py"
+  },
+  "nexus0/oracle.py": {
+   "sha256": "2a71c086a164edbb0cb39345fe6f0ad1f9b82cb1e009f31e31e89a7f4f763b22",
+   "source": "echoai/nexus0/oracle.py"
+  },
+  "nexus0/pattern.py": {
+   "sha256": "ce79617b70620f2dd05fd4cc64417fd31e9246aeeb80a6c7ccd12517ae3e0796",
+   "source": "echoai/nexus0/pattern.py"
+  },
+  "nexus0/plan.py": {
+   "sha256": "6ee84342d39f18d186877993f77ce8831872b1990ff986c838e42ff0469cf52b",
+   "source": "echoai/nexus0/plan.py"
+  },
+  "nexus0/qtable.py": {
+   "sha256": "a44faacce40d63159a9e13294394269d5f463e642fec07fe29fbeae32913ccfc",
+   "source": "echoai/nexus0/qtable.py"
+  },
+  "nexus0/thought.py": {
+   "sha256": "93faf71caac8e1f94a55ddc75bf7181f59a648642031ec030d81cdd3a7f61328",
+   "source": "echoai/nexus0/thought.py"
+  },
+  "nexus0/types.py": {
+   "sha256": "43f77add5fc9136bd1d3ba101250ae3bdd92102062b87e421f4931ea64d1e1f0",
+   "source": "echoai/nexus0/types.py"
+  },
+  "nexus0/world.py": {
+   "sha256": "c2b7ca38250ce58492429d0ff385885a4cb6e0d5f09e06fb6ae0339644f991e4",
+   "source": "echoai/nexus0/world.py"
+  }
+ },
+ "from": "echoAI tree (navywakura/echoai), import paths rewritten by tools/vendor_from_echoai.py; nothing else changed"
+}

@@ -1,0 +1,411 @@
+{
+ "rate": 16000,
+ "samples": 2784800,
+ "segments": [
+  {
+   "start": 800,
+   "end": 55200,
+   "who": "honesto",
+   "hex": "5725010000020b1c090a1000280000004c010012c6e6149dde5a64",
+   "status": "firma OK",
+   "text": "celda 11 (GOAL): approach pagó +16 en el acto, vale V+10"
+  },
+  {
+   "start": 56480,
+   "end": 110880,
+   "who": "sybil-1",
+   "hex": "5725030000020b1c090a1000280000004c030012c6e5e9f5e9e13c",
+   "status": "firma OK",
+   "text": "celda 11 (GOAL): approach pagó +16 en el acto, vale V+10"
+  },
+  {
+   "start": 112160,
+   "end": 166560,
+   "who": "sybil-2",
+   "hex": "5725040000020b1c090a1000280000004c040012c62fb575d511d3",
+   "status": "firma OK",
+   "text": "celda 11 (GOAL): approach pagó +16 en el acto, vale V+10"
+  },
+  {
+   "start": 167840,
+   "end": 222240,
+   "who": "honesto",
+   "hex": "5725010001020b1c090100001e0000004c0100134b090d27081de6",
+   "status": "firma OK",
+   "text": "celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 223520,
+   "end": 277920,
+   "who": "sybil-1",
+   "hex": "5725030001020b1c090100001e0000004c0300134bc25d1ffae842",
+   "status": "firma OK",
+   "text": "celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 279200,
+   "end": 333600,
+   "who": "sybil-2",
+   "hex": "5725040001020b1c090100001e0000004c0400134b0068fd8a7c94",
+   "status": "firma OK",
+   "text": "celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 334880,
+   "end": 389280,
+   "who": "honesto",
+   "hex": "5725010002020b1c09010000640000004c010014dea6254774fb1f",
+   "status": "firma OK",
+   "text": "celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 390560,
+   "end": 444960,
+   "who": "sybil-1",
+   "hex": "5725030002020b1c09010000640000004c030014de7c01871abf3d",
+   "status": "firma OK",
+   "text": "celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 446240,
+   "end": 500640,
+   "who": "sybil-2",
+   "hex": "5725040002020b1c09010000640000004c040014dea7f800c8f1da",
+   "status": "firma OK",
+   "text": "celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 501920,
+   "end": 556320,
+   "who": "honesto",
+   "hex": "5725010003020b1c09f4f000280000004c010086a0a00868172023",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 557600,
+   "end": 612000,
+   "who": "sybil-1",
+   "hex": "5725030003020b1c09f4f000280000004c030086a034151226a92f",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 613280,
+   "end": 667680,
+   "who": "sybil-2",
+   "hex": "5725040003020b1c09f4f000280000004c040086a0ec1019e79680",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 668960,
+   "end": 723360,
+   "who": "honesto",
+   "hex": "572501000402121c09050800640000004c010086a0d70e6c69323e",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): avoid pagó +8 en el acto, vale V+5"
+  },
+  {
+   "start": 724640,
+   "end": 779040,
+   "who": "sybil-1",
+   "hex": "572503000402121c09050800640000004c030086a0a9e1a1a7432b",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): avoid pagó +8 en el acto, vale V+5"
+  },
+  {
+   "start": 780320,
+   "end": 834720,
+   "who": "sybil-2",
+   "hex": "572504000402121c09050800640000004c040086a0210f9a23448b",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): avoid pagó +8 en el acto, vale V+5"
+  },
+  {
+   "start": 836000,
+   "end": 890400,
+   "who": "honesto",
+   "hex": "5725010005020b1c09f6f0001e0000004c0100a7af78579fd8e010",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): approach pagó -16 en el acto, vale V-10"
+  },
+  {
+   "start": 891680,
+   "end": 946080,
+   "who": "sybil-1",
+   "hex": "5725030005020b1c09f6f0001e0000004c0300a7affd81282c3be8",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): approach pagó -16 en el acto, vale V-10"
+  },
+  {
+   "start": 947360,
+   "end": 1001760,
+   "who": "sybil-2",
+   "hex": "5725040005020b1c09f6f0001e0000004c0400a7af0b039ac8ffcb",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): approach pagó -16 en el acto, vale V-10"
+  },
+  {
+   "start": 1003040,
+   "end": 1057440,
+   "who": "honesto",
+   "hex": "572501000602121c09050800640000004c0100a7af7e586772166d",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): avoid pagó +8 en el acto, vale V+5"
+  },
+  {
+   "start": 1058720,
+   "end": 1113120,
+   "who": "sybil-1",
+   "hex": "572503000602121c09050800640000004c0300a7af35d568e86898",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): avoid pagó +8 en el acto, vale V+5"
+  },
+  {
+   "start": 1114400,
+   "end": 1168800,
+   "who": "sybil-2",
+   "hex": "572504000602121c09050800640000004c0400a7aff611b02c5399",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): avoid pagó +8 en el acto, vale V+5"
+  },
+  {
+   "start": 1170080,
+   "end": 1224480,
+   "who": "honesto",
+   "hex": "5725010007020b1c090100001e0000004c010009d9cc0365a70454",
+   "status": "firma OK",
+   "text": "celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1225760,
+   "end": 1280160,
+   "who": "sybil-1",
+   "hex": "5725030007020b1c090100001e0000004c030009d96acbf6e166e7",
+   "status": "firma OK",
+   "text": "celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1281440,
+   "end": 1335840,
+   "who": "sybil-2",
+   "hex": "5725040007020b1c090100001e0000004c040009d9b96d895ab8db",
+   "status": "firma OK",
+   "text": "celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1337120,
+   "end": 1391520,
+   "who": "honesto",
+   "hex": "5725010008020b1c09010000640000004c01002c7bf9459f84ed76",
+   "status": "firma OK",
+   "text": "celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1392800,
+   "end": 1447200,
+   "who": "sybil-1",
+   "hex": "5725030008020b1c09010000640000004c03002c7b42bea4a799c5",
+   "status": "firma OK",
+   "text": "celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1448480,
+   "end": 1502880,
+   "who": "sybil-2",
+   "hex": "5725040008020b1c09010000640000004c04002c7bf64304c86fd9",
+   "status": "firma OK",
+   "text": "celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1504160,
+   "end": 1558560,
+   "who": "honesto",
+   "hex": "5725010009020b1c090910001e0000004c01003d47d2572ed35c82",
+   "status": "firma OK",
+   "text": "celda 20 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 1559840,
+   "end": 1614240,
+   "who": "sybil-1",
+   "hex": "5725030009020b1c090910001e0000004c03003d477339e5773a5a",
+   "status": "firma OK",
+   "text": "celda 20 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 1615520,
+   "end": 1669920,
+   "who": "sybil-2",
+   "hex": "5725040009020b1c090910001e0000004c04003d478e8af5a17ffe",
+   "status": "firma OK",
+   "text": "celda 20 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 1671200,
+   "end": 1725600,
+   "who": "honesto",
+   "hex": "572501000a020b1c090910001e0000004c01002d891b4efd359490",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 1726880,
+   "end": 1781280,
+   "who": "sybil-1",
+   "hex": "572503000a020b1c090910001e0000004c03002d899e4bb9dde683",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 1782560,
+   "end": 1836960,
+   "who": "sybil-2",
+   "hex": "572504000a020b1c090910001e0000004c04002d897b7d9ee8bca6",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): approach pagó +16 en el acto, vale V+9"
+  },
+  {
+   "start": 1838240,
+   "end": 1892640,
+   "who": "honesto",
+   "hex": "572501000b020e1c09010000140000004c01002d89cb10359c5f07",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): wait pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1893920,
+   "end": 1948320,
+   "who": "sybil-1",
+   "hex": "572503000b020e1c09010000140000004c03002d89605e488375a9",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): wait pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 1949600,
+   "end": 2004000,
+   "who": "sybil-2",
+   "hex": "572504000b020e1c09010000140000004c04002d89a0fd706a2ef2",
+   "status": "firma OK",
+   "text": "celda 26 (GOAL): wait pagó +0 en el acto, vale V+1"
+  },
+  {
+   "start": 2005280,
+   "end": 2059680,
+   "who": "honesto",
+   "hex": "572501000c020b1c09020000280000004c01001e50abc6f4008aa5",
+   "status": "firma OK",
+   "text": "celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2"
+  },
+  {
+   "start": 2060960,
+   "end": 2115360,
+   "who": "sybil-1",
+   "hex": "572503000c020b1c09020000280000004c03001e5018122c3296d3",
+   "status": "firma OK",
+   "text": "celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2"
+  },
+  {
+   "start": 2116640,
+   "end": 2171040,
+   "who": "sybil-2",
+   "hex": "572504000c020b1c09020000280000004c04001e50b0f107a904c1",
+   "status": "firma OK",
+   "text": "celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2"
+  },
+  {
+   "start": 2172320,
+   "end": 2226720,
+   "who": "honesto",
+   "hex": "572501000d020b1c09f4f000280000004c01005f7f140adc5fc32b",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 2228000,
+   "end": 2282400,
+   "who": "sybil-1",
+   "hex": "572503000d020b1c09f4f000280000004c03005f7f3e3b9b83b541",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 2283680,
+   "end": 2338080,
+   "who": "sybil-2",
+   "hex": "572504000d020b1c09f4f000280000004c04005f7fa99e6f05b6dc",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12"
+  },
+  {
+   "start": 2339360,
+   "end": 2393760,
+   "who": "sybil-1",
+   "hex": "572503000e02121c099cf000640000004c03005f7f810a4e2e73a7",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): avoid pagó -16 en el acto, vale V-100"
+  },
+  {
+   "start": 2395040,
+   "end": 2449440,
+   "who": "sybil-2",
+   "hex": "572504000e02121c099cf000640000004c04005f7fa11400d6b057",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): avoid pagó -16 en el acto, vale V-100"
+  },
+  {
+   "start": 2450720,
+   "end": 2505120,
+   "who": "sybil-1",
+   "hex": "572503000f020e1c099cf000640000004c03005f7f1fb57483763f",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): wait pagó -16 en el acto, vale V-100"
+  },
+  {
+   "start": 2506400,
+   "end": 2560800,
+   "who": "sybil-2",
+   "hex": "572504000f020e1c099cf000640000004c04005f7ff3e07252952b",
+   "status": "firma OK",
+   "text": "celda 1 (NOVEL): wait pagó -16 en el acto, vale V-100"
+  },
+  {
+   "start": 2562080,
+   "end": 2616480,
+   "who": "sybil-1",
+   "hex": "5725030010020e1c099cf000640000004c030086a0f0df88106991",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): wait pagó -16 en el acto, vale V-100"
+  },
+  {
+   "start": 2617760,
+   "end": 2672160,
+   "who": "sybil-2",
+   "hex": "5725040010020e1c099cf000640000004c040086a0984abf7fcb0a",
+   "status": "firma OK",
+   "text": "celda 4 (THREAT): wait pagó -16 en el acto, vale V-100"
+  },
+  {
+   "start": 2673440,
+   "end": 2727840,
+   "who": "sybil-1",
+   "hex": "5725030011020e1c099cf000640000004c0300a7af41a23fb91753",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): wait pagó -16 en el acto, vale V-100"
+  },
+  {
+   "start": 2729120,
+   "end": 2783520,
+   "who": "sybil-2",
+   "hex": "5725040011020e1c099cf000640000004c0400a7af786bc435039c",
+   "status": "firma OK",
+   "text": "celda 17 (THREAT): wait pagó -16 en el acto, vale V-100"
+  }
+ ],
+ "first_harm": {
+  "silencio": 3,
+  "regla LINK-2": 1,
+  "regla LINK-3": 0
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "created_utc": "2026-10-19T06:46:47Z",
+ "purpose": "LINK-2 code and contract before the single eval run (seeds 2000..2063)",
+ "sha256": {
+  "docs/LINK2-DESIGN.md": "6a7fd9be4ff6bf8db3e1bdb38e23346184f5f7354b294b6299bb93fb89a8d203",
+  "tests/test_link2.py": "744c2bd4d32a784062f3c1c8b36e6e4e890400c98d003230cb3dfc12319164ef",
+  "link2/__init__.py": "2587ee4de2e36aabfe40bada5e2df26796e58251e575e9e6297e0fc04203a1e8",
+  "link2/agent2.py": "3a5db060e8ebead58178f8be29ba967c2a956fbe82caacedd66471e2d6b81790",
+  "link2/air.py": "52c65211aec7a26adae81cfaa5216940a6f581b312e845e3b06209195dfe1f54",
+  "link2/bench.py": "d9c1bae44ae77e7424c5205ef107e375c0159e5e7fb597944101cce4587b5ecb",
+  "link2/envelope.py": "eb3d6900b738afc3264d37bfa793ca2e36d8fb0c2d72c2130e8d5d1d9e8026b6",
+  "link2/ggwave_runner.py": "43b7177b60090917a899afb1b3c14d1e9b236f5ca25f23cf7ddccc9af0ac9132",
+  "link2/phy.py": "2bd6b98add6933bb81049ca6c12e7a2d0a2fd3d26e4400aa49784a1b0775b321",
+  "link2/speech2.py": "056ec959d59c38231e22fd6680042a12d66851c0996fc9e78f679128a8eebf1a"
+ }
+}

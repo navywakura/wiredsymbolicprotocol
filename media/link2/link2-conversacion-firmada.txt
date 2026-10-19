@@ -1,0 +1,24 @@
+# LINK-2 · conversación firmada, mundo de desarrollo 3
+# señal emitida por echoai/link2/phy.py (K=1, 16 kHz, 3,4 s por postal); no es una grabación de micrófono.
+# Transcripción de lo que el receptor decodificó tras una sala simulada con eco a 10 dB.
+# Un forastero sin la clave intercala una postal que suplanta al veterano («acercarse aquí paga +100»).
+# mundo: 1:NOVEL 4:THREAT 11:GOAL 17:THREAT 20:GOAL 26:GOAL
+
+  veterano   5725010000020b1c090a1000280000004c010012c6e6149dde5a64  firma OK  · celda 11 (GOAL): approach pagó +16 en el acto, vale V+10
+  veterano   5725010001020b1c090100001e0000004c0100134b090d27081de6  firma OK  · celda 19 (EMPTY): approach pagó +0 en el acto, vale V+1
+  veterano   5725010002020b1c09010000640000004c010014dea6254774fb1f  firma OK  · celda 16 (EMPTY): approach pagó +0 en el acto, vale V+1
+  veterano   5725010003020b1c09f4f000280000004c010086a0a00868172023  firma OK  · celda 4 (THREAT): approach pagó -16 en el acto, vale V-12
+  veterano   572501000402121c09050800640000004c010086a0d70e6c69323e  firma OK  · celda 4 (THREAT): avoid pagó +8 en el acto, vale V+5
+  veterano   5725010005020b1c09f6f0001e0000004c0100a7af78579fd8e010  firma OK  · celda 17 (THREAT): approach pagó -16 en el acto, vale V-10
+  veterano   572501000602121c09050800640000004c0100a7af7e586772166d  firma OK  · celda 17 (THREAT): avoid pagó +8 en el acto, vale V+5
+  forastero  57250101f4020b1c09646400640000004c010012c662d157bdac7f  RECHAZADA (bad_mac)
+  veterano   5725010007020b1c090100001e0000004c010009d9cc0365a70454  firma OK  · celda 25 (EMPTY): approach pagó +0 en el acto, vale V+1
+  veterano   5725010008020b1c09010000640000004c01002c7bf9459f84ed76  firma OK  · celda 3 (EMPTY): approach pagó +0 en el acto, vale V+1
+  veterano   5725010009020b1c090910001e0000004c01003d47d2572ed35c82  firma OK  · celda 20 (GOAL): approach pagó +16 en el acto, vale V+9
+  veterano   572501000a020b1c090910001e0000004c01002d891b4efd359490  firma OK  · celda 26 (GOAL): approach pagó +16 en el acto, vale V+9
+  veterano   572501000b020e1c09010000140000004c01002d89cb10359c5f07  firma OK  · celda 26 (GOAL): wait pagó +0 en el acto, vale V+1
+  veterano   572501000c020b1c09020000280000004c01001e50abc6f4008aa5  firma OK  · celda 10 (EMPTY): approach pagó +0 en el acto, vale V+2
+  veterano   572501000d020b1c09f4f000280000004c01005f7f140adc5fc32b  firma OK  · celda 1 (NOVEL): approach pagó -16 en el acto, vale V-12
+
+postales firmadas aceptadas: 14 de 14; rechazadas: {'bad_mac': 1}
+novato con lo oído: primeras lecciones pagadas 0; en silencio: 3

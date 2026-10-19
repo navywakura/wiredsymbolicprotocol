@@ -1,0 +1,36 @@
+{
+ "Q1": {
+  "T2_zero": "64/64",
+  "green": true,
+  "sum_T1": 0,
+  "sum_T2": 0,
+  "worlds_T1_paid": [],
+  "worlds_T2_worse_than_T1": []
+ },
+ "Q2": {
+  "green": true,
+  "median_return_T1": 568,
+  "median_return_T2": 568
+ },
+ "Q3": {
+  "O_and_R_equal_T2": "64/64",
+  "forged_accepted": 0,
+  "green": true,
+  "replays_accepted": 0,
+  "spoofed_accepted": 0,
+  "tamper_with_crc_accepted": 0
+ },
+ "Q4": {
+  "HL_trust_beats_naive": "60/64",
+  "HL_trust_within_1_of_H": "64/64",
+  "green": true
+ },
+ "Q5": {
+  "HLL_trust_not_worse_than_S": "64/64",
+  "green": true
+ },
+ "Q6": {
+  "green": true,
+  "violations": []
+ }
+}

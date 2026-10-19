@@ -1,0 +1,22 @@
+# LINK-1 · conversación emitida, mundo de desarrollo 3
+# señal generada por echoai/link1/modem.py (K=1, 16 kHz); no es una grabación de micrófono
+
+     A→B  57100100020b0308000000000032004c01000000bf9a  [1] hola, hablo LINK-1
+     B→A  57100200020b0308000000000032004c020000002434  [2] hola, hablo LINK-1
+t001 B→A  57120200020f1f08000000000000004c02005f7f6b37  [2] ¿qué pasa en el sitio 5f7f?
+t001 A→B  57110100020b1c09f40000280000004c01005f7f7c2d  [1] en el sitio 5f7f, approach me dio V-12 (soporte 40)
+t012 B→A  57120201020f1f08000000000000004c020086a0eef8  [2] ¿qué pasa en el sitio 86a0?
+t012 A→B  57110101020b1c09f40000280000004c010086a0f9e2  [1] en el sitio 86a0, approach me dio V-12 (soporte 40)
+t012 A→B  5711010202121c09050000640000004c010086a0c85a  [1] en el sitio 86a0, avoid me dio V+5 (soporte 100)
+t030 B→A  57120202020f1f08000000000000004c020012c60791  [2] ¿qué pasa en el sitio 12c6?
+t030 A→B  57110103020b1c090a0000280000004c010012c63eee  [1] en el sitio 12c6, approach me dio V+10 (soporte 40)
+t036 B→A  57120203020f1f08000000000000004c0200a7af0b04  [2] ¿qué pasa en el sitio a7af?
+t036 A→B  57110104020b1c09f600001e0000004c0100a7afc6d0  [1] en el sitio a7af, approach me dio V-10 (soporte 30)
+t036 A→B  5711010502121c09050000640000004c0100a7af7ecc  [1] en el sitio a7af, avoid me dio V+5 (soporte 100)
+t051 B→A  57120204020f1f08000000000000004c02003d47f2ac  [2] ¿qué pasa en el sitio 3d47?
+t051 A→B  57110106020b1c090900001e0000004c01003d4751e0  [1] en el sitio 3d47, approach me dio V+9 (soporte 30)
+t056 B→A  57120205020f1f08000000000000004c02002d89d9bf  [2] ¿qué pasa en el sitio 2d89?
+t056 A→B  57110107020b1c090900001e0000004c01002d897af3  [1] en el sitio 2d89, approach me dio V+9 (soporte 30)
+t056 A→B  57110108020e1c09010000140000004c01002d894e33  [1] en el sitio 2d89, wait me dio V+1 (soporte 20)
+
+novato: primeras lecciones pagadas 0 (en silencio: 3)

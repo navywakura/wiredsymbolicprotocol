@@ -1,0 +1,161 @@
+{
+ "airplay": {
+  "clipped_per_mille": 0,
+  "corrupt_accepted": 0,
+  "decoded": 3,
+  "frames": 3,
+  "lost": 0,
+  "peak": 29949,
+  "pw_play_rc": 0,
+  "refused": {},
+  "sink": "raop_sink (AirPlay, un MacBook en la misma habitaci\u00f3n; nombre e IP omitidos)"
+ },
+ "ggwave": [
+  {
+   "frames": 10,
+   "ok": 10,
+   "proto": 0
+  },
+  {
+   "frames": 10,
+   "ok": 10,
+   "proto": 1
+  },
+  {
+   "frames": 10,
+   "ok": 10,
+   "proto": 2
+  }
+ ],
+ "grid": [
+  {
+   "added_noise_snr_db": null,
+   "clipped_per_mille": 0,
+   "corrupt_accepted": 0,
+   "decoded": 10,
+   "frames": 10,
+   "lost": 0,
+   "mic_volume": "0.3",
+   "peak": 28843,
+   "refused": {}
+  },
+  {
+   "added_noise_snr_db": 10,
+   "clipped_per_mille": 0,
+   "corrupt_accepted": 0,
+   "decoded": 10,
+   "frames": 10,
+   "lost": 0,
+   "mic_volume": "0.3",
+   "peak": 5304,
+   "refused": {}
+  },
+  {
+   "added_noise_snr_db": 0,
+   "clipped_per_mille": 0,
+   "corrupt_accepted": 0,
+   "decoded": 10,
+   "frames": 10,
+   "lost": 0,
+   "mic_volume": "0.3",
+   "peak": 2218,
+   "refused": {}
+  },
+  {
+   "added_noise_snr_db": null,
+   "clipped_per_mille": 0,
+   "corrupt_accepted": 0,
+   "decoded": 10,
+   "frames": 10,
+   "lost": 0,
+   "mic_volume": "0.6",
+   "peak": 26441,
+   "refused": {}
+  },
+  {
+   "added_noise_snr_db": 10,
+   "clipped_per_mille": 0,
+   "corrupt_accepted": 0,
+   "decoded": 10,
+   "frames": 10,
+   "lost": 0,
+   "mic_volume": "0.6",
+   "peak": 32708,
+   "refused": {}
+  },
+  {
+   "added_noise_snr_db": 0,
+   "clipped_per_mille": 0,
+   "corrupt_accepted": 0,
+   "decoded": 10,
+   "frames": 10,
+   "lost": 0,
+   "mic_volume": "0.6",
+   "peak": 30689,
+   "refused": {}
+  },
+  {
+   "added_noise_snr_db": null,
+   "clipped_per_mille": 0,
+   "corrupt_accepted": 0,
+   "decoded": 10,
+   "frames": 10,
+   "lost": 0,
+   "mic_volume": "1.0",
+   "peak": 32768,
+   "refused": {}
+  },
+  {
+   "added_noise_snr_db": 10,
+   "clipped_per_mille": 4,
+   "corrupt_accepted": 0,
+   "decoded": 10,
+   "frames": 10,
+   "lost": 0,
+   "mic_volume": "1.0",
+   "peak": 32768,
+   "refused": {}
+  },
+  {
+   "added_noise_snr_db": 0,
+   "clipped_per_mille": 10,
+   "corrupt_accepted": 0,
+   "decoded": 10,
+   "frames": 10,
+   "lost": 0,
+   "mic_volume": "1.0",
+   "peak": 32768,
+   "refused": {}
+  }
+ ],
+ "mixer_after": {
+  "@DEFAULT_AUDIO_SINK@": [
+   "0.10",
+   false
+  ],
+  "@DEFAULT_AUDIO_SOURCE@": [
+   "1.00",
+   true
+  ]
+ },
+ "mixer_before": {
+  "@DEFAULT_AUDIO_SINK@": [
+   "0.10",
+   false
+  ],
+  "@DEFAULT_AUDIO_SOURCE@": [
+   "1.00",
+   true
+  ]
+ },
+ "ours_same_setting": {
+  "clipped_per_mille": 0,
+  "corrupt_accepted": 0,
+  "decoded": 10,
+  "frames": 10,
+  "lost": 0,
+  "peak": 32768,
+  "refused": {}
+ },
+ "seconds": 550.5
+}

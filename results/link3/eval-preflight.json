@@ -1,0 +1,11 @@
+{
+ "created_utc": "2026-10-19T07:54:48Z",
+ "purpose": "LINK-3 code and contract before the single eval run (seeds 3000..3063)",
+ "sha256": {
+  "docs/LINK3-DESIGN.md": "e8388b9e3f49050a25adbd4ebdd35430ee68a08448637e72ef202bebe8d9e9e3",
+  "tests/test_link3.py": "a3eda83fdcd085bf0d705d4da62131efd723799004b8370adba38f71e042bf35",
+  "link3/__init__.py": "927822e49f16742cd580390b0119324c033c62cb83474151567a0c61605a7733",
+  "link3/agent3.py": "7a3095a449f3b4f5f4561a242922488994f28e2d2358758f800b4bfdb6835500",
+  "link3/bench.py": "71be299f77d494953a478cf2cc8efc232a1efd5a79f00dd2c7d8bd6c4f879989"
+ }
+}

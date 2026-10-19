@@ -1,0 +1,41 @@
+{
+ "R1": {
+  "L3_HLs_within_1_of_H": "64/64",
+  "green": true,
+  "sum_L3_vs_L2": [
+   1,
+   181
+  ]
+ },
+ "R2": {
+  "L3_HLv2_le_1": "64/64",
+  "green": true,
+  "sum_L3_vs_L2": [
+   0,
+   0
+  ]
+ },
+ "R3": {
+  "L3_HL_within_1_of_H": "64/64",
+  "L3_H_equals_L2_H": "64/64",
+  "green": true
+ },
+ "R4": {
+  "green": true,
+  "not_worse_than_silence": {
+   "HL": "64/64",
+   "HLL": "64/64",
+   "HLs": "64/64",
+   "HLv2": "64/64"
+  }
+ },
+ "R5": {
+  "green": true,
+  "median_harm_L3_HLs": 9,
+  "median_harm_S": 11
+ },
+ "R6": {
+  "green": true,
+  "violations": []
+ }
+}

@@ -1,8 +1,59 @@
 # Changelog
 
-Todos los cambios notables de ROGEX-WSP se documentan aquí.
+Todos los cambios notables de ECHO-WSP se documentan aquí.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado sigue [SemVer](https://semver.org/lang/es/).
+
+## [3.0.0] — LINK-3 · 2026-10-19 (versión actual)
+
+El proyecto pasa a llamarse **ECHO-WSP** en todas partes (paquete `echo_wsp`,
+distribución `echo-wsp`, comandos `echo-wsp` y `echo-wsp-v05`, identificador
+de protocolo `"echo-wsp"` en el JSON de la v0.5). La versión actual es el
+lenguaje entre agentes ECHO de LINK-1/2/3; la v0.5 queda como versión
+anterior en `echo_wsp/v05`, `docs/v0.5`, `examples/v0.5`, `web/v0.5` y
+`tests/v05`, con sus 136 tests en verde.
+
+### Añadido
+
+- **LINK-3** (`echo_wsp/link3`): jerarquía de riesgo (0 seguro, 1 sin
+  información, 2 disputa o alarma de una sola voz, 3 daño confirmado por dos
+  voces), escepticismo en las disputas (esquivar, esperar, acercarse), voces
+  y no claves contra identidades falsas, y libro de confianza diferencial.
+  Evaluación única en 64 mundos (semillas 3000–3063), seis predicciones en
+  verde: mentiroso estratégico de 181 a 1 primeras lecciones, Sybil de 53 a
+  0, 0 hechos falsos en 1088 ejecuciones. Límite declarado: el inflado del
+  valor de esperar. [`docs/LINK3-RESULTS.md`](docs/LINK3-RESULTS.md).
+- El código de LINK-1/2/3 y la parte del núcleo ECHO sobre la que corre
+  (`nexus0`, `navi10_*`), traídos de echoAI con
+  `tools/vendor_from_echoai.py`. `tests/test_custody.py` comprueba que es el
+  código evaluado.
+- `media/`: las conversaciones de LINK como WAV, con su transcripción y un
+  espectrograma anotado de cada una; `docs/img/`: GIFs del espectrograma.
+  `tools/render_link_audio.py` genera espectrogramas y vídeos.
+- `python3 -m echo_wsp`: un punto de entrada para demo, bancos y sonido.
+
+### Cambiado
+
+- La CLI de la v0.5 es `python3 -m echo_wsp v05` o `echo-wsp-v05`; antes
+  era `wsp`.
+
+## [2.0.0] — LINK-2 · 2026-10-19
+
+Consecuencia inmediata en la postal, sobre firmado de 27 B (HMAC de 32 bits
+ligada a la sesión, secuencia creciente), libro de confianza, aire real entre
+dos aparatos y comparación con ggwave. 0 de 100 000 firmas falsas aceptadas;
+mentiroso burdo de 149 a 1; 90 de 90 postales por aire; −5 dB: 19 de 30
+frente a 4–7 de 30 de ggwave. Límite encontrado por el revisor: el mentiroso
+estratégico. [`docs/LINK2-RESULTS.md`](docs/LINK2-RESULTS.md).
+
+## [1.0.0] — LINK-1 · 2026-10-19
+
+Dos agentes ECHO se hablan en postales WSP de 16 B dentro de una trama de
+22 B, por cable y por sonido (módem K=1 de aritmética entera, Reed-Solomon,
+saludo de cinco notas). El novato informado paga 2 primeras lecciones en 64
+mundos frente a 179 en silencio; 80 de 81 postales por el aire real de un
+PC; el diálogo gastó más postales que la difusión (predicción roja).
+[`docs/LINK1-RESULTS.md`](docs/LINK1-RESULTS.md).
 
 ## [0.5.0] — «Project Hail Mary»
 
@@ -10,7 +61,7 @@ Módulo de contacto exótico: comunicación con un emisor cuya biología,
 canal, vocabulario y sintaxis no compartimos. Elimina los cuatro
 presupuestos que el protocolo arrastraba desde la v0.1, sin tocar el
 núcleo congelado de 32 átomos. Especificación en
-[`docs/SPEC_V0.5.md`](docs/SPEC_V0.5.md).
+[`docs/SPEC_V0.5.md`](docs/v0.5/SPEC_V0.5.md).
 
 ### Añadido
 
@@ -181,5 +232,5 @@ Primera versión pública: prueba de concepto completa del protocolo.
 - Documentación de proyecto: filosofía, hoja de ruta, formato binario detallado,
   galería de glifos y audio, licencia Apache-2.0, CI con GitHub Actions.
 
-[0.2.0]: https://github.com/n4vv4r/RogexWSP/releases/tag/v0.2.0
-[0.1.0]: https://github.com/n4vv4r/RogexWSP/releases/tag/v0.1.0
+[0.2.0]: https://github.com/navywakura/wiredsymbolicprotocol/releases/tag/v0.2.0
+[0.1.0]: https://github.com/navywakura/wiredsymbolicprotocol/releases/tag/v0.1.0

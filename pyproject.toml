@@ -3,22 +3,27 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "rogex-wsp"
-version = "0.5.0"
-description = "ROGEX-WSP / Wired Symbolic Protocol: protocolo experimental de comunicacion simbolico-emocional"
+name = "echo-wsp"
+version = "3.0.0"
+description = "ECHO-WSP / Wired Symbolic Protocol: the language ECHO agents speak, in 16-byte postcards, by wire and by sound (current version LINK-3)"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
-authors = [{ name = "Rogex Laboratories" }]
-keywords = ["symbolic", "protocol", "language", "emotion", "wired"]
+authors = [{ name = "Roger Navarro · echolabs" }]
+keywords = ["agents", "protocol", "acoustic-modem", "multi-agent", "trust", "wsp"]
 
 [project.urls]
-Repository = "https://github.com/n4vv4r/RogexWSP"
-Documentation = "https://github.com/n4vv4r/RogexWSP/blob/main/docs/SPEC.md"
-Changelog = "https://github.com/n4vv4r/RogexWSP/blob/main/CHANGELOG.md"
+Homepage = "https://www.rxlabs.org/research/link-3-contra-el-mentiroso-estrategico"
+Repository = "https://github.com/navywakura/wiredsymbolicprotocol"
+Changelog = "https://github.com/navywakura/wiredsymbolicprotocol/blob/main/CHANGELOG.md"
 
 [project.scripts]
-wsp = "rogex_wsp.cli_041:main"
+echo-wsp = "echo_wsp.__main__:main"
+echo-wsp-v05 = "echo_wsp.v05.cli_041:main"
 
 [tool.setuptools.packages.find]
-include = ["rogex_wsp*"]
+include = ["echo_wsp*"]
+
+[tool.setuptools.package-data]
+"echo_wsp" = ["VENDORED.json"]
+"echo_wsp.nexus0" = ["bank/*.json"]

@@ -1,0 +1,27 @@
+{
+  "protocol": "echo-wsp",
+  "version": "0.1",
+  "packets": [
+    {
+      "symbol": {
+        "source": "YO",
+        "relation": "DESEAR",
+        "action": "COMUNICAR",
+        "target": "OTRO",
+        "time": "AHORA",
+        "space": "WIRED"
+      },
+      "emotion": {
+        "valence": 0.7,
+        "arousal": 0.4,
+        "dominance": 0.0,
+        "certainty": 0.9,
+        "urgency": 0.3,
+        "bond": 0.8
+      },
+      "meta": {
+        "text": "quiero hablar contigo en la wired"
+      }
+    }
+  ]
+}

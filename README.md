@@ -1,250 +1,201 @@
-# WSP — Wired Symbolic Protocol
-This repo is outdated. Newest version of WSP protocol is available inside https://github.com/navywakura/echoai (echoai uses wsp)
+# ECHO-WSP — Wired Symbolic Protocol
 
-[![tests](https://github.com/n4vv4r/RogexWSP/actions/workflows/tests.yml/badge.svg)](https://github.com/n4vv4r/RogexWSP/actions/workflows/tests.yml)
+[![tests](https://github.com/navywakura/wiredsymbolicprotocol/actions/workflows/tests.yml/badge.svg)](https://github.com/navywakura/wiredsymbolicprotocol/actions/workflows/tests.yml)
 [![licencia](https://img.shields.io/badge/licencia-Apache--2.0-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-informational.svg)](pyproject.toml)
+[![versión](https://img.shields.io/badge/versión-LINK--3-black.svg)](CHANGELOG.md)
 
-> El significado no vive en la palabra. La palabra es solo una máscara.
+**El lenguaje con el que se hablan los agentes ECHO.** Un agente le cuenta a
+otro lo que vivió en postales WSP de 16 bytes, por cable o por sonido. Las
+postales van firmadas. Quien escucha pesa a cada emisor por lo que ha
+comprobado y ordena el riesgo antes que el valor. Lo que oye nunca se
+convierte en un hecho de su memoria.
 
-**ROGEX-WSP no es una lengua inventada. Es un protocolo experimental de
-comunicación simbólico-emocional: un núcleo de significado, muchas máscaras
-físicas.** *(One meaning core, many physical masks.)*
+Versión actual: **LINK-3** (19 de octubre de 2026). La versión anterior, el
+protocolo simbólico-emocional v0.5, sigue en [`echo_wsp/v05`](echo_wsp/v05),
+con su README original en [`docs/v0.5`](docs/v0.5/README.md).
 
-ROGEX-WSP no es un idioma con palabras: es un **protocolo de significado**.
-La unidad de comunicación es un paquete de **información + emoción** que puede
-renderizarse como texto humano, sonido, glifo visual, JSON o binario — para que
-lo hablen humanos, IAs y máquinas.
+![Dos identidades falsas hablan junto a un agente honesto: el espectrograma avanza mientras suena](docs/img/link3-sybil-espectro.gif)
+
+*Doce segundos de una conversación real del módem, vista como espectrograma.
+Arriba, quién habla en toda la conversación: negro el honesto; rojo y naranja,
+dos identidades falsas del mismo atacante. En el centro, cada barra negra es
+un tono de 40 ms que lleva 4 bits. Abajo, lo que el receptor entendió de la
+postal que suena. La línea vertical marca el momento actual.
+[Vídeo completo con sonido](https://www.rxlabs.org/research/link-3-contra-el-mentiroso-estrategico).*
+
+## Qué se ha medido
+
+Cada versión tuvo un contrato con predicciones y el código fijado por hash
+antes de evaluar. Un revisor independiente intentó romperla, y se evaluó **una
+sola vez** en 64 mundos nuevos. Las predicciones rojas se publicaron en rojo.
+
+| Versión | Qué añade | Resultado principal (64 mundos de evaluación) |
+|---|---|---|
+| **LINK-1** | Postales WSP de 16 B, módem por sonido de aritmética entera, diálogo | El novato que oye al veterano paga **2** primeras lecciones, frente a **179** en silencio. Por el aire real de un PC llegaron 80 de 81 postales. El diálogo gastó más postales que la difusión (predicción roja). |
+| **LINK-2** | Consecuencia inmediata, sobre firmado de 27 B (HMAC), libro de confianza | **0** de 100 000 firmas falsas aceptadas. Contra un mentiroso que invierte todo: de 149 a **1**. Por aire real, 90 de 90 postales en un PC y 3 de 3 entre dos aparatos. Con ruido fuerte (−5 dB) recupera 19 de 30, frente a 4–7 de 30 con ggwave. **Límite:** un mentiroso estratégico con clave anula el testimonio (179 lecciones, como el silencio). |
+| **LINK-3** | Jerarquía de riesgo, escepticismo en las disputas, voces y no claves, confianza diferencial | Contra el mentiroso estratégico: de 181 a **1**. Contra dos identidades falsas (Sybil): de 53 a **0**. El daño nunca es peor que el del silencio. **0** hechos falsos en 1088 ejecuciones. **Abierto:** un mentiroso que infla el valor de esperar no causa daño, pero le quita retorno al novato (en 39 de 64 mundos). |
+
+«Primera lección pagada» es la primera vez que el novato entra en un sitio
+peligroso y recibe daño. El detalle está en
+[`docs/LINK3-RESULTS.md`](docs/LINK3-RESULTS.md),
+[`docs/LINK2-RESULTS.md`](docs/LINK2-RESULTS.md) y
+[`docs/LINK1-RESULTS.md`](docs/LINK1-RESULTS.md), y los datos en
+[`results/`](results).
+
+## Cómo se ve una postal
+
+![Una postal falsa ampliada: cinco notas de saludo y 75 tonos etiquetados de 0 a f](media/link2/link2-conversacion-firmada-espectro.png)
+
+Arriba, una conversación entera de LINK-2. Abajo, ampliada, la postal que
+coló un forastero sin la clave del grupo. Primero suenan **cinco notas de
+saludo**, para que el receptor sepa dónde empieza. Después vienen **75
+símbolos de 40 ms**: cada uno es un tono de 16 posibles entre 1125 y 3000 Hz,
+es decir, 4 bits. Juntos llevan los 27 bytes del sobre, con paridad
+Reed-Solomon. Las letras azules están leídas directamente del espectro, sin el
+decodificador del módem, y coinciden símbolo a símbolo con lo emitido
+([`media/espectros.json`](media/espectros.json)).
+
+Por el aire, esta postal suena exactamente igual que una buena. Solo la
+delatan los 4 bytes de firma, y el receptor la descarta sin leerla:
+
+![La postal falsa pasa por el espectrograma y el receptor la rechaza por la firma](docs/img/link2-postal-falsa.gif)
+
+## El ataque que LINK-3 desarma
+
+![Espectrograma de la conversación Sybil y una postal mentirosa ampliada](media/link3/link3-sybil-espectro.png)
+
+El mentiroso estratégico tiene la clave del grupo. Dice la verdad y solo
+añade que las demás acciones de cada sitio peligroso cuestan −100. La regla de
+LINK-2 se quedaba con lo más pesimista de cada acción, así que acercarse a la
+amenaza (−16) parecía lo menos malo. LINK-3 reduce lo que oye a «daña» o «es
+segura» y lo ordena por niveles:
 
 ```text
-L = G[S(M, I, E)]
-
-M = soporte físico      (sonido, glifo, texto, binario…)
-I = información         (los 32 átomos semánticos)
-E = emoción             (6 ejes continuos)
-S = símbolo             (S = I + E, el paquete)
-G = regla generativa    (composición de conceptos nuevos)
+nivel 0  todos los que hablan dicen «segura»
+nivel 1  nadie dice nada
+nivel 2  disputa, o una alarma de una sola voz
+nivel 3  daño confirmado por dos voces o más
 ```
 
-Prototipo **v0.1**: 32 símbolos base, 6 ejes emocionales, 1 formato JSON,
-y conversores texto→símbolo, símbolo→texto, símbolo→sonido, símbolo→glifo
-y símbolo→binario. Python puro, **cero dependencias**.
+Gana el nivel más bajo, y en una disputa el orden es esquivar, esperar y por
+último acercarse. Así, un daño confirmado ya no le gana a una opción segura que
+alguien discute: el novato esquiva y, al hacerlo, comprueba que la alarma era
+falsa. Para que dos identidades falsas no puedan confirmar una alarma a coro,
+LINK-3 cuenta **voces, no claves**: los emisores que todavía no han acertado
+en ninguna disputa cuentan juntos como una sola voz.
 
-## Instalación y uso rápido
+| Escuchar | Duración | Qué se oye |
+|---|---|---|
+| ▶ [Una postal](media/link1/link1-una-postal.wav) | 3 s | Saludo y 60 símbolos (LINK-1) |
+| ▶ [Diálogo LINK-1](media/link1/link1-conversacion-mundo3.wav) | 49 s | Saludo, preguntas del novato y respuestas del veterano · [transcripción](media/link1/link1-conversacion-mundo3.txt) |
+| ▶ [Conversación firmada](media/link2/link2-conversacion-firmada.wav) | 52 s | 14 postales buenas y una falsa, rechazada · [transcripción](media/link2/link2-conversacion-firmada.txt) |
+| ▶ [Mentiroso estratégico](media/link2/mentiroso-estrategico-conversacion.wav) | 111 s | El honesto y el mentiroso, por turnos · [decisiones con LINK-2 y con LINK-3](media/link3/link3-mentiroso-estrategico.txt) |
+| ▶ [Ataque Sybil](media/link3/link3-sybil.wav) | 174 s | El honesto y dos identidades falsas · [transcripción y decisiones](media/link3/link3-sybil.txt) |
+
+Todo es la señal que emite el módem. No hay grabaciones de micrófono ni
+nombres o direcciones de los aparatos de las pruebas. Los vídeos con
+espectrograma están en los artículos de
+[rxlabs.org/research](https://www.rxlabs.org/research) y se regeneran con
+[`tools/render_link_audio.py`](tools/render_link_audio.py).
+
+## Uso rápido
+
+Necesita Python 3.10 o superior y solo la librería estándar. La comparación
+con ggwave usa su propio entorno.
 
 ```bash
-# sin instalar nada (desde la raíz del repo):
-python3 -m rogex_wsp demo
-
-# o instalado como comando `wsp`:
-pip install -e .
-wsp demo
+python3 -m echo_wsp demo                    # dos agentes hablan a través de una sala simulada con eco
+python3 -m echo_wsp bench3 --split dev      # LINK-3 en 16 mundos de desarrollo (~2 min)
+python3 -m echo_wsp media salida/           # las conversaciones de LINK-3 como WAV + transcripción
+python3 -m echo_wsp v05 encode "te quiero"  # el protocolo anterior, v0.5
+python3 -m unittest discover -s tests       # LINK-1/2/3 y custodia (51 tests)
+python3 -m unittest discover -s tests/v05   # v0.5 (136 tests)
 ```
+
+Si lo instalas (`pip install -e .`), los comandos son `echo-wsp` y
+`echo-wsp-v05`.
+
+## Garantías que no se negocian
+
+- La postal WSP mide **16 bytes**. El sobre va alrededor, nunca dentro.
+- El módem y la decisión usan solo enteros: el camino rápido no tiene coma
+  flotante.
+- **El testimonio nunca es un hecho.** Lo oído vive en un almacén aparte y no
+  escribe en la memoria CAM, ni en el modelo del mundo, ni en la tabla Q del
+  agente. Un gemelo sordo que recibe las mismas decisiones termina idéntico
+  byte a byte.
+- Lo oído puede desviar al novato como mucho cuatro veces por sitio. Después
+  decide su propia experiencia.
+
+## Estructura
+
+```text
+echo_wsp/
+  link1/        postal, trama de 22 B, módem K=1, Reed-Solomon, diálogo, sala simulada
+  link2/        consecuencia, sobre firmado de 27 B, libro de confianza, aire real, ggwave
+  link3/        jerarquía de riesgo, voces no claves, atacantes, sonido para publicar
+  nexus0/       núcleo del agente ECHO (CAM, Q, mundo, compuerta) sobre el que corren
+  navi10_*.py   formato WSP y memoria (CAM, simhash)
+  v05/          el protocolo anterior: símbolo de información + emoción (v0.5)
+  VENDORED.json procedencia: el hash de cada archivo original
+docs/           contratos (DESIGN) y resultados (RESULTS) de LINK-1/2/3; docs/v0.5 es la versión anterior
+results/        hashes previos, predicciones y mundos de cada evaluación
+media/          WAV, transcripciones y espectrogramas anotados
+tools/          vendor_from_echoai.py (traer el código) y render_link_audio.py (ver el sonido)
+tests/          LINK-1/2/3 y custodia; tests/v05 es la versión anterior
+```
+
+### Custodia
+
+LINK se escribió y evaluó dentro de
+[echoAI](https://github.com/navywakura/echoai).
+[`tools/vendor_from_echoai.py`](tools/vendor_from_echoai.py) lo trae aquí
+cambiando solo las rutas de import. Después,
+[`tests/test_custody.py`](tests/test_custody.py) deshace ese cambio y compara
+cada archivo con su original y con los hashes fijados antes de cada
+evaluación: el código de este repo es el que se midió. Los tests de LINK sí
+se adaptaron a esta estructura de carpetas.
+
+## Lo que sigue abierto
+
+- **Inflar el valor de esperar.** Un mentiroso que dice «esperar es seguro y
+  vale +100» acierta siempre si esperar daña o no, así que nunca se le
+  descubre. No causa daño, pero el novato gana menos que oyendo solo al
+  honesto en 39 de 64 mundos.
+- La confianza diferencial todavía no aporta nada medible: el trabajo lo hace
+  la jerarquía de riesgo.
+- Contar voces exige que crear una identidad cueste algo; aquí, tener una
+  clave del grupo.
+- Todo se ha probado en un anillo sintético donde huir sale barato. El
+  siguiente paso es un mundo donde equivocarse cueste.
+
+## Artículos
+
+- [LINK-3: la jerarquía de riesgo desarma al mentiroso estratégico](https://www.rxlabs.org/research/link-3-contra-el-mentiroso-estrategico)
+- [El mentiroso estratégico](https://www.rxlabs.org/research/el-mentiroso-estrategico)
+- [LINK-2: consecuencias, firmas, confianza y aire real](https://www.rxlabs.org/research/link-2-confianza-y-aire-real)
+- [LINK-1: dos agentes ECHO se hablan](https://www.rxlabs.org/research/link-1-dos-agentes-se-hablan)
+- [WSP-5.8: un lenguaje entre agentes (investigación previa)](https://www.rxlabs.org/research/wsp-58-un-lenguaje-entre-agentes)
+
+## Versión anterior: v0.5
+
+Antes de LINK, ECHO-WSP era un protocolo simbólico-emocional. Su unidad era un
+paquete de información (32 átomos) más emoción (6 ejes) que se podía mostrar
+como texto, sonido por ratios, glifo SVG, JSON o binario. La v0.5 «Project
+Hail Mary» añadió polifonía, sintaxis agnóstica y descubrimiento fonético.
+Sigue funcionando y conserva sus tests:
 
 ```bash
-wsp atoms                                    # los 32 átomos del núcleo
-wsp encode "te quiero"                       # texto → símbolo (JSON)
-wsp encode "te quiero" --compact             # texto → forma máquina
-wsp decode examples/te_quiero.json           # símbolo → español
-wsp decode examples/te_quiero.json --lang en # símbolo → inglés
-wsp audio --text "estoy aquí" -o presencia.wav
-wsp glyph --text "te quiero" -o amor.svg
-wsp binary --text "¡peligro!"                # símbolo → binario compacto (hex)
-wsp listen presencia.wav --compact           # sonido → símbolo (v0.2)
-wsp inspect amor.svg --compact               # glifo → símbolo (v0.2)
-wsp contact --emit saludo.wav                # emite el saludo de 5 tonos (v0.4)
-wsp contact saludo.wav --compact             # ...y lo reconoce en cualquier tonalidad
-wsp chord --text "te quiero" -o poly.wav     # símbolo → acordes polifónicos (v0.5)
-wsp chord poly.wav --compact                 # acordes → símbolo
-wsp calibrate exotico.wav -o mapping.json    # descubre las firmas de un emisor ajeno
-wsp xeno exotico.wav --map mapping.json      # audio exótico → símbolo
+python3 -m echo_wsp v05 demo -o demo_out
+python3 examples/v0.5/hail_mary.py
 ```
 
-Y la **demo web** (sin instalar nada): abre [`web/index.html`](web/index.html)
-en el navegador — escribe una frase y ve en vivo el glifo, el sonido, el JSON
-y el binario del símbolo.
-
-## Ejemplo completo
-
-Entrada:
-
-```text
-te quiero
-```
-
-Núcleo simbólico (el idioma real es la estructura interna):
-
-```text
-YO → AMOR → OTRO @AHORA | E[V+0.95 A+0.60 D+0.00 C+0.80 U+0.00 B+0.98]
-```
-
-Renderizadores (máscaras del mismo símbolo):
-
-| Render   | Salida |
-|----------|--------|
-| español  | «Te quiero.» |
-| inglés   | «I love you.» |
-| sonido   | consonancia 3:2 + 5:4, tempo lento, ataque suave, duración larga |
-| glifo    | dos puntos unidos por onda dentro de un campo envolvente |
-| binario  | `57 53 50 01 01 1b 02 83 00 03 0b 04 41 4d 4f 52 …` |
-
-Y el caso emocionalmente compuesto:
-
-```text
-"estoy solo pero quiero conectar"
-  → YO → SER → SOLEDAD @AHORA      | E[V-0.60 … B-0.70]   (estado)
-  → YO → DESEAR → CONEXION @AHORA  | E[V+0.40 … B+0.60]   (deseo)
-```
-
-La IA que reciba esto no responde a las palabras: responde al símbolo emocional.
-
-## Las capas del protocolo
-
-| Capa | Nombre | En el código |
-|------|--------|--------------|
-| 1 | **Materia (M)** — el soporte físico | `audio.py`, `glyph.py`, binario |
-| 2 | **Información (I)** — 32 átomos semánticos | `primitives.py` |
-| 3 | **Emoción (E)** — 6 ejes: V A D C U B | `emotion.py` |
-| 4 | **Símbolo (S = I + E)** — el paquete | `symbol.py` |
-| 5 | **Relación** — `[ORIGEN][RELACIÓN][DESTINO]` | `Symbol.source/relation/target` |
-| 6 | **Tiempo y espacio** — coordenadas, no palabras | `Symbol.time/space` |
-| 7 | **Generatividad (G)** — conceptos nuevos por composición | `concepts.py` |
-
-Documentación:
-
-- [`docs/SPEC.md`](docs/SPEC.md) — especificación normativa del protocolo
-- [`docs/PHILOSOPHY.md`](docs/PHILOSOPHY.md) — la tesis: por qué no palabras
-- [`docs/BINARY_FORMAT.md`](docs/BINARY_FORMAT.md) — el formato binario byte a byte
-- [`docs/ROADMAP.md`](docs/ROADMAP.md) — hoja de ruta (v0.2 «Signal Return»)
-- [`examples/gallery/`](examples/gallery/) — **galería**: glifos y audio de las frases canónicas
-
-## Generatividad: el idioma crece
-
-No hay lista cerrada de palabras. Un concepto nuevo es una composición de átomos:
-
-```python
-from rogex_wsp import define, Primitive as P, Emotion
-
-define(
-    "NOSTALGIA",
-    [P.RECORDAR, P.ANTES, P.DESEAR, P.OTRO],
-    es="nostalgia",
-    emotion=Emotion(valence=-0.3, bond=0.7),
-)
-```
-
-Y los mensajes pueden **transportar sus definiciones** (`"defines"` en el JSON,
-o codificadas en el binario): el receptor aprende el concepto al decodificar el
-mensaje. Ver [`examples/nostalgia_definida.json`](examples/nostalgia_definida.json).
-
-## El sonido: ratios, no hercios
-
-El audio no depende de frecuencias absolutas sino de **relaciones entre ondas**,
-para que sea igual de legible en cualquier dispositivo:
-
-```text
-1:1  = identidad / ser        9:8   = movimiento / tensión suave
-3:2  = conexión / relación    16:15 = tensión / disonancia
-5:4  = armonía / afinidad     silencio = ausencia / negación
-4:3  = estabilidad            ascendente = pregunta · descendente = cierre
-```
-
-La emoción se codifica como música: tempo = urgencia, volumen = intensidad,
-brillo = valencia, vibrato = duda, duración = importancia/vínculo.
-
-## El glifo: geometría, no letras
-
-```text
-punto = ser        círculo = campo/mundo     onda    = información
-línea = relación   flecha  = dirección/deseo ruptura = negación
-zigzag = tensión   espiral = generatividad   eco     = memoria
-```
-
-El estilo es la emoción: color = valencia, grosor = activación,
-trazo discontinuo = duda, púas radiales = urgencia, campo envolvente = vínculo.
-
-## Estructura del repositorio
-
-```text
-rogex_wsp/
-  primitives.py      # capa I: los 32 átomos (códigos de 5 bits)
-  emotion.py         # capa E: los 6 ejes emocionales
-  concepts.py        # capa G: conceptos derivados + registro abierto
-  symbol.py          # capa S: paquete, JSON y binario
-  text_to_symbol.py  # intérprete: español → símbolo
-  symbol_to_text.py  # render: símbolo → español / inglés
-  audio.py           # render: símbolo → WAV (ratios de frecuencia)
-  glyph.py           # render: símbolo → SVG (geometría)
-  listen.py          # intérprete: WAV → símbolo (v0.2, resiliente en v0.3)
-  glyph_reader.py    # intérprete: SVG → símbolo (v0.2)
-  compact.py         # intérprete: forma compacta → símbolo (v0.2)
-  multiband.py       # análisis en 3 capas espectrales + saludo de contacto (v0.4)
-  multiphonic.py     # capa M polifónica: un acorde por campo (v0.5)
-  grammar.py         # sintaxis agnóstica: campos etiquetados, orden libre (v0.5)
-  primitives_science.py  # plano científico de la capa I: dimensiones, Z (v0.5)
-  discovery.py       # descubrimiento fonético: el diccionario desde cero (v0.5)
-  cli.py             # comando `wsp`
-docs/                # SPEC, filosofía, formato binario, hoja de ruta, schema
-examples/            # mensajes canónicos en JSON + galería (SVG/WAV)
-web/index.html       # demo web autocontenida (port JS del protocolo)
-tests/               # 59 tests (unittest, stdlib)
-```
-
-```bash
-python3 -m unittest discover -s tests   # ejecutar los tests
-```
-
-## Estado y rumbo
-
-La **v0.2 «Signal Return»** cierra el ciclo de bidireccionalidad: el sonido y
-el glifo vuelven al símbolo. `encode(texto) → wav → listen(wav)` recupera la
-relación y el signo emocional en todas las frases canónicas — el significado
-sobrevive al viaje por la máscara física:
-
-```text
-"te quiero" → [WAV de 2.4 s] → wsp listen → YO → AMOR → OTRO | V+0.60 B+0.60 → "Te quiero."
-```
-
-La v0.3 «Resilient Matrix» hizo el oído robusto: calibración dinámica del
-tono base, tolerancia a ruido y jitter de voz humana, y ráfagas de identidad
-de destino. La v0.4 «Third Kind» da el salto a **audio ajeno al protocolo**:
-análisis multibanda en tres capas espectrales (graves = contexto, medios =
-átomos, agudos = sincronización) y el saludo de *Close Encounters* como
-fixture normativa — cinco tonos que se proyectan uno a uno sobre las cinco
-ranuras del paquete:
-
-```text
-RE 1:1 → MI 9:8 → DO 16:9↓ → DO 16:9↓↓ → SOL 4:3↓
-YO → SER(BUSCAR) → CONEXION @AHORA @AQUI  ·  «Existo y busco un vínculo aquí.»
-```
-
-La **v0.5 «Project Hail Mary»** da el paso más difícil: hablar con quien
-no comparte diccionario, canal ni sintaxis. Cuatro módulos nuevos —
-polifonía (un acorde por campo), sintaxis agnóstica (el orden es del
-hablante, no del protocolo), plano científico (dimensiones SI y elementos
-por su Z) y descubrimiento fonético (construir el diccionario midiendo) —
-que se ejercitan de punta a punta:
-
-```bash
-python3 examples/hail_mary.py    # de la primera emisión ajena a la respuesta
-```
-
-```text
-1. el otro habla y no entendemos nada    → 6 firmas espectrales medidas
-2. se atan a átomos con contexto conocido → mapping.json
-3. habla espontáneo, otra octava, su orden → OTRO → PREGUNTAR @AQUI {Z=6, MASA}
-4. máscara humana  «¿Preguntas por la masa del carbono aquí?»
-5. respuesta en 27 acordes, en la sintaxis aprendida del otro
-6. relectura: Z=6, 12.011, 0 errores de paridad — canal íntegro
-```
-
-Detalle en [`docs/SPEC_V0.5.md`](docs/SPEC_V0.5.md), incluida la sección
-de lo que **no** resuelve. Siguientes metas: más máscaras (color,
-vibración, MIDI) y vectores semántico-emocionales. Plan completo en
-[`docs/ROADMAP.md`](docs/ROADMAP.md); cómo contribuir en
-[`CONTRIBUTING.md`](CONTRIBUTING.md).
+La especificación está en [`docs/v0.5/SPEC.md`](docs/v0.5/SPEC.md) y
+[`docs/v0.5/SPEC_V0.5.md`](docs/v0.5/SPEC_V0.5.md), la galería en
+[`examples/v0.5/gallery`](examples/v0.5/gallery) y la demo web en
+[`web/v0.5/index.html`](web/v0.5/index.html).
 
 ---
 
-*Rogex Laboratories — un lenguaje universal simbólico-emocional, no basado en
-palabras, sino en información, emoción, matemática, sonido y forma.*
+*echolabs · Roger Navarro · [rxlabs.org](https://www.rxlabs.org) · Apache-2.0*

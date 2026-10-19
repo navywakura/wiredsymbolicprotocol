@@ -1,0 +1,612 @@
+{
+ "airtime_ms": {
+  "K1": 2800,
+  "K2": 1600
+ },
+ "clock_drift": [
+  {
+   "corrupt_accepted": 0,
+   "frames": 25,
+   "lost": 0,
+   "ok": 25,
+   "ppm": -200
+  },
+  {
+   "corrupt_accepted": 0,
+   "frames": 25,
+   "lost": 0,
+   "ok": 25,
+   "ppm": 200
+  }
+ ],
+ "noise_only": [
+  {
+   "accepted": 0,
+   "seconds": 60
+  },
+  {
+   "accepted": 0,
+   "seconds": 60
+  }
+ ],
+ "payload_bits_per_s": {
+  "K1": 45,
+  "K2": 80
+ },
+ "points": [
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 200,
+   "lost": 0,
+   "ok": 200,
+   "room": "clean",
+   "rs_symbols_fixed": 0,
+   "snr_db": null
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 30
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 20
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 10
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 5
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 0
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": -5
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 18,
+   "snr_db": 30
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 10,
+   "snr_db": 20
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 10,
+   "snr_db": 10
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 31,
+   "snr_db": 5
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 1,
+   "ok": 49,
+   "room": "echo",
+   "rs_symbols_fixed": 64,
+   "snr_db": 0
+  },
+  {
+   "K": 1,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 2,
+   "ok": 48,
+   "room": "echo",
+   "rs_symbols_fixed": 135,
+   "snr_db": -5
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 200,
+   "lost": 0,
+   "ok": 200,
+   "room": "clean",
+   "rs_symbols_fixed": 0,
+   "snr_db": null
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 30
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 20
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 10
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 5
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 0
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 1,
+   "snr_db": -5
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 20,
+   "snr_db": 30
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 11,
+   "snr_db": 20
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 27,
+   "snr_db": 10
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 22,
+   "snr_db": 5
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 1,
+   "ok": 49,
+   "room": "echo",
+   "rs_symbols_fixed": 45,
+   "snr_db": 0
+  },
+  {
+   "K": 2,
+   "content": "random",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 9,
+   "ok": 41,
+   "room": "echo",
+   "rs_symbols_fixed": 87,
+   "snr_db": -5
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 200,
+   "lost": 0,
+   "ok": 200,
+   "room": "clean",
+   "rs_symbols_fixed": 0,
+   "snr_db": null
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 30
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 20
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 10
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 5
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 0
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": -5
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 30,
+   "snr_db": 30
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 10,
+   "snr_db": 20
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 9,
+   "snr_db": 10
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 34,
+   "snr_db": 5
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 1,
+   "ok": 49,
+   "room": "echo",
+   "rs_symbols_fixed": 70,
+   "snr_db": 0
+  },
+  {
+   "K": 1,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 12,
+   "ok": 38,
+   "room": "echo",
+   "rs_symbols_fixed": 153,
+   "snr_db": -5
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 200,
+   "lost": 0,
+   "ok": 200,
+   "room": "clean",
+   "rs_symbols_fixed": 0,
+   "snr_db": null
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 30
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 20
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 10
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 5
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 0,
+   "snr_db": 0
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "dry",
+   "rs_symbols_fixed": 1,
+   "snr_db": -5
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 66,
+   "snr_db": 30
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 72,
+   "snr_db": 20
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 74,
+   "snr_db": 10
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 0,
+   "ok": 50,
+   "room": "echo",
+   "rs_symbols_fixed": 89,
+   "snr_db": 5
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 4,
+   "ok": 46,
+   "room": "echo",
+   "rs_symbols_fixed": 118,
+   "snr_db": 0
+  },
+  {
+   "K": 2,
+   "content": "claim",
+   "corrupt_accepted": 0,
+   "frames": 50,
+   "lost": 23,
+   "ok": 27,
+   "room": "echo",
+   "rs_symbols_fixed": 105,
+   "snr_db": -5
+  }
+ ],
+ "seconds": 287.3,
+ "table_sha256": "42d6b5cbde529625a0e5db252a61095bdd0e7a12e6291cde9eb661e15ded28aa"
+}
